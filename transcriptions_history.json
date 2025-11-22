@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "created_at": "2025-11-22T23:32:51.996310",
+  "transcriptions": [
+    {
+      "timestamp": "2025-11-22T23:33:27.379339",
+      "mode": "default",
+      "raw_text": "hello there do you listen to me what are you doing by the way tell me everything about yourself and also tell me about slash projects page",
+      "refined_text": "Hello, may I have your attention? Could you please share with me more about yourself as well as information regarding our Slash Projects Page? Thank you.",
+      "paste_success": false,
+      "text_length": 153
+    },
+    {
+      "timestamp": "2025-11-22T23:33:27.615383",
+      "mode": "default",
+      "raw_text": "hello there do you listen to me what are you doing by the way tell me everything about yourself and also tell me about slash projects page",
+      "refined_text": "Hello, may I have your attention? Could you please share with me more about yourself as well as information regarding our Slash Projects Page? Thank you.",
+      "paste_success": true,
+      "text_length": 153
+    }
+  ]
+}
