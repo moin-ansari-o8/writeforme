@@ -1,8 +1,45 @@
 # WriteForMe
 
-A local, offline AI-powered voice dictation tool inspired by [Wispr Flow](https://wisprflow.ai/). Uses continuous speech recognition and local Phi-3 Mini AI for intelligent text dictation.
+> **🆕 NEW: Web Application Available!** Check out the modern web-based version with real-time streaming and professional UI. See [WEB_APP_README.md](WEB_APP_README.md)
 
-## Features
+A voice dictation tool inspired by [Wispr Flow](https://wisprflow.ai/). Available as both a desktop Python application and a modern web application.
+
+## 🚀 Quick Start
+
+### Web Application (Recommended)
+
+**One-command startup:**
+```bash
+./start.sh  # Linux/macOS
+start.bat   # Windows
+```
+
+Then open: **http://localhost:5173**
+
+📖 [Full Web App Documentation](WEB_APP_README.md) | [Quick Start Guide](QUICKSTART_WEB.md) | [Architecture](ARCHITECTURE.md)
+
+### Desktop Application (Original)
+
+**Run the desktop app:**
+```bash
+python main.py
+```
+
+📖 [Desktop App Guide](QUICKSTART.md)
+
+---
+
+## 📦 What's Included
+
+### Web Application (New)
+- **FastAPI Backend** with WebSocket streaming
+- **React Frontend** with modern UI
+- **Whisper AI** for high-accuracy transcription
+- **Real-time Audio Visualizer** with professional pill design
+- **Dark/Light Mode** with auto-detection
+- **Cross-platform** - works on any device with a browser
+
+### Desktop Application (Original)
 
 - 🎙️ **Continuous Speech Recognition**: Records everything you say until you press stop
 - 🤖 **Local AI Processing**: Uses Ollama (Phi-3 Mini) to refine and organize your speech
@@ -20,7 +57,22 @@ A local, offline AI-powered voice dictation tool inspired by [Wispr Flow](https:
 - 💊 **Compact Pill UI**: Minimalist, draggable pill-shaped widget (280x60px)
 - 🔒 **100% Local**: No cloud dependencies, all processing happens on your machine
 
-## Workflow
+---
+
+## 📚 Documentation
+
+- **[WEB_APP_README.md](WEB_APP_README.md)** - Complete web app guide
+- **[QUICKSTART_WEB.md](QUICKSTART_WEB.md)** - Quick setup for web app
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - System design and data flow
+- **[IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)** - What was built
+- **[COMPARISON.md](COMPARISON.md)** - Desktop vs Web comparison
+- **[QUICKSTART.md](QUICKSTART.md)** - Desktop app quick start
+
+---
+
+## Desktop Application Details
+
+### Workflow
 
 1. **Launch**: Run `python main.py`
 2. **Widget Appears**: Compact pill widget appears at bottom of screen
@@ -32,14 +84,14 @@ A local, offline AI-powered voice dictation tool inspired by [Wispr Flow](https:
 8. **Auto-Paste & Save**: Refined text is saved to history and pasted automatically
 9. **Auto-Hide**: Widget hides automatically when done
 
-## Requirements
+## Desktop Requirements
 
 - Python 3.8+
 - Ollama running locally with `phi3:mini` model
 - Microphone
-- Windows OS (tested on Windows)
+- Windows/macOS/Linux
 
-## Installation
+## Desktop Installation
 
 ### 1. Install Python Dependencies
 
