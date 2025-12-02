@@ -133,7 +133,8 @@ const VoiceVisualizer = ({
       const analyserNode = ctx.createAnalyser();
       
       // Optimized FFT settings for performance
-      const fftSize = isLowEndDevice() ? 32 : 64;
+      // Using 64 for all devices (32 frequency bins) - provides adequate resolution
+      const fftSize = 64;
       analyserNode.fftSize = fftSize;
       analyserNode.smoothingTimeConstant = 0.7;
       analyserNode.minDecibels = -90;
@@ -178,7 +179,8 @@ const VoiceVisualizer = ({
    * Draw audio-reactive blob using frequency data
    */
   const drawAudioBlob = useCallback((ctx, dataArray, centerX, centerY, styles) => {
-    const numPoints = frequencyBands.current;
+    // Ensure we don't exceed dataArray bounds
+    const numPoints = Math.min(frequencyBands.current, dataArray.length);
     const baseRadius = 12;
     const points = [];
 
@@ -193,6 +195,9 @@ const VoiceVisualizer = ({
         y: centerY + Math.sin(angle) * radius
       });
     }
+
+    // Need at least 2 points to draw
+    if (points.length < 2) return;
 
     // Draw smooth blob using quadratic curves
     ctx.fillStyle = styles.waveActive;
@@ -242,21 +247,10 @@ const VoiceVisualizer = ({
     
     // Get frequency data if analyser is available
     let dataArray = null;
-    let avgAmplitude = 0;
     
     if (analyser && isListening) {
       dataArray = new Uint8Array(analyser.frequencyBinCount);
       analyser.getByteFrequencyData(dataArray);
-      
-      // Calculate average amplitude from frequency bands
-      avgAmplitude = dataArray.slice(0, frequencyBands.current)
-        .reduce((sum, val) => sum + val, 0) / frequencyBands.current;
-    }
-
-    // Performance optimization: skip rendering if too quiet and not actively listening
-    if (avgAmplitude < 5 && !isListening && analyser) {
-      animationFrameRef.current = requestAnimationFrame(draw);
-      return;
     }
 
     // Clear canvas
