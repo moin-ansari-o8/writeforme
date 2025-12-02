@@ -133,7 +133,7 @@ const VoiceVisualizer = ({
       const analyserNode = ctx.createAnalyser();
       
       // Optimized FFT settings for performance
-      // Using 64 for all devices (32 frequency bins) - provides adequate resolution
+      // Using 64 (provides 32 frequency bins for analysis)
       const fftSize = 64;
       analyserNode.fftSize = fftSize;
       analyserNode.smoothingTimeConstant = 0.7;

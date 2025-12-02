@@ -140,7 +140,11 @@ export const useAudioRecorder = () => {
           if (websocketRef.current && websocketRef.current.readyState === WebSocket.OPEN) {
             const reader = new FileReader();
             reader.onloadend = () => {
-              const base64Audio = reader.result.split(',')[1]; // Remove data:audio/webm;base64,
+              const base64Audio = reader.result?.split(',')[1]; // Remove data:audio/webm;base64,
+              if (!base64Audio) {
+                console.warn('Failed to encode audio chunk');
+                return;
+              }
               websocketRef.current.send(JSON.stringify({
                 type: 'audio_chunk',
                 data: base64Audio,

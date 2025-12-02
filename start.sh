@@ -80,7 +80,7 @@ echo ""
 echo "Press Ctrl+C to stop both services"
 echo ""
 
-npm run dev
+# Trap cleanup
+trap 'kill $BACKEND_PID 2>/dev/null; exit' EXIT INT TERM
 
-# Cleanup on exit
-kill $BACKEND_PID 2>/dev/null
+npm run dev
