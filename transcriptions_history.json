@@ -209,6 +209,22 @@
       "refined_text": "Hello there. What are you doing? What can you do?",
       "paste_success": true,
       "text_length": 49
+    },
+    {
+      "timestamp": "2026-01-14T16:01:46.456608",
+      "mode": "default",
+      "raw_text": "hello there what are you doing I was just talking about the successfully transcribed my speech in multiple strings the program now listens continuously until I am manually stop it with Control + c perfect for ongoing speech to text",
+      "refined_text": "Hello, I was just discussing how I successfully transcribed my speech in multiple segments. The program now listens continuously until I manually stop it with Control + C, making it perfect for ongoing speech-to-text transcription.",
+      "paste_success": false,
+      "text_length": 231
+    },
+    {
+      "timestamp": "2026-01-14T16:01:46.704287",
+      "mode": "default",
+      "raw_text": "hello there what are you doing I was just talking about the successfully transcribed my speech in multiple strings the program now listens continuously until I am manually stop it with Control + c perfect for ongoing speech to text",
+      "refined_text": "Hello, I was just discussing how I successfully transcribed my speech in multiple segments. The program now listens continuously until I manually stop it with Control + C, making it perfect for ongoing speech-to-text transcription.",
+      "paste_success": true,
+      "text_length": 231
     }
   ]
 }

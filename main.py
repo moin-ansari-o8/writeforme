@@ -13,7 +13,7 @@ Hotkeys:
 import threading
 import time
 import ctypes # For High DPI awareness
-import keyboard  # For global hotkeys
+from pynput import keyboard as pynput_keyboard
 from colorama import Fore, Back, Style, init
 from audio_recorder import AudioRecorder
 from speech_to_text import SpeechToText
@@ -61,8 +61,10 @@ class WisprFlowLocal:
         self.is_recording = False
         self.toggle_mode_active = False  # For Win+Ctrl+Shift toggle mode
         
-        # Hotkey registration flags
-        self.hotkeys_registered = False
+        # Hotkey tracking
+        self.hotkey_listener = None
+        self.push_to_talk_pressed = False
+        self.current_modifiers = set()
         
     def on_cancel(self):
         """Handle cancel button press"""
@@ -219,38 +221,75 @@ class WisprFlowLocal:
                 break
     
     def _setup_hotkeys(self):
-        """Setup global hotkeys"""
+        """Setup global hotkeys using pynput"""
         print(f"\n{Fore.YELLOW}🔧 Setting up global hotkeys...{Style.RESET_ALL}")
         
-        # Toggle Mode: Win+Ctrl+Shift (press to start/stop) - Register FIRST
-        keyboard.add_hotkey('win+ctrl+shift', self._on_toggle_mode, suppress=True)
+        def on_press(key):
+            """Handle key press events"""
+            try:
+                # Track modifier keys
+                if key in (pynput_keyboard.Key.cmd, pynput_keyboard.Key.cmd_l, pynput_keyboard.Key.cmd_r):
+                    self.current_modifiers.add('win')
+                elif key in (pynput_keyboard.Key.ctrl, pynput_keyboard.Key.ctrl_l, pynput_keyboard.Key.ctrl_r):
+                    self.current_modifiers.add('ctrl')
+                elif key in (pynput_keyboard.Key.shift, pynput_keyboard.Key.shift_l, pynput_keyboard.Key.shift_r):
+                    self.current_modifiers.add('shift')
+                
+                # Check for Win+Ctrl+Shift (toggle mode)
+                if {'win', 'ctrl', 'shift'} == self.current_modifiers:
+                    if not self.push_to_talk_pressed:
+                        self._on_toggle_mode()
+                    return
+                
+                # Check for Win+Shift (push-to-talk)
+                if {'win', 'shift'} == self.current_modifiers and 'ctrl' not in self.current_modifiers:
+                    if not self.push_to_talk_pressed and not self.toggle_mode_active:
+                        self.push_to_talk_pressed = True
+                        self._on_push_to_talk_start()
+                    return
+                    
+            except Exception as e:
+                print(f"{Fore.RED}Error in key press: {e}{Style.RESET_ALL}")
         
-        # Push-to-Talk Mode: Win+Shift (hold to record)
-        keyboard.add_hotkey('win+shift', self._on_push_to_talk_start, suppress=True, trigger_on_release=False)
+        def on_release(key):
+            """Handle key release events"""
+            try:
+                # Track modifier keys
+                if key in (pynput_keyboard.Key.cmd, pynput_keyboard.Key.cmd_l, pynput_keyboard.Key.cmd_r):
+                    self.current_modifiers.discard('win')
+                elif key in (pynput_keyboard.Key.ctrl, pynput_keyboard.Key.ctrl_l, pynput_keyboard.Key.ctrl_r):
+                    self.current_modifiers.discard('ctrl')
+                elif key in (pynput_keyboard.Key.shift, pynput_keyboard.Key.shift_l, pynput_keyboard.Key.shift_r):
+                    self.current_modifiers.discard('shift')
+                
+                # Check if push-to-talk was released
+                if self.push_to_talk_pressed:
+                    if 'win' not in self.current_modifiers or 'shift' not in self.current_modifiers:
+                        self.push_to_talk_pressed = False
+                        self._on_push_to_talk_release()
+                        
+            except Exception as e:
+                print(f"{Fore.RED}Error in key release: {e}{Style.RESET_ALL}")
         
-        self.hotkeys_registered = True
+        # Start listener in background thread
+        self.hotkey_listener = pynput_keyboard.Listener(
+            on_press=on_press,
+            on_release=on_release
+        )
+        self.hotkey_listener.start()
+        
         print(f"{Fore.GREEN}✓ Hotkeys registered:{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  • Win+Shift (Hold) - Push-to-talk mode{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  • Win+Ctrl+Shift (Press) - Toggle recording mode{Style.RESET_ALL}")
     
     def _on_push_to_talk_start(self):
         """Handle Win+Shift press (start recording)"""
-        # Only start if not already in toggle mode and not processing
         if not self.toggle_mode_active and not self.is_processing:
             print(f"{Fore.MAGENTA}🔘 Push-to-talk: Starting...{Style.RESET_ALL}")
             self.start_recording()
-            
-            # Monitor for key release in a separate thread
-            import threading
-            threading.Thread(target=self._monitor_push_to_talk_release, daemon=True).start()
     
-    def _monitor_push_to_talk_release(self):
-        """Monitor for Win+Shift release"""
-        # Wait until either Win or Shift is released
-        while keyboard.is_pressed('win') and keyboard.is_pressed('shift'):
-            time.sleep(0.05)
-        
-        # Keys released - stop recording if we're in push-to-talk mode
+    def _on_push_to_talk_release(self):
+        """Handle Win+Shift release (stop recording)"""
         if self.is_recording and not self.toggle_mode_active:
             print(f"{Fore.MAGENTA}🔘 Push-to-talk: Released, stopping...{Style.RESET_ALL}")
             self.stop_recording_and_process()
@@ -316,10 +355,10 @@ class WisprFlowLocal:
         """Clean up resources"""
         print(f"\n{Fore.YELLOW}🧹 Cleaning up...{Style.RESET_ALL}")
         
-        # Unregister hotkeys
-        if self.hotkeys_registered:
+        # Stop hotkey listener
+        if self.hotkey_listener:
             try:
-                keyboard.unhook_all()
+                self.hotkey_listener.stop()
                 print(f"{Fore.GREEN}✓ Hotkeys unregistered{Style.RESET_ALL}")
             except:
                 pass

@@ -1,6 +1,6 @@
 # Task Implementation Checklist
 
-Task: Fix Gemini API Error and GUI/Visualizer Issues
+Task: Fix Hotkey System - Windows Keys Disabled Issue
 Generated: 2026-01-14
 
 ## Status Legend
@@ -15,17 +15,25 @@ Generated: 2026-01-14
 [tested] Fix visualizer not showing - ensure GUI is shown on hotkey press
 [tested] Improve fallback logic - allow user to retry or switch providers
 [tested] Change Gemini model from experimental to stable (gemini-1.5-flash)
-[tested] Test all scenarios with proper fallback
-[tested] Verify security rating - 10/10 PASSED
+[updated] Replace keyboard library with pynput for proper hotkey handling
+[updated] Remove suppress=True that was blocking system keys
+[updated] Implement proper modifier key tracking
+[todo-8] Test hotkeys work without blocking system keys
+[todo-9] Verify security rating
 
-## COMPLETED ✅
+## Progress Notes
 
-All tasks completed successfully. Application now:
-- Works with stable Gemini model
-- Provides fallback options when provider fails
-- Shows visualizer properly
-- Doesn't disable other windows
-- Handles errors gracefully
+- Root causes identified:
+  1. keyboard library with suppress=True was blocking ALL Win/Ctrl/Shift events
+  2. System keys became unusable when app was running
+  3. Hotkeys weren't triggering properly
+
+## Solution Approach
+
+1. Replaced `keyboard` library with `pynput` for better global hotkey handling
+2. Implemented custom key press/release tracking for modifier keys
+3. No suppression - allows system keys to work normally
+4. Proper state management for push-to-talk vs toggle modes
 
 ## Progress Notes
 

@@ -5,6 +5,38 @@
 
 ---
 
+## [2026-01-14] - Hotkey System Breaking Windows Keys
+
+**Problem:**
+- Using `keyboard` library with `suppress=True` parameter
+- All Win, Ctrl, and Shift keys became completely unusable system-wide
+- Users couldn't use Windows key, Task Manager (Ctrl+Shift+Esc), or any other shortcuts
+- Hotkeys weren't triggering properly or consistently
+- Push-to-talk mode wasn't detecting key release
+
+**Solution:**
+- Replaced `keyboard` library with `pynput` library
+- Removed ALL `suppress=True` parameters
+- Implemented custom modifier key tracking with sets
+- Used `pynput.keyboard.Listener` with proper on_press/on_release handlers
+- Track modifier state manually: `{'win', 'ctrl', 'shift'}`
+- Check combinations without suppressing keys
+- Proper cleanup on app exit with `listener.stop()`
+
+**Lesson:**
+- NEVER use `suppress=True` on modifier keys (Win, Ctrl, Shift, Alt)
+- Use `pynput` instead of `keyboard` for global hotkeys on Windows
+- Always track modifier state manually for multi-key combinations
+- Test that system shortcuts still work after registering hotkeys
+- Properly clean up keyboard listeners on exit
+- Don't block system-level key events
+
+**Related Files:**
+- main.py (lines 12, 59-62, 220-290, 317-327)
+- requirements.txt (line 9)
+
+---
+
 ## [2026-01-14] - Gemini API Deprecation and GUI Issues
 
 **Problem:**
