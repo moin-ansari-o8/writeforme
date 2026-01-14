@@ -443,6 +443,51 @@ class GlassDashboard(QMainWindow):
         """)
         content_layout = QVBoxLayout(content_glass)
         content_layout.setContentsMargins(0, 0, 0, 0)
+        content_layout.setSpacing(0)
+        
+        # Title bar at top right
+        titlebar_container = QWidget()
+        titlebar_container.setFixedHeight(50)
+        titlebar_container.setStyleSheet("background: transparent;")
+        titlebar_layout = QHBoxLayout(titlebar_container)
+        titlebar_layout.setContentsMargins(10, 10, 10, 0)
+        titlebar_layout.setSpacing(0)
+        
+        # Drag area
+        drag_area = QLabel()
+        drag_area.setStyleSheet("background: transparent;")
+        drag_area.mousePressEvent = self.mousePressEvent
+        drag_area.mouseMoveEvent = self.mouseMoveEvent
+        titlebar_layout.addWidget(drag_area, 1)
+        
+        # Window controls - RIGHT ALIGNED at edge
+        controls_layout = QHBoxLayout()
+        controls_layout.setSpacing(8)
+        controls_layout.setContentsMargins(0, 0, 0, 0)
+        
+        for icon, func in [("—", self.showMinimized), ("□", self.toggle_maximize), ("✕", self.close)]:
+            btn = QPushButton(icon)
+            btn.setFixedSize(35, 35)
+            btn.setCursor(Qt.CursorShape.PointingHandCursor)
+            btn.setStyleSheet("""
+                QPushButton {
+                    background: rgba(50, 50, 55, 0.9);
+                    border: none;
+                    border-radius: 8px;
+                    color: rgb(200, 200, 200);
+                    font-size: 16px;
+                }
+                QPushButton:hover {
+                    background: rgba(70, 70, 75, 1);
+                }
+            """)
+            btn.clicked.connect(func)
+            controls_layout.addWidget(btn)
+        
+        titlebar_layout.addLayout(controls_layout)
+        content_layout.addWidget(titlebar_container)
+        
+        # Add content stack
         content_layout.addWidget(self.content_stack)
         
         main_layout.addWidget(content_glass, 1)
@@ -462,40 +507,6 @@ class GlassDashboard(QMainWindow):
         layout = QVBoxLayout(sidebar)
         layout.setContentsMargins(20, 20, 20, 20)
         layout.setSpacing(12)
-        
-        # Custom title bar
-        titlebar = QHBoxLayout()
-        titlebar.setSpacing(8)
-        titlebar.setContentsMargins(10, 0, 0, 0)  # Left margin
-        
-        # Window controls - LEFT ALIGNED
-        for icon, func in [("—", self.showMinimized), ("□", self.toggle_maximize), ("✕", self.close)]:
-            btn = QPushButton(icon)
-            btn.setFixedSize(30, 30)
-            btn.setCursor(Qt.CursorShape.PointingHandCursor)
-            btn.setStyleSheet("""
-                QPushButton {
-                    background: rgba(50, 50, 55, 0.9);
-                    border: none;
-                    border-radius: 6px;
-                    color: rgb(200, 200, 200);
-                    font-size: 16px;
-                }
-                QPushButton:hover {
-                    background: rgba(70, 70, 75, 1);
-                }
-            """)
-            btn.clicked.connect(func)
-            titlebar.addWidget(btn)
-        
-        # Drag area (takes remaining space)
-        drag_label = QLabel()
-        drag_label.setFixedHeight(30)
-        drag_label.mousePressEvent = self.mousePressEvent
-        drag_label.mouseMoveEvent = self.mouseMoveEvent
-        titlebar.addWidget(drag_label, 1)
-        
-        layout.addLayout(titlebar)
         
         # App header
         app_name = QLabel("WriteForMe")
@@ -596,31 +607,58 @@ class GlassDashboard(QMainWindow):
         
         layout.addSpacing(20)
         
-        # Model selector
+        # Model selector (Gemini-style dropdown)
         model_layout = QHBoxLayout()
-        model_label = QLabel("AI Model:")
-        model_label.setStyleSheet("color: rgba(255, 255, 255, 0.8); font-size: 13px; background: transparent;")
+        model_label = QLabel("Models:")
+        model_label.setStyleSheet("color: rgba(255, 255, 255, 0.7); font-size: 13px; background: transparent;")
         model_layout.addWidget(model_label)
         
         self.model_selector = QComboBox()
-        self.model_selector.addItems(["Vibe Coder", "Casual Chatter"])
+        self.model_selector.addItems([
+            "Cohere - Command R7B",
+            "Vibe Coder Mode",
+            "Casual Chatter Mode"
+        ])
         self.model_selector.setStyleSheet("""
             QComboBox {
                 background: rgba(45, 45, 50, 0.9);
-                border: none;
-                border-radius: 8px;
+                border: 1px solid rgba(70, 70, 75, 0.5);
+                border-radius: 10px;
                 color: rgb(220, 220, 220);
                 padding: 8px 16px;
                 font-size: 13px;
+                min-width: 200px;
+            }
+            QComboBox:hover {
+                border: 1px solid rgba(100, 100, 105, 0.7);
+                background: rgba(50, 50, 55, 0.95);
             }
             QComboBox::drop-down {
                 border: none;
+                width: 30px;
+            }
+            QComboBox::down-arrow {
+                image: none;
+                border: none;
+                width: 0px;
+                height: 0px;
             }
             QComboBox QAbstractItemView {
-                background: rgba(45, 45, 50, 0.98);
+                background: rgba(40, 40, 45, 0.98);
                 color: rgb(220, 220, 220);
-                selection-background-color: rgba(70, 70, 75, 0.9);
-                border: none;
+                selection-background-color: rgba(70, 130, 255, 0.8);
+                selection-color: white;
+                border: 1px solid rgba(70, 70, 75, 0.5);
+                border-radius: 8px;
+                padding: 4px;
+            }
+            QComboBox QAbstractItemView::item {
+                padding: 8px;
+                border-radius: 6px;
+                margin: 2px;
+            }
+            QComboBox QAbstractItemView::item:hover {
+                background: rgba(60, 60, 65, 0.8);
             }
         """)
         model_layout.addWidget(self.model_selector)
@@ -629,43 +667,22 @@ class GlassDashboard(QMainWindow):
         
         layout.addSpacing(10)
         
-        # Input area with mic button (ChatGPT-like)
+        # Input area with mic and submit on right (Gemini-like)
         input_container = QFrame()
         input_container.setStyleSheet("""
             QFrame {
                 background: rgba(45, 45, 50, 0.95);
-                border-radius: 16px;
+                border-radius: 24px;
             }
         """)
         input_layout = QHBoxLayout(input_container)
-        input_layout.setContentsMargins(12, 12, 12, 12)
-        input_layout.setSpacing(12)
+        input_layout.setContentsMargins(20, 12, 12, 12)
+        input_layout.setSpacing(8)
         
-        # Mic button on left
-        self.mic_button = QPushButton("🎤")
-        self.mic_button.setFixedSize(48, 48)
-        self.mic_button.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.mic_button.setStyleSheet("""
-            QPushButton {
-                background: rgba(60, 60, 65, 0.9);
-                border: none;
-                border-radius: 24px;
-                font-size: 20px;
-            }
-            QPushButton:hover {
-                background: rgba(80, 80, 85, 1);
-            }
-            QPushButton:pressed {
-                background: rgba(100, 100, 255, 0.8);
-            }
-        """)
-        self.mic_button.clicked.connect(self.toggle_recording)
-        input_layout.addWidget(self.mic_button)
-        
-        # Text input
+        # Text input (takes most space)
         self.prompt_input = QTextEdit()
-        self.prompt_input.setPlaceholderText("Type your prompt or click the mic to speak...")
-        self.prompt_input.setMaximumHeight(120)
+        self.prompt_input.setPlaceholderText("Ask anything...")
+        self.prompt_input.setMaximumHeight(100)
         self.prompt_input.setStyleSheet("""
             QTextEdit {
                 background: transparent;
@@ -676,6 +693,50 @@ class GlassDashboard(QMainWindow):
             }
         """)
         input_layout.addWidget(self.prompt_input)
+        
+        # Mic button on right
+        self.mic_button = QPushButton("🎤")
+        self.mic_button.setFixedSize(40, 40)
+        self.mic_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.mic_button.setStyleSheet("""
+            QPushButton {
+                background: transparent;
+                border: none;
+                border-radius: 20px;
+                font-size: 18px;
+            }
+            QPushButton:hover {
+                background: rgba(80, 80, 85, 0.6);
+            }
+            QPushButton:pressed {
+                background: rgba(100, 100, 255, 0.8);
+            }
+        """)
+        self.mic_button.clicked.connect(self.toggle_recording)
+        input_layout.addWidget(self.mic_button)
+        
+        # Submit button on right
+        self.submit_button = QPushButton("➤")
+        self.submit_button.setFixedSize(40, 40)
+        self.submit_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.submit_button.setStyleSheet("""
+            QPushButton {
+                background: rgba(70, 130, 255, 0.9);
+                border: none;
+                border-radius: 20px;
+                color: white;
+                font-size: 16px;
+            }
+            QPushButton:hover {
+                background: rgba(90, 150, 255, 1);
+            }
+            QPushButton:disabled {
+                background: rgba(60, 60, 65, 0.5);
+                color: rgba(255, 255, 255, 0.3);
+            }
+        """)
+        self.submit_button.clicked.connect(self.submit_prompt)
+        input_layout.addWidget(self.submit_button)
         
         layout.addWidget(input_container)
         
@@ -936,24 +997,44 @@ class GlassDashboard(QMainWindow):
         import os
         
         # Path to transcriptions_history.json
-        history_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "transcriptions_history.json")
+        self.history_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "transcriptions_history.json")
         
         try:
-            if os.path.exists(history_file):
-                with open(history_file, 'r', encoding='utf-8') as f:
+            if os.path.exists(self.history_file):
+                with open(self.history_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     transcriptions = data.get("transcriptions", [])
                     self.all_transcriptions = transcriptions
                     self.filtered_transcriptions = transcriptions.copy()
+                    self.json_data = data  # Store full JSON structure
             else:
                 self.all_transcriptions = []
                 self.filtered_transcriptions = []
+                self.json_data = {"version": "1.0", "transcriptions": []}
         except Exception as e:
             print(f"Error loading transcriptions: {e}")
             self.all_transcriptions = []
             self.filtered_transcriptions = []
+            self.json_data = {"version": "1.0", "transcriptions": []}
         
         self.render_cards()
+    
+    def save_to_json(self):
+        """Save transcriptions back to JSON file"""
+        import json
+        from datetime import datetime
+        
+        try:
+            # Update the transcriptions in json_data
+            self.json_data["transcriptions"] = self.all_transcriptions
+            
+            # Write back to file
+            with open(self.history_file, 'w', encoding='utf-8') as f:
+                json.dump(self.json_data, f, indent=2, ensure_ascii=False)
+            
+            print(f"[Dashboard] Saved {len(self.all_transcriptions)} transcriptions to JSON")
+        except Exception as e:
+            print(f"Error saving transcriptions: {e}")
     
     def render_cards(self):
         """Render transcription cards"""
@@ -1000,11 +1081,14 @@ class GlassDashboard(QMainWindow):
         self.render_cards()
     
     def on_delete(self, data):
-        """Delete transcription"""
+        """Delete transcription and persist to JSON"""
         if data in self.all_transcriptions:
             self.all_transcriptions.remove(data)
         if data in self.filtered_transcriptions:
             self.filtered_transcriptions.remove(data)
+        
+        # Persist to JSON file
+        self.save_to_json()
         self.render_cards()
     
     def on_reinject(self, data):
@@ -1015,6 +1099,52 @@ class GlassDashboard(QMainWindow):
         """Show detail dialog when card is clicked"""
         dialog = TranscriptionDetailDialog(data, self)
         dialog.exec()
+    
+    def submit_prompt(self):
+        """Submit text prompt for processing"""
+        text = self.prompt_input.toPlainText().strip()
+        if not text:
+            return
+        
+        self.status_label.setText("✨ Refining with AI...")
+        self.status_label.setVisible(True)
+        self.result_container.setVisible(False)
+        QApplication.processEvents()
+        
+        try:
+            # Get selected mode
+            mode_text = self.model_selector.currentText()
+            if "Vibe Coder" in mode_text:
+                mode = "vibe_coder"
+            elif "Casual Chatter" in mode_text:
+                mode = "casual_chatter"
+            else:
+                mode = "vibe_coder"
+            
+            # Import AI refiner
+            import sys
+            import os
+            sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+            from ai_refiner import AIRefiner
+            
+            if not hasattr(self, 'refiner'):
+                self.refiner = AIRefiner(mode)
+            else:
+                self.refiner.set_mode(mode)
+            
+            refined_text = self.refiner.refine_text(text)
+            
+            # Show result
+            self.result_text.setPlainText(refined_text)
+            self.result_container.setVisible(True)
+            self.status_label.setText("✅ Done!")
+            
+            # Hide status after 2 seconds
+            QTimer.singleShot(2000, lambda: self.status_label.setVisible(False))
+        except Exception as e:
+            print(f"Error processing prompt: {e}")
+            self.status_label.setText(f"Error: {e}")
+            QTimer.singleShot(3000, lambda: self.status_label.setVisible(False))
     
     def toggle_recording(self):
         """Toggle recording state in home tab"""
@@ -1106,8 +1236,13 @@ class GlassDashboard(QMainWindow):
                     QApplication.processEvents()
                     
                     # Get selected mode
-                    mode_map = {"Vibe Coder": "vibe_coder", "Casual Chatter": "casual_chatter"}
-                    mode = mode_map.get(self.model_selector.currentText(), "vibe_coder")
+                    mode_text = self.model_selector.currentText()
+                    if "Vibe Coder" in mode_text:
+                        mode = "vibe_coder"
+                    elif "Casual Chatter" in mode_text:
+                        mode = "casual_chatter"
+                    else:
+                        mode = "vibe_coder"
                     
                     if not hasattr(self, 'refiner'):
                         self.refiner = AIRefiner(mode)
@@ -1191,7 +1326,7 @@ class GlassDashboard(QMainWindow):
         self.dragging = False
     
     def paintEvent(self, event):
-        """Paint professional dark background"""
+        """Paint professional dark background with rounded corners"""
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         
@@ -1201,7 +1336,10 @@ class GlassDashboard(QMainWindow):
         gradient.setColorAt(0.5, QColor(24, 24, 24))    # Dark gray
         gradient.setColorAt(1, QColor(18, 18, 18))      # Very dark gray
         
-        painter.fillRect(self.rect(), gradient)
+        # Draw rounded rectangle background
+        path = QPainterPath()
+        path.addRoundedRect(QRectF(self.rect()), 20, 20)  # 20px border radius
+        painter.fillPath(path, QBrush(gradient))
         painter.end()
 
 
