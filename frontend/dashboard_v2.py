@@ -1,12 +1,43 @@
 """
-WriteForMe Dashboard - TRUE Glassmorphism with PyQt6
-Real backdrop blur, frameless window, smooth animations
+WriteForMe Dashboard - Professional UI with Glassmorphism
+Icons: PNG rasterized (no SVG), Typography: Inter/Segoe UI
 """
 import sys
 from datetime import datetime, timedelta
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
+
+# Import PNG icon system
+from assets.icons import IconButton
+
+
+class GradientLabel(QLabel):
+    """Label with gradient text effect"""
+    
+    def __init__(self, text, parent=None):
+        super().__init__(text, parent)
+        self.gradient_colors = [
+            QColor(99, 102, 241),   # Blue
+            QColor(139, 192, 241),  # Light blue
+            QColor(99, 102, 241)    # Blue
+        ]
+    
+    def paintEvent(self, event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        
+        # Create gradient
+        gradient = QLinearGradient(0, 0, self.width(), 0)
+        gradient.setColorAt(0, self.gradient_colors[0])
+        gradient.setColorAt(0.5, self.gradient_colors[1])
+        gradient.setColorAt(1, self.gradient_colors[2])
+        
+        # Draw text with gradient
+        painter.setPen(QPen(QBrush(gradient), 1))
+        painter.setFont(self.font())
+        painter.drawText(self.rect(), int(self.alignment()), self.text())
+        painter.end()
 
 
 class GlassFrame(QFrame):
@@ -58,7 +89,7 @@ class ModernButton(QPushButton):
         self.hover_color = QColor(80, 80, 85, 230)     # Lighter gray on hover
         self.current_color = self.default_color
         
-        self.setFont(QFont("Segoe UI", 11, QFont.Weight.Medium))
+        self.setFont(QFont("Inter", 14, QFont.Weight.Medium))
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setMinimumHeight(44)
         
@@ -115,7 +146,7 @@ class TranscriptionDetailDialog(QDialog):
     def setup_ui(self):
         self.setWindowTitle("Transcription Details")
         self.setModal(True)
-        self.setFixedSize(700, 600)
+        self.setFixedSize(780, 680)
         
         # Remove default window frame for custom styling
         self.setWindowFlags(Qt.WindowType.FramelessWindowHint | Qt.WindowType.Dialog)
@@ -131,27 +162,23 @@ class TranscriptionDetailDialog(QDialog):
         """)
         
         layout = QVBoxLayout(container)
-        layout.setContentsMargins(30, 30, 30, 30)
-        layout.setSpacing(20)
+        layout.setContentsMargins(32, 32, 32, 32)
+        layout.setSpacing(24)
         
         # Title bar with close button
         title_bar = QHBoxLayout()
         title = QLabel("Transcription Details")
-        title.setFont(QFont("Segoe UI", 18, QFont.Weight.Bold))
-        title.setStyleSheet("color: rgb(230, 230, 230); background: transparent;")
+        title.setFont(QFont("Inter", 24, QFont.Weight.Bold))
+        title.setStyleSheet("color: rgb(240, 240, 240); background: transparent; letter-spacing: -0.5px;")
         title_bar.addWidget(title)
         title_bar.addStretch()
         
-        close_btn = QPushButton("✕")
-        close_btn.setFixedSize(32, 32)
-        close_btn.setCursor(Qt.CursorShape.PointingHandCursor)
+        close_btn = IconButton.create("close", size=32, tooltip="Close")
         close_btn.setStyleSheet("""
             QPushButton {
                 background: rgba(60, 60, 65, 0.9);
                 border: none;
                 border-radius: 8px;
-                color: rgb(200, 200, 200);
-                font-size: 16px;
             }
             QPushButton:hover {
                 background: rgba(180, 50, 50, 1);
@@ -164,63 +191,85 @@ class TranscriptionDetailDialog(QDialog):
         # Timestamp and mode
         info_layout = QHBoxLayout()
         timestamp_text = self.data.get("timestamp", "")[:19].replace("T", " ")
-        timestamp_label = QLabel(f"📅 {timestamp_text}")
-        timestamp_label.setStyleSheet("color: rgba(255, 255, 255, 0.7); font-size: 13px; background: transparent;")
+        timestamp_label = QLabel(timestamp_text)
+        timestamp_label.setFont(QFont("Inter", 13))
+        timestamp_label.setStyleSheet("color: rgba(255, 255, 255, 0.7); background: transparent;")
         info_layout.addWidget(timestamp_label)
         
         mode_text = self.data.get("mode", "default").replace("_", " ").title()
         mode_label = QLabel(f"Mode: {mode_text}")
+        mode_label.setFont(QFont("Inter", 13, QFont.Weight.Medium))
         mode_label.setStyleSheet("""
-            color: rgb(200, 200, 200);
+            color: rgb(210, 210, 210);
             background: rgba(60, 60, 65, 0.95);
-            border-radius: 6px;
-            padding: 4px 12px;
-            font-size: 12px;
+            border-radius: 8px;
+            padding: 6px 16px;
         """)
         info_layout.addWidget(mode_label)
         info_layout.addStretch()
         layout.addLayout(info_layout)
         
         # Raw transcription section
-        raw_label = QLabel("Raw Transcription:")
-        raw_label.setFont(QFont("Segoe UI", 12, QFont.Weight.Bold))
-        raw_label.setStyleSheet("color: rgba(255, 255, 255, 0.8); background: transparent;")
+        raw_label = QLabel("Raw Transcription")
+        raw_label.setFont(QFont("Inter", 16, QFont.Weight.Bold))
+        raw_label.setStyleSheet("color: rgba(255, 255, 255, 0.85); background: transparent; margin-top: 8px;")
         layout.addWidget(raw_label)
         
         raw_text = QTextEdit()
         raw_text.setPlainText(self.data.get("raw_text", "N/A"))
         raw_text.setReadOnly(True)
-        raw_text.setMaximumHeight(120)
+        raw_text.setMinimumHeight(140)
+        raw_text.setFont(QFont("Inter", 14))
         raw_text.setStyleSheet("""
             QTextEdit {
-                background: rgba(45, 45, 50, 0.9);
-                border: none;
-                border-radius: 8px;
+                background: rgba(45, 45, 50, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                border-radius: 12px;
                 color: rgb(200, 200, 200);
-                padding: 12px;
-                font-size: 13px;
+                padding: 18px;
+                line-height: 1.6;
+            }
+            QScrollBar:vertical {
+                background: transparent;
+                width: 8px;
+            }
+            QScrollBar::handle:vertical {
+                background: rgba(80, 80, 85, 0.7);
+                border-radius: 4px;
             }
         """)
         layout.addWidget(raw_text)
         
         # Refined text section
-        refined_label = QLabel("Refined Text:")
-        refined_label.setFont(QFont("Segoe UI", 12, QFont.Weight.Bold))
-        refined_label.setStyleSheet("color: rgba(255, 255, 255, 0.8); background: transparent;")
+        refined_label = QLabel("Refined Text")
+        refined_label.setFont(QFont("Inter", 17, QFont.Weight.Bold))
+        refined_label.setStyleSheet("color: rgb(99, 102, 241); background: transparent; margin-top: 12px;")
         layout.addWidget(refined_label)
         
         refined_text = QTextEdit()
         refined_text.setPlainText(self.data.get("refined_text", "N/A"))
         refined_text.setReadOnly(True)
-        refined_text.setMaximumHeight(120)
+        refined_text.setMinimumHeight(160)
+        refined_text.setFont(QFont("Inter", 14))
         refined_text.setStyleSheet("""
             QTextEdit {
-                background: rgba(45, 45, 50, 0.9);
-                border: none;
-                border-radius: 8px;
-                color: rgb(220, 220, 220);
-                padding: 12px;
-                font-size: 13px;
+                background: rgba(55, 55, 62, 0.95);
+                border: 1px solid rgba(99, 102, 241, 0.2);
+                border-radius: 12px;
+                color: rgb(230, 230, 230);
+                padding: 20px;
+                line-height: 1.6;
+            }
+            QScrollBar:vertical {
+                background: transparent;
+                width: 8px;
+            }
+            QScrollBar::handle:vertical {
+                background: rgba(99, 102, 241, 0.5);
+                border-radius: 4px;
+            }
+            QScrollBar::handle:vertical:hover {
+                background: rgba(99, 102, 241, 0.7);
             }
         """)
         layout.addWidget(refined_text)
@@ -231,7 +280,8 @@ class TranscriptionDetailDialog(QDialog):
         stats_layout.addWidget(QLabel(f"Words: {word_count}"))
         stats_layout.addStretch()
         stats_label = QLabel(f"Words: {word_count}")
-        stats_label.setStyleSheet("color: rgba(255, 255, 255, 0.5); font-size: 12px; background: transparent;")
+        stats_label.setFont(QFont("Inter", 12))
+        stats_label.setStyleSheet("color: rgba(255, 255, 255, 0.5); background: transparent;")
         layout.addWidget(stats_label)
         
         # Position container in dialog
@@ -250,7 +300,7 @@ class TranscriptionCard(QFrame):
     def __init__(self, data, parent=None):
         super().__init__(parent)
         self.data = data
-        self.setFixedHeight(140)
+        self.setMinimumHeight(160)
         self.setCursor(Qt.CursorShape.PointingHandCursor)
         self.setup_ui()
     
@@ -263,26 +313,26 @@ class TranscriptionCard(QFrame):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(20, 16, 20, 16)
-        layout.setSpacing(8)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(12)
         
         # Header (timestamp + mode)
         header = QHBoxLayout()
         
         timestamp_text = self.data.get("timestamp", "")[:19].replace("T", " ")
         timestamp = QLabel(timestamp_text)
-        timestamp.setStyleSheet("color: rgba(255, 255, 255, 0.5); font-size: 12px; background: transparent;")
+        timestamp.setFont(QFont("Inter", 12))
+        timestamp.setStyleSheet("color: rgba(255, 255, 255, 0.5); background: transparent; border: none; outline: none;")
         header.addWidget(timestamp)
         
         mode_badge = QLabel(self.data.get("mode", "").replace("_", " ").title())
+        mode_badge.setFont(QFont("Inter", 12, QFont.Weight.Medium))
         mode_badge.setStyleSheet("""
             color: rgb(200, 200, 200);
             background: rgba(60, 60, 65, 0.95);
             border: none;
             border-radius: 6px;
             padding: 4px 12px;
-            font-size: 12px;
-            font-weight: 600;
         """)
         header.addWidget(mode_badge)
         header.addStretch()
@@ -291,11 +341,12 @@ class TranscriptionCard(QFrame):
         
         # Text preview
         refined_text = self.data.get("refined_text", "")
-        preview = refined_text[:120] + ("..." if len(refined_text) > 120 else "")
+        preview = refined_text[:180] + ("..." if len(refined_text) > 180 else "")
         
         text_label = QLabel(preview)
         text_label.setWordWrap(True)
-        text_label.setStyleSheet("color: rgba(255, 255, 255, 0.9); font-size: 14px; background: transparent;")
+        text_label.setFont(QFont("Inter", 14))
+        text_label.setStyleSheet("color: rgba(255, 255, 255, 0.9); background: transparent; line-height: 1.5; border: none; outline: none;")
         layout.addWidget(text_label)
         
         layout.addStretch()
@@ -306,10 +357,12 @@ class TranscriptionCard(QFrame):
         
         word_count = len(refined_text.split())
         count_label = QLabel(f"{word_count} words")
-        count_label.setStyleSheet("color: rgba(255, 255, 255, 0.4); font-size: 12px; background: transparent;")
+        count_label.setFont(QFont("Inter", 12))
+        count_label.setStyleSheet("color: rgba(255, 255, 255, 0.4); background: transparent;")
         actions.addWidget(count_label)
         
-        reinject_btn = QPushButton("⟲ Re-inject")
+        reinject_btn = QPushButton("Re-inject")
+        reinject_btn.setFont(QFont("Inter", 12, QFont.Weight.Medium))
         reinject_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         reinject_btn.setStyleSheet("""
             QPushButton {
@@ -318,8 +371,6 @@ class TranscriptionCard(QFrame):
                 border: none;
                 border-radius: 8px;
                 padding: 6px 16px;
-                font-size: 12px;
-                font-weight: 600;
             }
             QPushButton:hover {
                 background: rgba(240, 240, 240, 1);
@@ -328,15 +379,12 @@ class TranscriptionCard(QFrame):
         reinject_btn.clicked.connect(lambda: self.reinject_clicked.emit(self.data))
         actions.addWidget(reinject_btn)
         
-        delete_btn = QPushButton("×")
-        delete_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-        delete_btn.setFixedSize(32, 32)
+        delete_btn = IconButton.create("trash", size=32, tooltip="Delete")
         delete_btn.setStyleSheet("""
             QPushButton {
                 background: rgba(60, 60, 65, 0.9);
                 border: none;
                 border-radius: 8px;
-                font-size: 14px;
             }
             QPushButton:hover {
                 background: rgba(180, 50, 50, 1);
@@ -351,17 +399,17 @@ class TranscriptionCard(QFrame):
         painter = QPainter(self)
         painter.setRenderHint(QPainter.RenderHint.Antialiasing)
         
-        # Proper glassmorphism background - opaque with blur
+        # Glassmorphism background
         path = QPainterPath()
         rect_f = QRectF(self.rect())
-        path.addRoundedRect(rect_f, 12, 12)  # Rounded corners
+        path.addRoundedRect(rect_f, 12, 12)
         
-        # Opaque frosted glass - NOT transparent
-        glass_color = QColor(45, 45, 48, 245)  # Almost fully opaque
+        # Opaque frosted glass
+        glass_color = QColor(45, 45, 48, 245)
         painter.fillPath(path, glass_color)
         
-        # Subtle highlight border for glass effect
-        border_color = QColor(70, 70, 75, 150)
+        # Thin subtle border
+        border_color = QColor(255, 255, 255, 15)  # Very subtle white
         pen = QPen(border_color, 1)
         painter.setPen(pen)
         painter.drawPath(path)
@@ -410,7 +458,7 @@ class GlassDashboard(QMainWindow):
         self.setCentralWidget(central)
         
         main_layout = QHBoxLayout(central)
-        main_layout.setContentsMargins(20, 20, 20, 20)
+        main_layout.setContentsMargins(8, 8, 8, 8)
         main_layout.setSpacing(16)
         
         # Right content area - CREATE FIRST before sidebar
@@ -437,7 +485,7 @@ class GlassDashboard(QMainWindow):
         content_glass.setStyleSheet("""
             QFrame {
                 background: rgba(35, 35, 38, 0.98);
-                border: none;
+                border: 1px solid rgba(255, 255, 255, 0.06);
                 border-radius: 20px;
             }
         """)
@@ -455,34 +503,60 @@ class GlassDashboard(QMainWindow):
         
         # Drag area
         drag_area = QLabel()
-        drag_area.setStyleSheet("background: transparent;")
+        drag_area.setStyleSheet("background: transparent; border: none; outline: none;")
         drag_area.mousePressEvent = self.mousePressEvent
         drag_area.mouseMoveEvent = self.mouseMoveEvent
         titlebar_layout.addWidget(drag_area, 1)
         
-        # Window controls - RIGHT ALIGNED at edge
+        # Window controls - RIGHT ALIGNED with Lucide icons
         controls_layout = QHBoxLayout()
         controls_layout.setSpacing(8)
         controls_layout.setContentsMargins(0, 0, 0, 0)
         
-        for icon, func in [("—", self.showMinimized), ("□", self.toggle_maximize), ("✕", self.close)]:
-            btn = QPushButton(icon)
-            btn.setFixedSize(35, 35)
-            btn.setCursor(Qt.CursorShape.PointingHandCursor)
-            btn.setStyleSheet("""
-                QPushButton {
-                    background: rgba(50, 50, 55, 0.9);
-                    border: none;
-                    border-radius: 8px;
-                    color: rgb(200, 200, 200);
-                    font-size: 16px;
-                }
-                QPushButton:hover {
-                    background: rgba(70, 70, 75, 1);
-                }
-            """)
-            btn.clicked.connect(func)
-            controls_layout.addWidget(btn)
+        # Minimize button
+        minimize_btn = IconButton.create("minimize", size=35, tooltip="Minimize")
+        minimize_btn.setStyleSheet("""
+            QPushButton {
+                background: rgba(50, 50, 55, 0.9);
+                border: none;
+                border-radius: 8px;
+            }
+            QPushButton:hover {
+                background: rgba(70, 70, 75, 1);
+            }
+        """)
+        minimize_btn.clicked.connect(self.showMinimized)
+        controls_layout.addWidget(minimize_btn)
+        
+        # Maximize button
+        maximize_btn = IconButton.create("maximize", size=35, tooltip="Maximize")
+        maximize_btn.setStyleSheet("""
+            QPushButton {
+                background: rgba(50, 50, 55, 0.9);
+                border: none;
+                border-radius: 8px;
+            }
+            QPushButton:hover {
+                background: rgba(70, 70, 75, 1);
+            }
+        """)
+        maximize_btn.clicked.connect(self.toggle_maximize)
+        controls_layout.addWidget(maximize_btn)
+        
+        # Close button
+        close_btn = IconButton.create("close", size=35, tooltip="Close")
+        close_btn.setStyleSheet("""
+            QPushButton {
+                background: rgba(50, 50, 55, 0.9);
+                border: none;
+                border-radius: 8px;
+            }
+            QPushButton:hover {
+                background: rgba(180, 50, 50, 1);
+            }
+        """)
+        close_btn.clicked.connect(self.close)
+        controls_layout.addWidget(close_btn)
         
         titlebar_layout.addLayout(controls_layout)
         content_layout.addWidget(titlebar_container)
@@ -499,7 +573,7 @@ class GlassDashboard(QMainWindow):
         sidebar.setStyleSheet("""
             QFrame {
                 background: rgba(35, 35, 38, 0.98);
-                border: none;
+                border: 1px solid rgba(255, 255, 255, 0.04);
                 border-radius: 20px;
             }
         """)
@@ -508,44 +582,40 @@ class GlassDashboard(QMainWindow):
         layout.setContentsMargins(20, 20, 20, 20)
         layout.setSpacing(12)
         
-        # App header
-        app_name = QLabel("WriteForMe")
+        # App header with gradient
+        app_name = GradientLabel("WriteForMe")
         app_name.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        app_name.setFont(QFont("Segoe UI", 20, QFont.Weight.Bold))
-        app_name.setStyleSheet("color: rgb(230, 230, 230);")
+        app_name.setFont(QFont("Inter", 26, QFont.Weight.DemiBold))
+        app_name.setStyleSheet("background: transparent; border: none; outline: none; letter-spacing: -0.5px;")
         layout.addWidget(app_name)
-        
-        version = QLabel("v1.0.0")
-        version.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        version.setStyleSheet("color: rgb(120, 120, 125); font-size: 12px;")
-        layout.addWidget(version)
         
         layout.addSpacing(20)
         
-        # Navigation buttons
+        # Navigation buttons with icons
         self.nav_buttons = {}
-        for tab_id, label in [
-            ("home", "Home"),
-            ("history", "History"),
-            ("settings", "Settings"),
-            ("stats", "Statistics")
-        ]:
-            btn = QPushButton(label)
+        nav_items = [
+            ("home", "Home", "home"),
+            ("history", "History", "history"),
+            ("settings", "Settings", "settings"),
+        ]
+        
+        for tab_id, label, icon_svg in nav_items:
+            btn = QPushButton(f"  {label}")  # Spacing for icon
             btn.setCursor(Qt.CursorShape.PointingHandCursor)
             btn.setMinimumHeight(48)
-            btn.setFont(QFont("Segoe UI", 12, QFont.Weight.Medium))
+            btn.setFont(QFont("Inter", 14, QFont.Weight.Medium))
             btn.setStyleSheet("""
                 QPushButton {
                     background: transparent;
-                    color: rgb(160, 160, 165);
+                    color: rgba(255, 255, 255, 0.6);
                     border: none;
                     border-radius: 12px;
                     text-align: left;
-                    padding-left: 20px;
+                    padding-left: 48px;
                 }
                 QPushButton:hover {
-                    background: rgba(50, 50, 55, 0.5);
-                    color: rgb(220, 220, 220);
+                    background: rgba(50, 50, 55, 0.6);
+                    color: rgba(255, 255, 255, 0.9);
                 }
             """)
             btn.clicked.connect(lambda checked, tid=tab_id: self.switch_tab(tid))
@@ -567,17 +637,27 @@ class GlassDashboard(QMainWindow):
         status_layout = QVBoxLayout(status_frame)
         status_layout.setSpacing(4)
         
-        status_label = QLabel("● Capsule Active")
-        status_label.setStyleSheet("color: rgb(100, 200, 100); font-size: 13px; font-weight: 600;")
-        status_layout.addWidget(status_label)
-        
-        hotkey_label = QLabel("Win+Shift to record")
-        hotkey_label.setStyleSheet("color: rgb(140, 140, 145); font-size: 11px;")
-        status_layout.addWidget(hotkey_label)
-        hotkey_label.setStyleSheet("color: rgba(255, 255, 255, 0.5); font-size: 11px;")
-        status_layout.addWidget(hotkey_label)
+        status_indicator = QLabel()
+        status_indicator.setFixedSize(8, 8)
+        status_indicator.setStyleSheet("background: rgb(100, 200, 100); border-radius: 4px; border: none;")
+        status_text_layout = QHBoxLayout()
+        status_text_layout.setSpacing(8)
+        status_text_layout.addWidget(status_indicator)
+        status_label = QLabel("Active")
+        status_label.setFont(QFont("Inter", 13, QFont.Weight.Medium))
+        status_label.setStyleSheet("color: rgb(100, 200, 100); background: transparent; border: none; outline: none;")
+        status_text_layout.addWidget(status_label)
+        status_text_layout.addStretch()
+        status_layout.addLayout(status_text_layout)
         
         layout.addWidget(status_frame)
+        
+        # Version at bottom left
+        version = QLabel("v1.0.0")
+        version.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        version.setFont(QFont("Inter", 10))
+        version.setStyleSheet("color: rgba(255, 255, 255, 0.3); background: transparent; border: none; outline: none; padding-top: 8px;")
+        layout.addWidget(version)
         
         # Highlight first tab
         self.switch_tab("home")
@@ -585,208 +665,322 @@ class GlassDashboard(QMainWindow):
         return sidebar
     
     def create_home_tab(self):
-        """Create home tab with ChatGPT-like interface"""
+        """Create home tab with chat-style interface like GPT/Gemini"""
         tab = QWidget()
         tab.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         
         layout = QVBoxLayout(tab)
-        layout.setContentsMargins(40, 40, 40, 40)
-        layout.setSpacing(24)
+        layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
         
-        # Welcome header
-        welcome = QLabel("Welcome to WriteForMe")
-        welcome.setFont(QFont("Segoe UI", 28, QFont.Weight.Bold))
-        welcome.setStyleSheet("color: rgb(230, 230, 230); background: transparent;")
-        layout.addWidget(welcome)
+        # Scrollable chat area
+        self.chat_scroll = QScrollArea()
+        self.chat_scroll.setWidgetResizable(True)
+        self.chat_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.chat_scroll.setStyleSheet("""
+            QScrollArea {
+                background: transparent;
+                border: none;
+            }
+            QScrollBar:vertical {
+                background: transparent;
+                width: 8px;
+                border-radius: 4px;
+            }
+            QScrollBar::handle:vertical {
+                background: rgba(255, 255, 255, 0.15);
+                border-radius: 4px;
+                min-height: 30px;
+            }
+            QScrollBar::handle:vertical:hover {
+                background: rgba(255, 255, 255, 0.25);
+            }
+            QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+                height: 0px;
+            }
+        """)
         
-        # Description
-        desc = QLabel("Speech-to-text assistant with AI refinement")
-        desc.setWordWrap(True)
-        desc.setStyleSheet("color: rgba(255, 255, 255, 0.7); font-size: 15px; background: transparent;")
-        layout.addWidget(desc)
+        # Chat container
+        self.chat_container = QWidget()
+        self.chat_layout = QVBoxLayout(self.chat_container)
+        self.chat_layout.setContentsMargins(40, 40, 40, 20)
+        self.chat_layout.setSpacing(12)
+        self.chat_layout.addStretch()
         
-        layout.addSpacing(20)
+        # Welcome message (centered overlay when no messages)
+        self.welcome_widget = self.create_welcome_message()
+        self.welcome_widget.setParent(self.chat_scroll)
         
-        # Model selector (Gemini-style dropdown)
-        model_layout = QHBoxLayout()
-        model_label = QLabel("Models:")
-        model_label.setStyleSheet("color: rgba(255, 255, 255, 0.7); font-size: 13px; background: transparent;")
-        model_layout.addWidget(model_label)
+        self.chat_scroll.setWidget(self.chat_container)
+        layout.addWidget(self.chat_scroll, 1)
         
+        # Sticky input bar at bottom
+        input_wrapper = QWidget()
+        input_wrapper.setStyleSheet("background: transparent;")
+        input_wrapper_layout = QVBoxLayout(input_wrapper)
+        input_wrapper_layout.setContentsMargins(40, 12, 40, 24)
+        input_wrapper_layout.setSpacing(0)
+        
+        input_container = QFrame()
+        input_container.setStyleSheet("""
+            QFrame {
+                background: rgba(45, 45, 50, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 24px;
+            }
+        """)
+        
+        # Main vertical layout for input container
+        input_main_layout = QVBoxLayout(input_container)
+        input_main_layout.setContentsMargins(18, 12, 18, 12)
+        input_main_layout.setSpacing(10)
+        
+        # Text input area (compact chat-style)
+        self.prompt_input = QTextEdit()
+        self.prompt_input.setPlaceholderText("Message WriteForMe...")
+        self.prompt_input.setMaximumHeight(120)
+        self.prompt_input.setFixedHeight(32)  # Start compact
+        self.prompt_input.setFont(QFont("Inter", 14))
+        self.prompt_input.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.prompt_input.setStyleSheet("""
+            QTextEdit {
+                background: transparent;
+                border: none;
+                color: rgb(220, 220, 220);
+                padding: 0;
+            }
+        """)
+        # Auto-expand on text change
+        self.prompt_input.textChanged.connect(self.adjust_input_height)
+        input_main_layout.addWidget(self.prompt_input)
+        
+        # Bottom control bar with model selector and action buttons
+        control_bar = QHBoxLayout()
+        control_bar.setSpacing(6)
+        
+        # Model selector as pill-style dropdown (left side of control bar)
         self.model_selector = QComboBox()
         self.model_selector.addItems([
-            "Cohere - Command R7B",
-            "Vibe Coder Mode",
-            "Casual Chatter Mode"
+            "Cohere Command R7B",
+            "Vibe Coder",
+            "Casual Chat"
         ])
+        self.model_selector.setFont(QFont("Inter", 13))
+        self.model_selector.setFixedHeight(36)
+        self.model_selector.setMinimumWidth(160)
+        self.model_selector.setCursor(Qt.CursorShape.PointingHandCursor)
         self.model_selector.setStyleSheet("""
             QComboBox {
-                background: rgba(45, 45, 50, 0.9);
-                border: 1px solid rgba(70, 70, 75, 0.5);
-                border-radius: 10px;
-                color: rgb(220, 220, 220);
-                padding: 8px 16px;
+                background: rgba(60, 60, 65, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 18px;
+                color: rgba(255, 255, 255, 0.85);
+                padding: 6px 16px 6px 12px;
                 font-size: 13px;
-                min-width: 200px;
             }
             QComboBox:hover {
-                border: 1px solid rgba(100, 100, 105, 0.7);
-                background: rgba(50, 50, 55, 0.95);
+                background: rgba(70, 70, 75, 0.9);
+                border-color: rgba(99, 102, 241, 0.5);
             }
             QComboBox::drop-down {
                 border: none;
-                width: 30px;
+                width: 24px;
             }
             QComboBox::down-arrow {
-                image: none;
-                border: none;
-                width: 0px;
-                height: 0px;
+                width: 0;
+                height: 0;
             }
             QComboBox QAbstractItemView {
                 background: rgba(40, 40, 45, 0.98);
                 color: rgb(220, 220, 220);
-                selection-background-color: rgba(70, 130, 255, 0.8);
+                selection-background-color: rgba(99, 102, 241, 0.8);
                 selection-color: white;
-                border: 1px solid rgba(70, 70, 75, 0.5);
-                border-radius: 8px;
-                padding: 4px;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                padding: 6px;
+                outline: none;
             }
             QComboBox QAbstractItemView::item {
-                padding: 8px;
-                border-radius: 6px;
+                padding: 10px 14px;
+                border-radius: 8px;
                 margin: 2px;
             }
             QComboBox QAbstractItemView::item:hover {
                 background: rgba(60, 60, 65, 0.8);
             }
         """)
-        model_layout.addWidget(self.model_selector)
-        model_layout.addStretch()
-        layout.addLayout(model_layout)
+        control_bar.addWidget(self.model_selector)
         
-        layout.addSpacing(10)
+        control_bar.addStretch()
         
-        # Input area with mic and submit on right (Gemini-like)
-        input_container = QFrame()
-        input_container.setStyleSheet("""
-            QFrame {
-                background: rgba(45, 45, 50, 0.95);
-                border-radius: 24px;
-            }
-        """)
-        input_layout = QHBoxLayout(input_container)
-        input_layout.setContentsMargins(20, 12, 12, 12)
-        input_layout.setSpacing(8)
-        
-        # Text input (takes most space)
-        self.prompt_input = QTextEdit()
-        self.prompt_input.setPlaceholderText("Ask anything...")
-        self.prompt_input.setMaximumHeight(100)
-        self.prompt_input.setStyleSheet("""
-            QTextEdit {
-                background: transparent;
-                border: none;
-                color: rgb(220, 220, 220);
-                padding: 8px;
-                font-size: 14px;
-            }
-        """)
-        input_layout.addWidget(self.prompt_input)
-        
-        # Mic button on right
-        self.mic_button = QPushButton("🎤")
-        self.mic_button.setFixedSize(40, 40)
-        self.mic_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        # Mic button
+        self.mic_button = IconButton.create("mic", size=40, tooltip="Record voice")
         self.mic_button.setStyleSheet("""
             QPushButton {
                 background: transparent;
                 border: none;
                 border-radius: 20px;
-                font-size: 18px;
             }
             QPushButton:hover {
-                background: rgba(80, 80, 85, 0.6);
+                background: rgba(255, 255, 255, 0.08);
             }
             QPushButton:pressed {
-                background: rgba(100, 100, 255, 0.8);
+                background: rgba(99, 102, 241, 0.6);
             }
         """)
         self.mic_button.clicked.connect(self.toggle_recording)
-        input_layout.addWidget(self.mic_button)
+        control_bar.addWidget(self.mic_button)
         
-        # Submit button on right
-        self.submit_button = QPushButton("➤")
-        self.submit_button.setFixedSize(40, 40)
-        self.submit_button.setCursor(Qt.CursorShape.PointingHandCursor)
+        # Send button
+        self.submit_button = IconButton.create("send", size=40, tooltip="Send message")
         self.submit_button.setStyleSheet("""
             QPushButton {
-                background: rgba(70, 130, 255, 0.9);
+                background: rgba(99, 102, 241, 0.9);
                 border: none;
                 border-radius: 20px;
-                color: white;
-                font-size: 16px;
             }
             QPushButton:hover {
-                background: rgba(90, 150, 255, 1);
+                background: rgba(99, 102, 241, 1);
             }
             QPushButton:disabled {
                 background: rgba(60, 60, 65, 0.5);
-                color: rgba(255, 255, 255, 0.3);
             }
         """)
         self.submit_button.clicked.connect(self.submit_prompt)
-        input_layout.addWidget(self.submit_button)
+        control_bar.addWidget(self.submit_button)
         
-        layout.addWidget(input_container)
+        input_main_layout.addLayout(control_bar)
         
-        # Processing status
-        self.status_label = QLabel("")
-        self.status_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        self.status_label.setStyleSheet("color: rgba(255, 255, 255, 0.6); font-size: 13px; background: transparent;")
-        self.status_label.setVisible(False)
-        layout.addWidget(self.status_label)
+        input_wrapper_layout.addWidget(input_container)
+        layout.addWidget(input_wrapper)
         
-        # Result area
-        self.result_container = QFrame()
-        self.result_container.setStyleSheet("""
-            QFrame {
-                background: rgba(45, 45, 50, 0.95);
-                border-radius: 12px;
-            }
-        """)
-        result_layout = QVBoxLayout(self.result_container)
-        result_layout.setContentsMargins(20, 20, 20, 20)
-        
-        result_title = QLabel("Refined Text:")
-        result_title.setFont(QFont("Segoe UI", 12, QFont.Weight.Bold))
-        result_title.setStyleSheet("color: rgba(255, 255, 255, 0.8); background: transparent;")
-        result_layout.addWidget(result_title)
-        
-        self.result_text = QTextEdit()
-        self.result_text.setReadOnly(True)
-        self.result_text.setPlaceholderText("Refined text will appear here...")
-        self.result_text.setStyleSheet("""
-            QTextEdit {
-                background: rgba(40, 40, 45, 0.9);
-                border: none;
-                border-radius: 8px;
-                color: rgb(220, 220, 220);
-                padding: 12px;
-                font-size: 14px;
-            }
-        """)
-        result_layout.addWidget(self.result_text)
-        
-        self.result_container.setVisible(False)
-        layout.addWidget(self.result_container)
-        
-        layout.addStretch()
+        # Store message list
+        self.messages = []
         
         # Initialize recording state
         self.is_recording_home = False
         
+        # Center welcome message after layout is ready
+        QTimer.singleShot(100, self.center_welcome_message)
+        
         return tab
+    
+    def create_welcome_message(self):
+        """Create centered welcome message widget"""
+        welcome_frame = QFrame()
+        welcome_frame.setStyleSheet("background: transparent; border: none; outline: none;")
+        welcome_layout = QVBoxLayout(welcome_frame)
+        welcome_layout.setSpacing(12)
+        welcome_layout.setContentsMargins(0, 0, 0, 0)
+        welcome_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        
+        title = QLabel("Welcome to WriteForMe")
+        title.setFont(QFont("Inter", 26, QFont.Weight.DemiBold))
+        title.setStyleSheet("color: rgba(255, 255, 255, 0.9); background: transparent; border: none; outline: none;")
+        title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        welcome_layout.addWidget(title)
+        
+        desc = QLabel("Speech-to-text assistant with AI refinement")
+        desc.setFont(QFont("Inter", 15))
+        desc.setStyleSheet("color: rgba(255, 255, 255, 0.5); background: transparent; border: none; outline: none;")
+        desc.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        welcome_layout.addWidget(desc)
+        
+        return welcome_frame
+    
+    def adjust_input_height(self):
+        """Auto-adjust input height based on content"""
+        doc_height = self.prompt_input.document().size().height()
+        new_height = min(max(32, int(doc_height) + 8), 120)
+        self.prompt_input.setFixedHeight(new_height)
+    
+    def center_welcome_message(self):
+        """Center welcome message in scroll area"""
+        if hasattr(self, 'welcome_widget') and self.welcome_widget.isVisible():
+            scroll_width = self.chat_scroll.viewport().width()
+            scroll_height = self.chat_scroll.viewport().height()
+            welcome_width = self.welcome_widget.sizeHint().width()
+            welcome_height = self.welcome_widget.sizeHint().height()
+            
+            x = (scroll_width - welcome_width) // 2
+            y = (scroll_height - welcome_height) // 2
+            
+            self.welcome_widget.move(x, y)
+    
+    def add_message_bubble(self, text, is_user=False, is_thinking=False):
+        """Add a chat message bubble"""
+        # Hide welcome message on first message
+        if hasattr(self, 'welcome_widget') and self.welcome_widget.isVisible():
+            self.welcome_widget.setVisible(False)
+        
+        # Create bubble
+        bubble = QFrame()
+        bubble.setStyleSheet(f"""
+            QFrame {{
+                background: {'rgba(99, 102, 241, 0.9)' if is_user else 'rgba(45, 45, 50, 0.95)'};
+                border: none;
+                border-radius: 16px;
+            }}
+        """)
+        
+        bubble_layout = QVBoxLayout(bubble)
+        bubble_layout.setContentsMargins(16, 12, 16, 12)
+        bubble_layout.setSpacing(6)
+        
+        # Label header
+        if not is_user:
+            header = QLabel("Assistant" if not is_thinking else "Thinking...")
+            header.setFont(QFont("Inter", 11, QFont.Weight.Medium))
+            header.setStyleSheet("color: rgba(255, 255, 255, 0.5); background: transparent; border: none; outline: none;")
+            bubble_layout.addWidget(header)
+        
+        # Message text
+        message_label = QLabel(text if not is_thinking else "Refining your text...")
+        message_label.setFont(QFont("Inter", 14))
+        message_label.setStyleSheet("color: rgb(220, 220, 220); background: transparent; border: none; outline: none;")
+        message_label.setWordWrap(True)
+        message_label.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
+        bubble_layout.addWidget(message_label)
+        
+        # Alignment wrapper
+        wrapper = QWidget()
+        wrapper.setStyleSheet("background: transparent; border: none;")
+        wrapper_layout = QHBoxLayout(wrapper)
+        wrapper_layout.setContentsMargins(0, 0, 0, 0)
+        wrapper_layout.setSpacing(0)
+        
+        # Calculate responsive width (65-70% of chat area)
+        chat_width = self.chat_scroll.viewport().width() - 80
+        max_bubble_width = int(chat_width * 0.68)
+        
+        bubble.setMinimumWidth(200)
+        bubble.setMaximumWidth(max_bubble_width)
+        
+        if is_user:
+            wrapper_layout.addStretch()
+            wrapper_layout.addWidget(bubble)
+        else:
+            wrapper_layout.addWidget(bubble)
+            wrapper_layout.addStretch()
+        
+        # Insert before stretch
+        self.chat_layout.insertWidget(self.chat_layout.count() - 1, wrapper)
+        
+        # Scroll to bottom
+        QTimer.singleShot(50, self.scroll_to_bottom)
+        
+        return bubble
+    
+    def resizeEvent(self, event):
+        """Handle window resize to re-center welcome message"""
+        super().resizeEvent(event)
+        if hasattr(self, 'welcome_widget'):
+            QTimer.singleShot(10, self.center_welcome_message)
+    
+    def scroll_to_bottom(self):
+        """Scroll chat to bottom"""
+        scrollbar = self.chat_scroll.verticalScrollBar()
+        scrollbar.setValue(scrollbar.maximum())
     
     def create_history_tab(self):
         """Create history tab with transcriptions"""
@@ -794,79 +988,102 @@ class GlassDashboard(QMainWindow):
         tab.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
         
         layout = QVBoxLayout(tab)
-        layout.setContentsMargins(24, 24, 24, 24)
-        layout.setSpacing(16)
+        layout.setContentsMargins(32, 32, 32, 32)
+        layout.setSpacing(20)
         
         # Header
         header = QHBoxLayout()
         
         title = QLabel("Transcription History")
-        title.setFont(QFont("Segoe UI", 28, QFont.Weight.Bold))
-        title.setStyleSheet("color: rgb(230, 230, 230);")
+        title.setFont(QFont("Inter", 28, QFont.Weight.DemiBold))
+        title.setStyleSheet("color: rgb(230, 230, 230); letter-spacing: -0.5px; border: none; outline: none;")
         header.addWidget(title)
         
         self.stats_badge = QLabel("0 entries")
+        self.stats_badge.setFont(QFont("Inter", 13))
         self.stats_badge.setStyleSheet("""
             background: rgba(50, 50, 55, 0.8);
             color: rgba(255, 255, 255, 0.7);
             border-radius: 8px;
             padding: 6px 16px;
-            font-size: 13px;
         """)
         header.addWidget(self.stats_badge)
         header.addStretch()
         
         # Sort dropdown
         sort_label = QLabel("Sort:")
-        sort_label.setStyleSheet("color: rgba(255, 255, 255, 0.7); font-size: 13px;")
+        sort_label.setFont(QFont("Inter", 13))
+        sort_label.setStyleSheet("color: rgba(255, 255, 255, 0.7); border: none; outline: none;")
         header.addWidget(sort_label)
         
         self.sort_selector = QComboBox()
         self.sort_selector.addItems(["Latest to Old", "Old to Latest"])
+        self.sort_selector.setFont(QFont("Inter", 13))
+        self.sort_selector.setCursor(Qt.CursorShape.PointingHandCursor)
         self.sort_selector.setStyleSheet("""
             QComboBox {
                 background: rgba(50, 50, 55, 0.9);
-                border: none;
+                border: 1px solid rgba(70, 70, 75, 0.5);
                 border-radius: 8px;
                 color: rgb(210, 210, 210);
-                padding: 6px 16px;
-                font-size: 13px;
+                padding: 8px 16px;
+            }
+            QComboBox:hover {
+                border-color: rgba(99, 102, 241, 0.5);
             }
             QComboBox::drop-down {
                 border: none;
             }
             QComboBox QAbstractItemView {
-                background: rgba(50, 50, 55, 0.98);
-                color: rgb(210, 210, 210);
-                selection-background-color: rgba(70, 70, 75, 0.9);
-                border: none;
+                background: rgba(40, 40, 45, 0.98);
+                color: rgb(220, 220, 220);
+                selection-background-color: rgba(99, 102, 241, 0.8);
+                border: 1px solid rgba(70, 70, 75, 0.5);
+                border-radius: 8px;
+                padding: 4px;
             }
         """)
         self.sort_selector.currentIndexChanged.connect(self.on_sort_changed)
         header.addWidget(self.sort_selector)
         
         export_btn = QPushButton("Export")
+        export_btn.setFont(QFont("Inter", 13, QFont.Weight.Medium))
+        export_btn.setMinimumHeight(40)
         export_btn.setCursor(Qt.CursorShape.PointingHandCursor)
-        export_btn.setStyleSheet(self.button_style())
+        export_btn.setStyleSheet("""
+            QPushButton {
+                background: rgba(99, 102, 241, 0.9);
+                color: white;
+                border: none;
+                border-radius: 10px;
+                padding: 8px 20px;
+            }
+            QPushButton:hover {
+                background: rgba(99, 102, 241, 1);
+            }
+        """)
         header.addWidget(export_btn)
         
         layout.addLayout(header)
         
-        # Search bar
+        # Search bar with icon
+        search_container = QHBoxLayout()
+        
         self.search_input = QLineEdit()
         self.search_input.setPlaceholderText("Search transcriptions...")
         self.search_input.setMinimumHeight(48)
+        self.search_input.setFont(QFont("Inter", 14))
         self.search_input.setStyleSheet("""
             QLineEdit {
                 background: rgba(45, 45, 50, 0.9);
-                border: none;
+                border: 1px solid rgba(70, 70, 75, 0.5);
                 border-radius: 12px;
                 color: rgb(220, 220, 220);
-                padding: 0 20px;
-                font-size: 14px;
+                padding: 0 48px 0 20px;
             }
             QLineEdit:focus {
-                background: rgba(255, 255, 255, 0.12);
+                background: rgba(50, 50, 55, 0.95);
+                border-color: rgba(99, 102, 241, 0.6);
             }
         """)
         self.search_input.textChanged.connect(self.on_search)
@@ -898,7 +1115,8 @@ class GlassDashboard(QMainWindow):
         self.cards_container = QWidget()
         self.cards_container.setStyleSheet("background: rgba(35, 35, 38, 0.95); border-radius: 12px;")
         self.cards_layout = QVBoxLayout(self.cards_container)
-        self.cards_layout.setSpacing(12)
+        self.cards_layout.setContentsMargins(28, 28, 28, 28)
+        self.cards_layout.setSpacing(20)
         self.cards_layout.addStretch()
         
         scroll.setWidget(self.cards_container)
@@ -1106,9 +1324,15 @@ class GlassDashboard(QMainWindow):
         if not text:
             return
         
-        self.status_label.setText("✨ Refining with AI...")
-        self.status_label.setVisible(True)
-        self.result_container.setVisible(False)
+        # Add user message bubble
+        self.add_message_bubble(text, is_user=True)
+        
+        # Clear input and reset height
+        self.prompt_input.clear()
+        self.prompt_input.setFixedHeight(32)
+        
+        # Add thinking bubble
+        thinking_bubble = self.add_message_bubble("", is_user=False, is_thinking=True)
         QApplication.processEvents()
         
         try:
@@ -1116,7 +1340,7 @@ class GlassDashboard(QMainWindow):
             mode_text = self.model_selector.currentText()
             if "Vibe Coder" in mode_text:
                 mode = "vibe_coder"
-            elif "Casual Chatter" in mode_text:
+            elif "Casual Chat" in mode_text:
                 mode = "casual_chatter"
             else:
                 mode = "vibe_coder"
@@ -1134,17 +1358,16 @@ class GlassDashboard(QMainWindow):
             
             refined_text = self.refiner.refine_text(text)
             
-            # Show result
-            self.result_text.setPlainText(refined_text)
-            self.result_container.setVisible(True)
-            self.status_label.setText("✅ Done!")
+            # Remove thinking bubble
+            thinking_bubble.deleteLater()
             
-            # Hide status after 2 seconds
-            QTimer.singleShot(2000, lambda: self.status_label.setVisible(False))
+            # Add assistant response
+            self.add_message_bubble(refined_text, is_user=False)
+            
         except Exception as e:
             print(f"Error processing prompt: {e}")
-            self.status_label.setText(f"Error: {e}")
-            QTimer.singleShot(3000, lambda: self.status_label.setVisible(False))
+            thinking_bubble.deleteLater()
+            self.add_message_bubble(f"Error: {str(e)}", is_user=False)
     
     def toggle_recording(self):
         """Toggle recording state in home tab"""
