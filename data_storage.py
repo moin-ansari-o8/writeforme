@@ -9,14 +9,16 @@ import threading
 
 
 class DataStorage:
-    def __init__(self, storage_file="transcriptions_history.json"):
+    def __init__(self, storage_file="transcriptions_history.json", max_entries=1000):
         """
         Initialize data storage manager
         
         Args:
             storage_file: Path to JSON storage file
+            max_entries: Maximum number of transcriptions to keep (default 1000)
         """
         self.storage_file = storage_file
+        self.max_entries = max_entries
         self.lock = threading.Lock()
         
         # Create storage file if it doesn't exist
@@ -25,6 +27,7 @@ class DataStorage:
             print(f"[DataStorage] Created new storage file: {self.storage_file}")
         else:
             print(f"[DataStorage] Using existing storage file: {self.storage_file}")
+            self._cleanup_old_entries()  # Clean up on startup
     
     def _initialize_storage(self):
         """Create new storage file with empty structure"""
@@ -74,6 +77,11 @@ class DataStorage:
                     json.dump(data, f, indent=2, ensure_ascii=False)
                 
                 print(f"[DataStorage] Saved transcription #{len(data['transcriptions'])} (paste_success={paste_success})")
+                
+                # Auto-cleanup if exceeds max_entries
+                if len(data['transcriptions']) > self.max_entries:
+                    self._cleanup_old_entries()
+                
                 return True
                 
         except Exception as e:
@@ -149,6 +157,32 @@ class DataStorage:
         except Exception as e:
             print(f"[DataStorage] Error exporting to text: {e}")
             return False
+    
+    def _cleanup_old_entries(self):
+        """
+        Remove oldest entries to maintain max_entries limit
+        Keeps only the most recent max_entries transcriptions
+        """
+        try:
+            with self.lock:
+                with open(self.storage_file, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                
+                transcriptions = data.get("transcriptions", [])
+                initial_count = len(transcriptions)
+                
+                if initial_count > self.max_entries:
+                    # Keep only most recent entries
+                    data["transcriptions"] = transcriptions[-self.max_entries:]
+                    
+                    with open(self.storage_file, 'w', encoding='utf-8') as f:
+                        json.dump(data, f, indent=2, ensure_ascii=False)
+                    
+                    removed_count = initial_count - self.max_entries
+                    print(f"[DataStorage] Cleaned up {removed_count} old entries (kept {self.max_entries} most recent)")
+                    
+        except Exception as e:
+            print(f"[DataStorage] Error during cleanup: {e}")
     
     def clear_history(self):
         """Clear all transcription history (use with caution!)"""

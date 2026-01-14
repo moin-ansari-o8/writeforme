@@ -121,6 +121,12 @@ Technical documentation:"""
 # Default mode (used if no mode is specified)
 DEFAULT_MODE = "default"
 
+# ==================== STORAGE SETTINGS ====================
+# Maximum number of transcription entries to keep in history
+# Automatically removes oldest entries when limit is exceeded
+MAX_HISTORY_ENTRIES = 1000  # Default: 1000 (~500 KB storage)
+# Reduce to 500 for less disk space, increase to 2000 for longer history
+
 # Audio Recording Settings
 AUDIO_SAMPLE_RATE = 16000  # Hz
 AUDIO_CHUNK_SIZE = 1024    # samples per buffer

@@ -69,7 +69,7 @@ class WisprFlowLocal:
         self.audio_recorder = AudioRecorder()
         self.speech_to_text = SpeechToText()
         self.paste_manager = PasteManager()
-        self.data_storage = DataStorage()
+        self.data_storage = DataStorage(max_entries=config.MAX_HISTORY_ENTRIES)
         print(f"{Fore.GREEN}✓ All components ready!{Style.RESET_ALL}\n")
         
         # GUI will be initialized in main thread
@@ -239,7 +239,9 @@ class WisprFlowLocal:
                 level = self.audio_recorder.get_audio_level()
                 if self.gui and self.is_recording:
                     self.gui.update_visualizer(level)
-                time.sleep(0.03)  # ~33 FPS for smoother response
+                    time.sleep(0.03)  # ~33 FPS when recording
+                else:
+                    time.sleep(0.1)  # Longer sleep when idle to save CPU
             except:
                 break
     

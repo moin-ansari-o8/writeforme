@@ -132,6 +132,7 @@ class AudioRecorder:
         # Combine all audio chunks
         if self.audio_buffer:
             complete_audio = np.concatenate(self.audio_buffer)
+            self.audio_buffer = []  # Clear buffer to free memory
             return complete_audio
         return None
     
