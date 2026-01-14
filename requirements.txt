@@ -4,5 +4,12 @@ requests==2.31.0
 pyperclip==1.8.2
 pyautogui==0.9.54
 numpy>=1.26.3
-ollama==0.1.6
 pillow>=10.2.0
+keyboard==0.13.5
+cohere>=5.0.0
+python-dotenv>=1.0.0
+google-genai>=0.1.0
+groq>=0.4.0
+ollama>=0.6.0
+colorama>=0.4.6
+faster-whisper>=1.0.0

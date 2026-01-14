@@ -1,8 +1,13 @@
 """
-AI text refinement using local Ollama LLaMA model with multiple writing modes
+AI text refinement using Cohere API with multiple writing modes
 """
-import ollama
+import cohere
+import os
+from dotenv import load_dotenv
 import config
+
+# Load environment variables
+load_dotenv()
 
 
 class AIRefiner:
@@ -14,7 +19,14 @@ class AIRefiner:
             mode: Writing mode from config.WRITING_MODES (default, email_professional, etc.)
         """
         self.set_mode(mode)
-        self.client = None
+        
+        # Initialize Cohere client with API key from .env
+        api_key = os.getenv("CohereAPIKey")
+        if not api_key:
+            raise ValueError("CohereAPIKey not found in .env file")
+        
+        self.client = cohere.ClientV2(api_key=api_key)
+        print(f"[AIRefiner] Initialized with Cohere API")
         
     def set_mode(self, mode):
         """Change the writing mode"""
@@ -24,14 +36,13 @@ class AIRefiner:
         
         self.mode = mode
         self.mode_config = config.WRITING_MODES[mode]
-        self.model = self.mode_config["model"]
         self.prompt_template = self.mode_config["prompt"]
         
-        print(f"[AIRefiner] Mode set to: {self.mode_config['name']} (using {self.model})")
+        print(f"[AIRefiner] Mode set to: {self.mode_config['name']}")
         
     def refine_text(self, raw_text):
         """
-        Refine raw transcription using local LLaMA model with current mode
+        Refine raw transcription using Cohere API with current mode
         
         Args:
             raw_text: Raw transcribed text with potential errors and filler words
@@ -44,63 +55,56 @@ class AIRefiner:
             return ""
         
         try:
-            print(f"[AIRefiner] Refining text with {self.model} ({self.mode_config['name']})...")
-            print(f"[AIRefiner] Input: {raw_text}")
+            print(f"[AIRefiner] Refining text with Cohere ({self.mode_config['name']})...")
             
             # Create prompt with the raw transcription
             prompt = self.prompt_template.format(transcription=raw_text)
             
-            # Call Ollama API
-            response = ollama.generate(
-                model=self.model,
-                prompt=prompt,
-                options={
-                    'temperature': 0.3,  # Lower temperature for more consistent output
-                    'top_p': 0.9,
-                    'max_tokens': 500
-                }
+            # Call Cohere API
+            response = self.client.chat(
+                model="command-r7b-12-2024",  # Latest available model
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
+                temperature=0.3,
+                max_tokens=500
             )
             
-            refined_text = response['response'].strip()
-            print(f"[AIRefiner] Output: {refined_text}")
-            
+            refined_text = response.message.content[0].text.strip()
             return refined_text
             
         except Exception as e:
             print(f"[AIRefiner] Error refining text: {e}")
             print("[AIRefiner] Returning original text")
-            # Return original text if AI refinement fails
             return raw_text
     
     def test_connection(self):
-        """Test if Ollama is running and model is available"""
+        """Test if Cohere API is accessible"""
         try:
-            response = ollama.list()
+            # Simple test with a minimal request
+            response = self.client.chat(
+                model="command-r7b-12-2024",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": "Test connection. Reply with 'OK'."
+                    }
+                ],
+                max_tokens=10
+            )
             
-            # Handle different response formats
-            if isinstance(response, dict):
-                models = response.get('models', [])
-            else:
-                models = response
-            
-            model_list = []
-            for m in models:
-                if isinstance(m, dict):
-                    model_list.append(m.get('name', m.get('model', 'unknown')))
-                else:
-                    model_list.append(str(m))
-            
-            if self.model in model_list or any(self.model.split(':')[0] in m for m in model_list):
-                print(f"[AIRefiner] Model {self.model} is available")
+            if response.message.content:
+                print(f"[AIRefiner] Cohere API connection successful")
                 return True
             else:
-                print(f"[AIRefiner] Warning: Model {self.model} not found")
-                print(f"[AIRefiner] Available models: {model_list[:5]}...")  # Show first 5
+                print(f"[AIRefiner] Warning: Unexpected response from Cohere")
                 return False
                 
         except Exception as e:
-            print(f"[AIRefiner] Error connecting to Ollama: {e}")
-            print("[AIRefiner] Make sure Ollama is running (ollama serve)")
+            print(f"[AIRefiner] Error connecting to Cohere API: {e}")
             return False
     
     def get_available_modes(self):

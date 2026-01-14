@@ -1,22 +1,14 @@
 """
-Enhanced Configuration with Multiple Writing Modes and Model Selection
-Optimized for gemma3:latest - Fast and efficient for all tasks!
+Enhanced Configuration with Multiple Writing Modes
+Using Cohere API (command-r7b-12-2024 model) for AI text refinement
 """
 
-# ==================== MODEL SELECTION ====================
-# Using phi3:mini for all modes - it's small, fast, and excellent quality!
-
-# DEFAULT MODEL (Fast and efficient)
-OLLAMA_MODEL = "phi3:mini"
-OLLAMA_BASE_URL = "http://localhost:11434"
-
 # ==================== WRITING MODES ====================
-# All modes use phi3:mini for optimal performance on your hardware
+# All modes use Cohere's command-r7b-12-2024 model
 
 WRITING_MODES = {
     "default": {
         "name": "Smart Dictation",
-        "model": "phi3:mini",
         "prompt": """You are an intelligent writing assistant. Transform the spoken transcription into polished text.
 
 Instructions:
@@ -33,7 +25,6 @@ Refined text (output ONLY the refined text):"""
     
     "email_professional": {
         "name": "Professional Email",
-        "model": "phi3:mini",
         "prompt": """You are a professional business writing assistant. Transform the spoken words into a polished, professional email.
 
 Instructions:
@@ -51,7 +42,6 @@ Professional email text:"""
     
     "email_casual": {
         "name": "Casual Email",
-        "model": "phi3:mini",
         "prompt": """You are a friendly writing assistant. Transform the spoken words into a casual, friendly email.
 
 Instructions:
@@ -68,7 +58,6 @@ Casual email text:"""
     
     "prompt_writer": {
         "name": "AI Prompt (Developer)",
-        "model": "phi3:mini",
         "prompt": """You are an AI prompt engineering expert. Transform the spoken instructions into a clear, well-structured prompt for AI agents or developers.
 
 Instructions:
@@ -86,7 +75,6 @@ Well-structured AI prompt:"""
     
     "creative_writing": {
         "name": "Creative Writing",
-        "model": "phi3:mini",
         "prompt": """You are a creative writing assistant. Transform the spoken ideas into engaging, creative prose.
 
 Instructions:
@@ -104,7 +92,6 @@ Creative text:"""
     
     "grammar_only": {
         "name": "Grammar Correction",
-        "model": "phi3:mini",
         "prompt": """Fix ONLY grammar, spelling, and punctuation. Do not change the meaning or add any content.
 
 Raw text:
@@ -115,7 +102,6 @@ Corrected text:"""
     
     "technical_writing": {
         "name": "Technical Documentation",
-        "model": "phi3:mini",
         "prompt": """You are a technical writing assistant. Transform spoken technical content into clear documentation.
 
 Instructions:
@@ -142,17 +128,17 @@ AUDIO_CHANNELS = 1         # mono
 AUDIO_FORMAT = "int16"     # 16-bit audio
 
 # GUI Widget Settings
-WIDGET_WIDTH = 280  # Compact pill shape
-WIDGET_HEIGHT = 60
+WIDGET_WIDTH = 180  # Increased width for menu button
+WIDGET_HEIGHT = 40
 WIDGET_POSITION = "bottom-center"
 WIDGET_ALPHA = 1.0  # Fully opaque for the pill, transparency handled via colorkey
 
 # Colors (RGB)
-COLOR_BACKGROUND = "#000000"  # Black background
+COLOR_BACKGROUND = "#121212"  # Deep dark background
 COLOR_TRANSPARENT = "#000001"  # Key color for transparency
 COLOR_VISUALIZER = "#ffffff"   # White waveform
-COLOR_BUTTON_CANCEL = "#4a4a4a" # Grey cancel button
-COLOR_BUTTON_STOP = "#ff4444"   # Red stop button
+COLOR_BUTTON_CANCEL = "#404040" # Lighter grey cancel button
+COLOR_BUTTON_STOP = "#ff4b4b"   # Vibrant red stop button
 COLOR_TEXT = "#ffffff"
-COLOR_MODE_SELECTOR = "#2d2d2d"
-COLOR_MODE_ACTIVE = "#3d3d3d"
+COLOR_MODE_SELECTOR = "#1e1e1e"
+COLOR_MODE_ACTIVE = "#333333"

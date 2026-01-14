@@ -1,10 +1,11 @@
 """
-GUI Widget - Compact Pill Design
+GUI Widget - Sleek Capsule Design
 """
 import tkinter as tk
 from tkinter import Canvas
 import math
 import config
+import random
 
 class WidgetGUI:
     def __init__(self, on_cancel_callback, on_stop_callback):
@@ -15,7 +16,7 @@ class WidgetGUI:
         self.root = tk.Tk()
         self.root.title("Wispr Flow Local")
         
-        # Window settings
+        # Window settings - configure properly to avoid disabling other windows
         self.root.attributes('-topmost', True)
         self.root.overrideredirect(True)
         
@@ -26,11 +27,26 @@ class WidgetGUI:
         # Set window size
         self.root.geometry(f"{config.WIDGET_WIDTH}x{config.WIDGET_HEIGHT}")
         
+        # Don't grab focus or disable other windows
+        self.root.attributes('-disabled', False)
+        
         # Position at bottom center
         self._position_window()
         
         # Visualizer data
-        self.audio_levels = [0] * 20  # Fewer bars for compact design
+        self.num_bars = 12 # Perfectly balanced for the capsule
+        self.audio_levels = [0.01] * self.num_bars
+        self.target_levels = [0.01] * self.num_bars
+        
+        # Smoothing constants
+        self.attack = 0.4   # Fast jump up
+        self.release = 0.15 # Slow glide down
+        
+        # VAD state
+        self.is_speech_active = False
+        self.hangover_frames = 0
+        self.max_hangover = 15 # ~300ms at 20ms smoothing loop
+        
         self.is_running = True
         self.processing_angle = 0
         
@@ -45,23 +61,25 @@ class WidgetGUI:
         self.canvas.pack(fill=tk.BOTH, expand=True)
         
         # Bind events
-        self.canvas.bind('<Button-1>', self._on_click)
         self._make_draggable()
         
         # Initial State
         self.state = "recording" # recording, processing
         self._draw_ui()
         
+        # Start smoothing loop
+        self._smooth_visualizer()
+        
     def _position_window(self):
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
         x = (screen_width - config.WIDGET_WIDTH) // 2
-        y = screen_height - config.WIDGET_HEIGHT - 80
+        y = screen_height - config.WIDGET_HEIGHT - 60
         self.root.geometry(f"+{x}+{y}")
 
     def _make_draggable(self):
-        self.canvas.bind('<Button-1>', self._start_drag, add='+')
-        self.canvas.bind('<B1-Motion>', self._on_drag, add='+')
+        self.canvas.bind('<Button-1>', self._start_drag)
+        self.canvas.bind('<B1-Motion>', self._on_drag)
         
     def _start_drag(self, event):
         self.drag_x = event.x
@@ -89,12 +107,17 @@ class WidgetGUI:
     def _draw_ui(self):
         self.canvas.delete("all")
         
-        # Draw Pill Background
-        self._draw_rounded_rect(
-            0, 0, config.WIDGET_WIDTH, config.WIDGET_HEIGHT, 
-            radius=30, 
-            fill=config.COLOR_BACKGROUND
-        )
+        # Draw Pill Background (Capsule) - Perfectly rounded ends
+        h = config.WIDGET_HEIGHT
+        w = config.WIDGET_WIDTH
+        r = h // 2
+        
+        # Left circle
+        self.canvas.create_oval(0, 0, h, h, fill=config.COLOR_BACKGROUND, outline="")
+        # Right circle
+        self.canvas.create_oval(w - h, 0, w, h, fill=config.COLOR_BACKGROUND, outline="")
+        # Middle rectangle
+        self.canvas.create_rectangle(r, 0, w - r, h, fill=config.COLOR_BACKGROUND, outline="")
         
         if self.state == "recording":
             self._draw_recording_ui()
@@ -102,136 +125,201 @@ class WidgetGUI:
             self._draw_processing_ui()
             
     def _draw_recording_ui(self):
-        # Cancel Button (Left)
-        btn_radius = 18
         cy = config.WIDGET_HEIGHT // 2
-        cx_cancel = 35
         
-        # Grey Circle
+        # Cancel Button (Left)
+        cx_cancel = config.WIDGET_HEIGHT // 2
+        btn_radius = 10
         self.canvas.create_oval(
             cx_cancel - btn_radius, cy - btn_radius,
             cx_cancel + btn_radius, cy + btn_radius,
             fill=config.COLOR_BUTTON_CANCEL, outline="", tags="btn_cancel"
         )
-        # X Icon
-        x_size = 6
-        self.canvas.create_line(
-            cx_cancel - x_size, cy - x_size, cx_cancel + x_size, cy + x_size,
-            fill="white", width=2, tags="btn_cancel"
-        )
-        self.canvas.create_line(
-            cx_cancel + x_size, cy - x_size, cx_cancel - x_size, cy + x_size,
-            fill="white", width=2, tags="btn_cancel"
-        )
+        self.canvas.create_text(cx_cancel, cy, text="×", fill="white", font=("Arial", 12), tags="btn_cancel")
         
-        # Stop Button (Right)
-        cx_stop = config.WIDGET_WIDTH - 35
+        # Menu Button (Right - Far edge)
+        cx_menu = config.WIDGET_WIDTH - (config.WIDGET_HEIGHT // 2)
+        # Draw 3 vertical dots
+        dot_radius = 1.5
+        dot_spacing = 5
+        for i in range(-1, 2):
+            dy = i * dot_spacing
+            self.canvas.create_oval(
+                cx_menu - dot_radius, cy + dy - dot_radius,
+                cx_menu + dot_radius, cy + dy + dot_radius,
+                fill="white", outline="", tags="btn_menu"
+            )
+        # Invisible hit area for menu
+        self.canvas.create_rectangle(
+            cx_menu - 10, cy - 10, cx_menu + 10, cy + 10,
+            fill="", outline="", tags="btn_menu"
+        )
+            
+        # Stop Button (Right - Left of Menu)
+        cx_stop = cx_menu - 30 # Shift left to make room for menu
         
-        # Red Circle
+        # Reverted to Circular Red Button with White Square
         self.canvas.create_oval(
             cx_stop - btn_radius, cy - btn_radius,
             cx_stop + btn_radius, cy + btn_radius,
             fill=config.COLOR_BUTTON_STOP, outline="", tags="btn_stop"
         )
-        # Square Icon
-        sq_size = 5
-        self.canvas.create_rectangle(
-            cx_stop - sq_size, cy - sq_size, cx_stop + sq_size, cy + sq_size,
-            fill="white", outline="", tags="btn_stop"
-        )
+        # Small square icon
+        s = 3
+        self.canvas.create_rectangle(cx_stop-s, cy-s, cx_stop+s, cy+s, fill="white", outline="", tags="btn_stop")
         
         # Visualizer (Center)
-        self._draw_visualizer_bars()
+        self._draw_visualizer_bars(end_x_offset=55) # Pass offset to account for 2 buttons on right
+        
+        # Bind clicks
+        self.canvas.tag_bind("btn_cancel", "<Button-1>", lambda e: self.on_cancel())
+        self.canvas.tag_bind("btn_stop", "<Button-1>", lambda e: self.on_stop())
+        self.canvas.tag_bind("btn_menu", "<Button-1>", self._show_menu)
 
-    def _draw_visualizer_bars(self):
-        # Area between buttons
-        start_x = 70
-        end_x = config.WIDGET_WIDTH - 70
-        width = end_x - start_x
+    def _show_menu(self, event):
+        """Show the context menu"""
+        menu = tk.Menu(self.root, tearoff=0)
+        menu.add_command(label="Print as it is", command=lambda: self.on_stop(mode="raw"))
+        menu.add_command(label="Print with AI", command=lambda: self.on_stop(mode="ai"))
+        
+        # Post menu at click position
+        try:
+            menu.tk_popup(event.x_root, event.y_root)
+        finally:
+            menu.grab_release()
+
+    def _draw_visualizer_bars(self, end_x_offset=45):
         cy = config.WIDGET_HEIGHT // 2
         
-        bar_width = width / len(self.audio_levels)
-        max_height = 20
+        # FIXED LAYOUT for perfect spacing
+        # Instead of calculating spacing from width, we define it fixed
+        bar_width = 2
+        spacing = 4  # Wide, uniform gap
+        
+        # Calculate total width of the visualizer group
+        total_width = (self.num_bars * bar_width) + ((self.num_bars - 1) * spacing)
+        
+        # Center the group dynamically
+        # Available width center point needs to be calculated carefully
+        # Or we just center it in the whole widget, but biased if buttons are uneven?
+        # Let's center it in the available space between buttons
+        
+        start_x_limit = 45 # Space for cancel button
+        end_x_limit = config.WIDGET_WIDTH - end_x_offset # Space for stop + menu
+        
+        available_center = start_x_limit + (end_x_limit - start_x_limit) / 2
+        start_x = available_center - (total_width / 2)
+        
+        max_height = 10
         
         for i, level in enumerate(self.audio_levels):
-            x = start_x + i * bar_width + (bar_width/2)
-            h = max(2, level * max_height) # Min height 2
+            # Precise x calculation
+            x = start_x + i * (bar_width + spacing) + (bar_width / 2)
+            
+            # Use a non-linear scaling for better low-volume visibility
+            h = max(1.5, math.sqrt(level) * max_height)
             
             self.canvas.create_line(
                 x, cy - h, x, cy + h,
-                fill=config.COLOR_VISUALIZER, width=3, capstyle=tk.ROUND
+                fill=config.COLOR_VISUALIZER, width=bar_width, capstyle=tk.ROUND
             )
 
     def _draw_processing_ui(self):
         cy = config.WIDGET_HEIGHT // 2
         cx = config.WIDGET_WIDTH // 2
         
-        # Dots Text
-        self.canvas.create_text(
-            cx - 20, cy,
-            text=". . . . . . . .",
-            fill="white",
-            font=("Arial", 16, "bold"),
-            anchor="center"
-        )
-        
-        # Spinner (Right side of text)
-        spinner_x = cx + 60
-        radius = 10
-        
-        # Draw spinner segments
-        for i in range(8):
-            angle = self.processing_angle + (i * 45)
-            rad = math.radians(angle)
+        # Smooth pulsing dots
+        num_dots = 3
+        dot_spacing = 12
+        for i in range(num_dots):
+            offset = (i - 1) * dot_spacing
+            # Pulse based on angle
+            pulse = math.sin(math.radians(self.processing_angle + i * 60)) * 0.5 + 0.5
+            size = 2 + pulse * 2
             
-            x1 = spinner_x + math.cos(rad) * (radius - 4)
-            y1 = cy + math.sin(rad) * (radius - 4)
-            x2 = spinner_x + math.cos(rad) * radius
-            y2 = cy + math.sin(rad) * radius
+            # Simulate alpha with grey levels
+            val = int(150 + pulse * 105)
+            color = f"#{val:02x}{val:02x}{val:02x}"
             
-            alpha = (i + 1) / 8.0
-            # Simulate alpha with grey levels since Tkinter canvas lines don't support alpha directly easily
-            # We'll just use white for active and dark grey for inactive
-            color = "#ffffff" if i > 4 else "#555555"
-            
-            self.canvas.create_line(x1, y1, x2, y2, fill=color, width=2, capstyle=tk.ROUND)
+            self.canvas.create_oval(
+                cx + offset - size, cy - size,
+                cx + offset + size, cy + size,
+                fill=color, outline=""
+            )
 
-    def _on_click(self, event):
-        # Check tags at click location
-        item = self.canvas.find_closest(event.x, event.y)
-        tags = self.canvas.gettags(item)
+    def _smooth_visualizer(self):
+        if not self.is_running: return
         
-        if "btn_cancel" in tags:
-            if self.on_cancel: self.on_cancel()
-        elif "btn_stop" in tags:
-            if self.on_stop: self.on_stop()
+        # Advanced Smoothing (EMA with Attack/Release)
+        changed = False
+        for i in range(self.num_bars):
+            # Move current level towards target with different speeds
+            diff = self.target_levels[i] - self.audio_levels[i]
+            
+            if diff > 0:
+                # Attack: Fast jump up
+                self.audio_levels[i] += diff * self.attack
+            else:
+                # Release: Slow glide down
+                self.audio_levels[i] += diff * self.release
+            
+            # Slowly decay target level
+            self.target_levels[i] *= 0.85
+            if self.target_levels[i] < 0.01: self.target_levels[i] = 0.01
+            
+            if abs(diff) > 0.001:
+                changed = True
+        
+        # Update hangover counter
+        if self.hangover_frames > 0:
+            self.hangover_frames -= 1
+        else:
+            self.is_speech_active = False
+            
+        if self.state == "processing":
+            self.processing_angle = (self.processing_angle + 10) % 360
+            changed = True
+            
+        if changed:
+            self._draw_ui()
+            
+        self.root.after(20, self._smooth_visualizer)
 
-    def update_visualizer(self, audio_level):
-        if self.state != "recording": return
+    def update_visualizer(self, data):
+        """Update visualizer with FFT frequency bands and VAD status"""
+        if self.state != "recording" or data is None: return
         
-        normalized_level = min(audio_level / 3000.0, 1.0) # Adjusted sensitivity
-        self.audio_levels.append(normalized_level)
-        self.audio_levels.pop(0)
+        bands, is_speech = data
         
-        # Redraw only visualizer part if possible, but full redraw is safer for clean UI
-        self._draw_ui()
+        # Update speech state with hangover
+        if is_speech:
+            self.is_speech_active = True
+            self.hangover_frames = self.max_hangover
+            
+        # Only update targets if speech is active (or within hangover period)
+        if not self.is_speech_active:
+            return
+            
+        # bands is a list of 18 floats from FFT
+        for i in range(min(len(bands), self.num_bars)):
+            # Sensitivity adjustment per band
+            boost = 1.0 + (i / self.num_bars) * 2.0
+            val = (bands[i] / 5000.0) * boost
+            
+            # Apply non-linear scaling to make it "pop"
+            normalized_val = min(val, 1.0)
+            
+            # Update target only if higher to prevent flickering
+            if normalized_val > self.target_levels[i]:
+                self.target_levels[i] = normalized_val
 
     def show_processing(self):
         self.state = "processing"
-        self._animate_processing()
         
-    def _animate_processing(self):
-        if self.state == "processing":
-            self.processing_angle = (self.processing_angle + 20) % 360
-            self._draw_ui()
-            self.root.after(50, self._animate_processing)
-
     def show_recording(self):
         self.state = "recording"
-        self._draw_ui()
         
     def get_current_mode(self):
-        # Defaulting to 'default' since UI selector is removed for compact design
         return "default"
 
     def show(self):

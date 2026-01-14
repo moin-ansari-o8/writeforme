@@ -17,6 +17,198 @@
       "refined_text": "Hello, may I have your attention? Could you please share with me more about yourself as well as information regarding our Slash Projects Page? Thank you.",
       "paste_success": true,
       "text_length": 153
+    },
+    {
+      "timestamp": "2026-01-04T00:28:17.921126",
+      "mode": "default",
+      "raw_text": "hello Google hello hello hello hello hello hello hello hello",
+      "refined_text": "hello Google hello hello hello hello hello hello hello hello",
+      "paste_success": false,
+      "text_length": 60
+    },
+    {
+      "timestamp": "2026-01-04T00:28:18.159447",
+      "mode": "default",
+      "raw_text": "hello Google hello hello hello hello hello hello hello hello",
+      "refined_text": "hello Google hello hello hello hello hello hello hello hello",
+      "paste_success": true,
+      "text_length": 60
+    },
+    {
+      "timestamp": "2026-01-04T00:29:41.742537",
+      "mode": "default",
+      "raw_text": "alright so I just uploaded I just tested this application and I run the management and I notice that the visualiser it is not been updating whenever I am speaking it should be like fluctuating its size but its size is remaining same as it is in the dot form it is not responding in short with my voice I don't know I wanted to look at that is",
+      "refined_text": "alright so I just uploaded I just tested this application and I run the management and I notice that the visualiser it is not been updating whenever I am speaking it should be like fluctuating its size but its size is remaining same as it is in the dot form it is not responding in short with my voice I don't know I wanted to look at that is",
+      "paste_success": false,
+      "text_length": 342
+    },
+    {
+      "timestamp": "2026-01-04T00:29:41.977769",
+      "mode": "default",
+      "raw_text": "alright so I just uploaded I just tested this application and I run the management and I notice that the visualiser it is not been updating whenever I am speaking it should be like fluctuating its size but its size is remaining same as it is in the dot form it is not responding in short with my voice I don't know I wanted to look at that is",
+      "refined_text": "alright so I just uploaded I just tested this application and I run the management and I notice that the visualiser it is not been updating whenever I am speaking it should be like fluctuating its size but its size is remaining same as it is in the dot form it is not responding in short with my voice I don't know I wanted to look at that is",
+      "paste_success": true,
+      "text_length": 342
+    },
+    {
+      "timestamp": "2026-01-04T00:37:53.710925",
+      "mode": "default",
+      "raw_text": "hello it is responding properly now the distance between visualisation and very fast charging it is not smooth as I expected and each and whenever I am speaking something each and every is increasing its height to the max like something perfect situation",
+      "refined_text": "hello it is responding properly now the distance between visualisation and very fast charging it is not smooth as I expected and each and whenever I am speaking something each and every is increasing its height to the max like something perfect situation",
+      "paste_success": false,
+      "text_length": 254
+    },
+    {
+      "timestamp": "2026-01-04T00:37:53.944419",
+      "mode": "default",
+      "raw_text": "hello it is responding properly now the distance between visualisation and very fast charging it is not smooth as I expected and each and whenever I am speaking something each and every is increasing its height to the max like something perfect situation",
+      "refined_text": "hello it is responding properly now the distance between visualisation and very fast charging it is not smooth as I expected and each and whenever I am speaking something each and every is increasing its height to the max like something perfect situation",
+      "paste_success": true,
+      "text_length": 254
+    },
+    {
+      "timestamp": "2026-01-04T00:45:28.570322",
+      "mode": "default",
+      "raw_text": "hello Google Now everything is perfect to visualizer is good better than before and now I want you to make some greetings like it is responding to other noise other noise also but I want this visualizer to respond to only the voice of a person you get what I am asking you that it should respond to the voice is speaking something something I want you to go on the Internet and search what is how you can implement this and this particular feature I am talking about",
+      "refined_text": "hello Google Now everything is perfect to visualizer is good better than before and now I want you to make some greetings like it is responding to other noise other noise also but I want this visualizer to respond to only the voice of a person you get what I am asking you that it should respond to the voice is speaking something something I want you to go on the Internet and search what is how you can implement this and this particular feature I am talking about",
+      "paste_success": false,
+      "text_length": 466
+    },
+    {
+      "timestamp": "2026-01-04T00:45:28.792151",
+      "mode": "default",
+      "raw_text": "hello Google Now everything is perfect to visualizer is good better than before and now I want you to make some greetings like it is responding to other noise other noise also but I want this visualizer to respond to only the voice of a person you get what I am asking you that it should respond to the voice is speaking something something I want you to go on the Internet and search what is how you can implement this and this particular feature I am talking about",
+      "refined_text": "hello Google Now everything is perfect to visualizer is good better than before and now I want you to make some greetings like it is responding to other noise other noise also but I want this visualizer to respond to only the voice of a person you get what I am asking you that it should respond to the voice is speaking something something I want you to go on the Internet and search what is how you can implement this and this particular feature I am talking about",
+      "paste_success": true,
+      "text_length": 466
+    },
+    {
+      "timestamp": "2026-01-04T00:49:05.596780",
+      "mode": "default",
+      "raw_text": "hello nice it is showing the results perfectly and I have to nice it is good now",
+      "refined_text": "hello nice it is showing the results perfectly and I have to nice it is good now",
+      "paste_success": false,
+      "text_length": 80
+    },
+    {
+      "timestamp": "2026-01-04T00:49:05.825289",
+      "mode": "default",
+      "raw_text": "hello nice it is showing the results perfectly and I have to nice it is good now",
+      "refined_text": "hello nice it is showing the results perfectly and I have to nice it is good now",
+      "paste_success": true,
+      "text_length": 80
+    },
+    {
+      "timestamp": "2026-01-04T00:52:28.331340",
+      "mode": "default",
+      "raw_text": "alright so I am getting money issue that the UI is not proper like it is responding now properly perfectly I want you to reduce the counting of the visual bars the visualizer bar which are being responded with my voice I want you to reduce 3 or 4 bar from it and they are very thin so I want you to think and make little changes that reduce height reduce the height between the past should be accurate same currently some birds have small gaps between them and then",
+      "refined_text": "alright so I am getting money issue that the UI is not proper like it is responding now properly perfectly I want you to reduce the counting of the visual bars the visualizer bar which are being responded with my voice I want you to reduce 3 or 4 bar from it and they are very thin so I want you to think and make little changes that reduce height reduce the height between the past should be accurate same currently some birds have small gaps between them and then",
+      "paste_success": false,
+      "text_length": 465
+    },
+    {
+      "timestamp": "2026-01-04T00:52:28.551705",
+      "mode": "default",
+      "raw_text": "alright so I am getting money issue that the UI is not proper like it is responding now properly perfectly I want you to reduce the counting of the visual bars the visualizer bar which are being responded with my voice I want you to reduce 3 or 4 bar from it and they are very thin so I want you to think and make little changes that reduce height reduce the height between the past should be accurate same currently some birds have small gaps between them and then",
+      "refined_text": "alright so I am getting money issue that the UI is not proper like it is responding now properly perfectly I want you to reduce the counting of the visual bars the visualizer bar which are being responded with my voice I want you to reduce 3 or 4 bar from it and they are very thin so I want you to think and make little changes that reduce height reduce the height between the past should be accurate same currently some birds have small gaps between them and then",
+      "paste_success": true,
+      "text_length": 465
+    },
+    {
+      "timestamp": "2026-01-04T01:04:27.548554",
+      "mode": "default",
+      "raw_text": "hello hello is not good night video tell me what it is happening",
+      "refined_text": "hello hello is not good night video tell me what it is happening",
+      "paste_success": false,
+      "text_length": 64
+    },
+    {
+      "timestamp": "2026-01-04T01:04:27.778386",
+      "mode": "default",
+      "raw_text": "hello hello is not good night video tell me what it is happening",
+      "refined_text": "hello hello is not good night video tell me what it is happening",
+      "paste_success": true,
+      "text_length": 64
+    },
+    {
+      "timestamp": "2026-01-04T01:16:21.766109",
+      "mode": "default",
+      "raw_text": "hello my picture what are you doing can you listen to me I don't know what you listen now",
+      "refined_text": "Hello, may I have your attention? What is currently on your mind or task that has captured your focus so much that it prevents us from conversing right now? Thank you for understanding.",
+      "paste_success": false,
+      "text_length": 185
+    },
+    {
+      "timestamp": "2026-01-04T01:16:22.014279",
+      "mode": "default",
+      "raw_text": "hello my picture what are you doing can you listen to me I don't know what you listen now",
+      "refined_text": "Hello, may I have your attention? What is currently on your mind or task that has captured your focus so much that it prevents us from conversing right now? Thank you for understanding.",
+      "paste_success": true,
+      "text_length": 185
+    },
+    {
+      "timestamp": "2026-01-04T01:21:53.730865",
+      "mode": "default",
+      "raw_text": "hello hello",
+      "refined_text": "hello hello",
+      "paste_success": false,
+      "text_length": 11
+    },
+    {
+      "timestamp": "2026-01-04T01:21:53.997693",
+      "mode": "default",
+      "raw_text": "hello hello",
+      "refined_text": "hello hello",
+      "paste_success": true,
+      "text_length": 11
+    },
+    {
+      "timestamp": "2026-01-04T01:31:50.057766",
+      "mode": "default",
+      "raw_text": "hello hello where are you what are you doing something just fine I hope",
+      "refined_text": "hello hello where are you what are you doing something just fine I hope",
+      "paste_success": false,
+      "text_length": 71
+    },
+    {
+      "timestamp": "2026-01-04T01:31:50.300807",
+      "mode": "default",
+      "raw_text": "hello hello where are you what are you doing something just fine I hope",
+      "refined_text": "hello hello where are you what are you doing something just fine I hope",
+      "paste_success": true,
+      "text_length": 71
+    },
+    {
+      "timestamp": "2026-01-14T14:10:11.191702",
+      "mode": "default",
+      "raw_text": "hello there what are you doing that tell me what you understood from this particular prompt",
+      "refined_text": "Hello, I hope you're well. What is your understanding of this specific prompt?",
+      "paste_success": false,
+      "text_length": 78
+    },
+    {
+      "timestamp": "2026-01-14T14:10:11.433433",
+      "mode": "default",
+      "raw_text": "hello there what are you doing that tell me what you understood from this particular prompt",
+      "refined_text": "Hello, I hope you're well. What is your understanding of this specific prompt?",
+      "paste_success": true,
+      "text_length": 78
+    },
+    {
+      "timestamp": "2026-01-14T14:22:50.678598",
+      "mode": "default",
+      "raw_text": "hello there what are you doing and tell me what can you do",
+      "refined_text": "Hello there. What are you doing? What can you do?",
+      "paste_success": false,
+      "text_length": 49
+    },
+    {
+      "timestamp": "2026-01-14T14:22:50.924205",
+      "mode": "default",
+      "raw_text": "hello there what are you doing and tell me what can you do",
+      "refined_text": "Hello there. What are you doing? What can you do?",
+      "paste_success": true,
+      "text_length": 49
     }
   ]
 }
