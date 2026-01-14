@@ -34,7 +34,7 @@ class WidgetGUI:
         self._position_window()
         
         # Visualizer data
-        self.num_bars = 12 # Perfectly balanced for the capsule
+        self.num_bars = 8 # Reduced for cleaner, more spacious look
         self.audio_levels = [0.01] * self.num_bars
         self.target_levels = [0.01] * self.num_bars
         
@@ -129,36 +129,18 @@ class WidgetGUI:
         
         # Cancel Button (Left)
         cx_cancel = config.WIDGET_HEIGHT // 2
-        btn_radius = 10
+        btn_radius = 9  # Slightly smaller for compact design
         self.canvas.create_oval(
             cx_cancel - btn_radius, cy - btn_radius,
             cx_cancel + btn_radius, cy + btn_radius,
             fill=config.COLOR_BUTTON_CANCEL, outline="", tags="btn_cancel"
         )
-        self.canvas.create_text(cx_cancel, cy, text="×", fill="white", font=("Arial", 12), tags="btn_cancel")
+        self.canvas.create_text(cx_cancel, cy, text="×", fill="white", font=("Arial", 11), tags="btn_cancel")
         
-        # Menu Button (Right - Far edge)
-        cx_menu = config.WIDGET_WIDTH - (config.WIDGET_HEIGHT // 2)
-        # Draw 3 vertical dots
-        dot_radius = 1.5
-        dot_spacing = 5
-        for i in range(-1, 2):
-            dy = i * dot_spacing
-            self.canvas.create_oval(
-                cx_menu - dot_radius, cy + dy - dot_radius,
-                cx_menu + dot_radius, cy + dy + dot_radius,
-                fill="white", outline="", tags="btn_menu"
-            )
-        # Invisible hit area for menu
-        self.canvas.create_rectangle(
-            cx_menu - 10, cy - 10, cx_menu + 10, cy + 10,
-            fill="", outline="", tags="btn_menu"
-        )
-            
-        # Stop Button (Right - Left of Menu)
-        cx_stop = cx_menu - 30 # Shift left to make room for menu
+        # Stop Button (Right - No menu button anymore)
+        cx_stop = config.WIDGET_WIDTH - (config.WIDGET_HEIGHT // 2)  # Positioned at right edge
         
-        # Reverted to Circular Red Button with White Square
+        # Circular Red Button with White Square
         self.canvas.create_oval(
             cx_stop - btn_radius, cy - btn_radius,
             cx_stop + btn_radius, cy + btn_radius,
@@ -168,25 +150,12 @@ class WidgetGUI:
         s = 3
         self.canvas.create_rectangle(cx_stop-s, cy-s, cx_stop+s, cy+s, fill="white", outline="", tags="btn_stop")
         
-        # Visualizer (Center)
-        self._draw_visualizer_bars(end_x_offset=55) # Pass offset to account for 2 buttons on right
+        # Visualizer (Center) - balanced between cancel and stop
+        self._draw_visualizer_bars(end_x_offset=28) # Adjusted for single button on right
         
         # Bind clicks
         self.canvas.tag_bind("btn_cancel", "<Button-1>", lambda e: self.on_cancel())
         self.canvas.tag_bind("btn_stop", "<Button-1>", lambda e: self.on_stop())
-        self.canvas.tag_bind("btn_menu", "<Button-1>", self._show_menu)
-
-    def _show_menu(self, event):
-        """Show the context menu"""
-        menu = tk.Menu(self.root, tearoff=0)
-        menu.add_command(label="Print as it is", command=lambda: self.on_stop(mode="raw"))
-        menu.add_command(label="Print with AI", command=lambda: self.on_stop(mode="ai"))
-        
-        # Post menu at click position
-        try:
-            menu.tk_popup(event.x_root, event.y_root)
-        finally:
-            menu.grab_release()
 
     def _draw_visualizer_bars(self, end_x_offset=45):
         cy = config.WIDGET_HEIGHT // 2
@@ -194,7 +163,7 @@ class WidgetGUI:
         # FIXED LAYOUT for perfect spacing
         # Instead of calculating spacing from width, we define it fixed
         bar_width = 2
-        spacing = 4  # Wide, uniform gap
+        spacing = 5  # Increased spacing for fewer bars
         
         # Calculate total width of the visualizer group
         total_width = (self.num_bars * bar_width) + ((self.num_bars - 1) * spacing)
@@ -204,8 +173,8 @@ class WidgetGUI:
         # Or we just center it in the whole widget, but biased if buttons are uneven?
         # Let's center it in the available space between buttons
         
-        start_x_limit = 45 # Space for cancel button
-        end_x_limit = config.WIDGET_WIDTH - end_x_offset # Space for stop + menu
+        start_x_limit = 32 # Space for cancel button (reduced)
+        end_x_limit = config.WIDGET_WIDTH - end_x_offset # Space for stop button
         
         available_center = start_x_limit + (end_x_limit - start_x_limit) / 2
         start_x = available_center - (total_width / 2)
@@ -320,7 +289,7 @@ class WidgetGUI:
         self.state = "recording"
         
     def get_current_mode(self):
-        return "default"
+        return "vibe_coder"
 
     def show(self):
         self.root.deiconify()

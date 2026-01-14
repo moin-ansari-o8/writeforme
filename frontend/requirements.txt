@@ -1,0 +1,9 @@
+# WriteForMe Dashboard - Frontend Requirements
+
+# UI Framework
+customtkinter>=5.2.0
+
+# Already installed in main project (no need to reinstall)
+# These are just for reference:
+# - PIL/Pillow (already in requirements.txt)
+# - tkinter (comes with Python)

@@ -57,7 +57,7 @@ class CohereProvider(AIProvider):
         response = self.client.chat(
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
-            temperature=0.3,
+            temperature=0.1,  # Lower for more predictable, accurate output
             max_tokens=500
         )
         return response.message.content[0].text.strip()
@@ -122,21 +122,120 @@ class GroqProvider(AIProvider):
     
     def refine_text(self, raw_text, prompt_template):
         prompt = prompt_template.format(transcription=raw_text)
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.3,
-            max_tokens=500
-        )
-        return response.choices[0].message.content.strip()
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.1,  # Lower for more predictable output
+                max_tokens=500,
+                timeout=30  # 30 second timeout
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            print(f"{Fore.YELLOW}[Groq] Timeout/Error, using raw text: {e}{Style.RESET_ALL}")
+            # Return raw text if Groq fails
+            return raw_text
 
 
 class OllamaProvider(AIProvider):
     def __init__(self):
-        super().__init__("Ollama", is_online=False)
+        super().__init__("Ollama (Local)", is_online=False)
         import ollama
+        import subprocess
+        import time
+        
         self.client = ollama.Client(host="http://localhost:11434")
-        self.model = "phi3:mini"
+        self.model = None  # Will be selected by user
+        
+        # Auto-start Ollama if not running
+        if not self._is_ollama_running():
+            print(f"{Fore.YELLOW}[Ollama] Service not running, starting...{Style.RESET_ALL}")
+            self._start_ollama_service()
+            time.sleep(3)  # Wait for service to start
+        
+        # Let user select model
+        self._select_model()
+    
+    def _select_model(self):
+        """Let user select which Ollama model to use"""
+        try:
+            # Get list of installed models
+            models_response = self.client.list()
+            models = models_response.get('models', [])
+            
+            if not models:
+                print(f"{Fore.RED}[Ollama] No models found. Please install a model first.{Style.RESET_ALL}")
+                print(f"{Fore.YELLOW}Example: ollama pull deepseek-coder:6.7b{Style.RESET_ALL}")
+                self.model = "deepseek-coder:6.7b"  # Fallback
+                return
+            
+            # Display available models
+            print(f"\n{Fore.CYAN}{Style.BRIGHT}{'='*70}")
+            print(f"{Fore.CYAN}{Style.BRIGHT}{'📦  Select Ollama Model':^70}")
+            print(f"{Fore.CYAN}{Style.BRIGHT}{'='*70}{Style.RESET_ALL}\n")
+            
+            for i, model in enumerate(models, 1):
+                # Try different possible keys for model name
+                model_name = model.get('model') or model.get('name') or 'Unknown'
+                size = model.get('size', 0)
+                size_gb = size / (1024**3)  # Convert to GB
+                
+                print(f"{Fore.YELLOW}{i}.{Style.RESET_ALL} {Fore.GREEN}{model_name}{Style.RESET_ALL} ({size_gb:.1f} GB)")
+            
+            print(f"\n{Fore.CYAN}Enter model number (default: 1):{Style.RESET_ALL} ", end="")
+            choice = input().strip() or "1"
+            
+            try:
+                idx = int(choice) - 1
+                if 0 <= idx < len(models):
+                    self.model = models[idx].get('model') or models[idx].get('name')
+                    print(f"{Fore.GREEN}✓ Selected: {self.model}{Style.RESET_ALL}\n")
+                    # Update provider name
+                    self.name = f"Ollama ({self.model})"
+                else:
+                    print(f"{Fore.RED}Invalid choice, using first model{Style.RESET_ALL}")
+                    self.model = models[0].get('model') or models[0].get('name')
+            except ValueError:
+                print(f"{Fore.RED}Invalid input, using first model{Style.RESET_ALL}")
+                self.model = models[0].get('model') or models[0].get('name')
+                
+        except Exception as e:
+            print(f"{Fore.RED}[Ollama] Error selecting model: {e}{Style.RESET_ALL}")
+            self.model = "deepseek-coder:6.7b"  # Fallback
+    
+    def _is_ollama_running(self):
+        """Check if Ollama service is running"""
+        try:
+            self.client.list()
+            return True
+        except:
+            return False
+    
+    def _start_ollama_service(self):
+        """Start Ollama service in background"""
+        import subprocess
+        import sys
+        
+        try:
+            if sys.platform == "win32":
+                # Windows: Start Ollama in background
+                subprocess.Popen(
+                    ["ollama", "serve"],
+                    creationflags=subprocess.CREATE_NO_WINDOW | subprocess.DETACHED_PROCESS,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL
+                )
+            else:
+                # Linux/Mac
+                subprocess.Popen(
+                    ["ollama", "serve"],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL
+                )
+            print(f"{Fore.GREEN}[Ollama] Service started successfully{Style.RESET_ALL}")
+        except Exception as e:
+            print(f"{Fore.RED}[Ollama] Failed to start service: {e}{Style.RESET_ALL}")
+            print(f"{Fore.YELLOW}[Ollama] Please start Ollama manually or ensure it's installed{Style.RESET_ALL}")
     
     def test_connection(self):
         try:
@@ -151,7 +250,10 @@ class OllamaProvider(AIProvider):
         response = self.client.generate(
             model=self.model,
             prompt=prompt,
-            options={'temperature': 0.3, 'max_tokens': 500}
+            options={
+                'temperature': 0.3,  # Lower to reduce creativity
+                'num_predict': 500
+            }
         )
         return response['response'].strip()
 

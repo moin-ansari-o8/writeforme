@@ -81,6 +81,438 @@
       "refined_text": "hello alright so I had another question that this program will be run in background continuously it will listen for them what is continuously so whenever I click the cost so my question was that if the this program is running continuously will get so much of hard work space or something that was all my concern is this program optimised properly",
       "paste_success": true,
       "text_length": 346
+    },
+    {
+      "timestamp": "2026-01-14T16:26:33.487599",
+      "mode": "default",
+      "raw_text": "also alright this is the application I am building now I have one issue it is not issue I want to just to receptor this whole application this folder I want to you to separate the front end and back end properly as I want to enhance and I want to add many more guys dashboard and etc the dashboard to select I want to refine the prompt with and even more options Like even I want to put my trust which we are just currently asking in the terminal type of questions that currently I want you to separate different than it should be launched the program as it is currently watching now so no problem in launching ok I am just asking you to separate things but they should work properly unified and just asking you to make it kind of thing",
+      "refined_text": "I'm currently building this application, and I have a request. I'd like to restructure the entire application, separating the front end and back end properly. This will allow me to enhance and add more features, such as multiple dashboards and options. I want to refine the prompts with even more choices, including trust settings that are currently input through the terminal. I'd like you to separate the components while ensuring they work together seamlessly. The program should launch without issues, as it does now. Essentially, I'm asking you to reorganize the application's structure while maintaining its unified functionality.",
+      "paste_success": false,
+      "text_length": 636
+    },
+    {
+      "timestamp": "2026-01-14T16:26:33.744366",
+      "mode": "default",
+      "raw_text": "also alright this is the application I am building now I have one issue it is not issue I want to just to receptor this whole application this folder I want to you to separate the front end and back end properly as I want to enhance and I want to add many more guys dashboard and etc the dashboard to select I want to refine the prompt with and even more options Like even I want to put my trust which we are just currently asking in the terminal type of questions that currently I want you to separate different than it should be launched the program as it is currently watching now so no problem in launching ok I am just asking you to separate things but they should work properly unified and just asking you to make it kind of thing",
+      "refined_text": "I'm currently building this application, and I have a request. I'd like to restructure the entire application, separating the front end and back end properly. This will allow me to enhance and add more features, such as multiple dashboards and options. I want to refine the prompts with even more choices, including trust settings that are currently input through the terminal. I'd like you to separate the components while ensuring they work together seamlessly. The program should launch without issues, as it does now. Essentially, I'm asking you to reorganize the application's structure while maintaining its unified functionality.",
+      "paste_success": true,
+      "text_length": 636
+    },
+    {
+      "timestamp": "2026-01-14T16:28:16.171501",
+      "mode": "default",
+      "raw_text": "give the one main file like launcher.com it should be launched the application so put that one file in the main character",
+      "refined_text": "Place the primary file, launcher.com, in the main directory to ensure the application launches successfully.",
+      "paste_success": false,
+      "text_length": 108
+    },
+    {
+      "timestamp": "2026-01-14T16:28:16.443227",
+      "mode": "default",
+      "raw_text": "give the one main file like launcher.com it should be launched the application so put that one file in the main character",
+      "refined_text": "Place the primary file, launcher.com, in the main directory to ensure the application launches successfully.",
+      "paste_success": true,
+      "text_length": 108
+    },
+    {
+      "timestamp": "2026-01-14T17:07:41.647920",
+      "mode": "default",
+      "raw_text": "hello hello tell me yes or no",
+      "refined_text": "Hello, tell me yes or no.",
+      "paste_success": false,
+      "text_length": 25
+    },
+    {
+      "timestamp": "2026-01-14T17:07:41.887115",
+      "mode": "default",
+      "raw_text": "hello hello tell me yes or no",
+      "refined_text": "Hello, tell me yes or no.",
+      "paste_success": true,
+      "text_length": 25
+    },
+    {
+      "timestamp": "2026-01-14T17:12:36.283150",
+      "mode": "default",
+      "raw_text": "do you listen to me I don't know if you are not so this in this folder I want you to clean up this folder remove unnecessary empty files and all I need to launcher.com it is not necessary and related changes which are the main file is made up you and related file with that 9.35 files are important points",
+      "refined_text": "I'm not sure if you're listening, but I'd like to request that you clean up this folder. Please remove any unnecessary or empty files, as they are not needed, especially the launcher.com file. The main file and its related files, totaling 9.35 files, are the important points that I need you to focus on.",
+      "paste_success": false,
+      "text_length": 304
+    },
+    {
+      "timestamp": "2026-01-14T17:12:36.525858",
+      "mode": "default",
+      "raw_text": "do you listen to me I don't know if you are not so this in this folder I want you to clean up this folder remove unnecessary empty files and all I need to launcher.com it is not necessary and related changes which are the main file is made up you and related file with that 9.35 files are important points",
+      "refined_text": "I'm not sure if you're listening, but I'd like to request that you clean up this folder. Please remove any unnecessary or empty files, as they are not needed, especially the launcher.com file. The main file and its related files, totaling 9.35 files, are the important points that I need you to focus on.",
+      "paste_success": true,
+      "text_length": 304
+    },
+    {
+      "timestamp": "2026-01-14T17:20:36.423587",
+      "mode": "default",
+      "raw_text": "writing so now this is the testing one after the cleanups I want to know if everything is perfect you are",
+      "refined_text": "Writing. Now, this is the testing one after the cleanups. I want to know if everything is perfect.",
+      "paste_success": false,
+      "text_length": 98
+    },
+    {
+      "timestamp": "2026-01-14T17:20:36.696164",
+      "mode": "default",
+      "raw_text": "writing so now this is the testing one after the cleanups I want to know if everything is perfect you are",
+      "refined_text": "Writing. Now, this is the testing one after the cleanups. I want to know if everything is perfect.",
+      "paste_success": true,
+      "text_length": 98
+    },
+    {
+      "timestamp": "2026-01-14T17:22:40.922461",
+      "mode": "default",
+      "raw_text": "what was the difference between Jarvis and Ultron wasn't the Jarvis AI artificial intelligence because it was already the Jarvis existing still Tony Stark and Bruce Banner working about making AI",
+      "refined_text": "The difference between Jarvis and Ultron was not that Jarvis was an AI; it was already an existing technology. Tony Stark and Bruce Banner were working on developing AI.",
+      "paste_success": false,
+      "text_length": 169
+    },
+    {
+      "timestamp": "2026-01-14T17:22:41.193577",
+      "mode": "default",
+      "raw_text": "what was the difference between Jarvis and Ultron wasn't the Jarvis AI artificial intelligence because it was already the Jarvis existing still Tony Stark and Bruce Banner working about making AI",
+      "refined_text": "The difference between Jarvis and Ultron was not that Jarvis was an AI; it was already an existing technology. Tony Stark and Bruce Banner were working on developing AI.",
+      "paste_success": true,
+      "text_length": 169
+    },
+    {
+      "timestamp": "2026-01-14T18:09:49.237731",
+      "mode": "vibe_coder",
+      "raw_text": "hello alright so the visualizer is more words now it is very bad looking you are the radio button is now on the more left side instead of giving much space equal space is there is so many so I want you to fix it",
+      "refined_text": "hello alright so the visualizer is more words now it is very bad looking you are the radio button is now on the more left side instead of giving much space equal space is there is so many so I want you to fix it",
+      "paste_success": false,
+      "text_length": 211
+    },
+    {
+      "timestamp": "2026-01-14T18:09:49.542355",
+      "mode": "vibe_coder",
+      "raw_text": "hello alright so the visualizer is more words now it is very bad looking you are the radio button is now on the more left side instead of giving much space equal space is there is so many so I want you to fix it",
+      "refined_text": "hello alright so the visualizer is more words now it is very bad looking you are the radio button is now on the more left side instead of giving much space equal space is there is so many so I want you to fix it",
+      "paste_success": true,
+      "text_length": 211
+    },
+    {
+      "timestamp": "2026-01-14T18:12:01.235589",
+      "mode": "vibe_coder",
+      "raw_text": "I don't know but still this is very bad the thing is we are keeping the right side that there is the settings button something like where we are showing those two options remove that three dots button from the right side and put the red button one more right side properly",
+      "refined_text": "I don't know but still this is very bad the thing is we are keeping the right side that there is the settings button something like where we are showing those two options remove that three dots button from the right side and put the red button one more right side properly",
+      "paste_success": false,
+      "text_length": 272
+    },
+    {
+      "timestamp": "2026-01-14T18:12:01.506194",
+      "mode": "vibe_coder",
+      "raw_text": "I don't know but still this is very bad the thing is we are keeping the right side that there is the settings button something like where we are showing those two options remove that three dots button from the right side and put the red button one more right side properly",
+      "refined_text": "I don't know but still this is very bad the thing is we are keeping the right side that there is the settings button something like where we are showing those two options remove that three dots button from the right side and put the red button one more right side properly",
+      "paste_success": true,
+      "text_length": 272
+    },
+    {
+      "timestamp": "2026-01-14T18:14:26.349473",
+      "mode": "vibe_coder",
+      "raw_text": "knock knock ka perfect now what's the problem was it is now stalled",
+      "refined_text": "knock knock ka perfect now what's the problem was it is now stalled",
+      "paste_success": false,
+      "text_length": 67
+    },
+    {
+      "timestamp": "2026-01-14T18:14:26.610808",
+      "mode": "vibe_coder",
+      "raw_text": "knock knock ka perfect now what's the problem was it is now stalled",
+      "refined_text": "knock knock ka perfect now what's the problem was it is now stalled",
+      "paste_success": true,
+      "text_length": 67
+    },
+    {
+      "timestamp": "2026-01-14T18:15:21.519654",
+      "mode": "vibe_coder",
+      "raw_text": "well here I was willing to know that what are we using for the speech recognition like system which is converting my speech to text",
+      "refined_text": "well here I was willing to know that what are we using for the speech recognition like system which is converting my speech to text",
+      "paste_success": false,
+      "text_length": 131
+    },
+    {
+      "timestamp": "2026-01-14T18:15:21.786433",
+      "mode": "vibe_coder",
+      "raw_text": "well here I was willing to know that what are we using for the speech recognition like system which is converting my speech to text",
+      "refined_text": "well here I was willing to know that what are we using for the speech recognition like system which is converting my speech to text",
+      "paste_success": true,
+      "text_length": 131
+    },
+    {
+      "timestamp": "2026-01-14T18:16:30.523884",
+      "mode": "vibe_coder",
+      "raw_text": "tweet into the country of that file that I even whenever I speak slowly your my voice is deemed it should capture my voice perfectly it should listen to me clearly even when I am speaking slowly",
+      "refined_text": "tweet into the country of that file that I even whenever I speak slowly your my voice is deemed it should capture my voice perfectly it should listen to me clearly even when I am speaking slowly",
+      "paste_success": false,
+      "text_length": 194
+    },
+    {
+      "timestamp": "2026-01-14T18:16:30.803663",
+      "mode": "vibe_coder",
+      "raw_text": "tweet into the country of that file that I even whenever I speak slowly your my voice is deemed it should capture my voice perfectly it should listen to me clearly even when I am speaking slowly",
+      "refined_text": "tweet into the country of that file that I even whenever I speak slowly your my voice is deemed it should capture my voice perfectly it should listen to me clearly even when I am speaking slowly",
+      "paste_success": true,
+      "text_length": 194
+    },
+    {
+      "timestamp": "2026-01-14T18:19:45.145316",
+      "mode": "vibe_coder",
+      "raw_text": "I am just checking if it is listening even when I am speaking slowly or not like correctly underscore threshold from 300 to 150 words underscore threshold from 248 second to 1.2 second which lower before ending perfect for slow speech that was what something related to phrase underscore threshold and also one of the last attribute which is known underscore speaking underscore duration with 0.5 seconds 20.3 seconds",
+      "refined_text": "I am just checking if it is listening even when I am speaking slowly or not like correctly underscore threshold from 300 to 150 words underscore threshold from 248 second to 1.2 second which lower before ending perfect for slow speech that was what something related to phrase underscore threshold and also one of the last attribute which is known underscore speaking underscore duration with 0.5 seconds 20.3 seconds",
+      "paste_success": false,
+      "text_length": 417
+    },
+    {
+      "timestamp": "2026-01-14T18:19:45.413417",
+      "mode": "vibe_coder",
+      "raw_text": "I am just checking if it is listening even when I am speaking slowly or not like correctly underscore threshold from 300 to 150 words underscore threshold from 248 second to 1.2 second which lower before ending perfect for slow speech that was what something related to phrase underscore threshold and also one of the last attribute which is known underscore speaking underscore duration with 0.5 seconds 20.3 seconds",
+      "refined_text": "I am just checking if it is listening even when I am speaking slowly or not like correctly underscore threshold from 300 to 150 words underscore threshold from 248 second to 1.2 second which lower before ending perfect for slow speech that was what something related to phrase underscore threshold and also one of the last attribute which is known underscore speaking underscore duration with 0.5 seconds 20.3 seconds",
+      "paste_success": true,
+      "text_length": 417
+    },
+    {
+      "timestamp": "2026-01-14T18:21:32.376231",
+      "mode": "vibe_coder",
+      "raw_text": "what I remove this prompt using the application which we just created and still I can see many floors like whenever I am saying underscore then it is writing as it is the underscore even when I have told you to edit perfectly as it is the wife coders from enhancement it is not working perfectly clearly so I want you to fix this also using the prompt Engineering or whatever you want to do so that I can get perfect answer give me more ways to perfect this",
+      "refined_text": "what I remove this prompt using the application which we just created and still I can see many floors like whenever I am saying underscore then it is writing as it is the underscore even when I have told you to edit perfectly as it is the wife coders from enhancement it is not working perfectly clearly so I want you to fix this also using the prompt Engineering or whatever you want to do so that I can get perfect answer give me more ways to perfect this",
+      "paste_success": false,
+      "text_length": 457
+    },
+    {
+      "timestamp": "2026-01-14T18:21:32.658804",
+      "mode": "vibe_coder",
+      "raw_text": "what I remove this prompt using the application which we just created and still I can see many floors like whenever I am saying underscore then it is writing as it is the underscore even when I have told you to edit perfectly as it is the wife coders from enhancement it is not working perfectly clearly so I want you to fix this also using the prompt Engineering or whatever you want to do so that I can get perfect answer give me more ways to perfect this",
+      "refined_text": "what I remove this prompt using the application which we just created and still I can see many floors like whenever I am saying underscore then it is writing as it is the underscore even when I have told you to edit perfectly as it is the wife coders from enhancement it is not working perfectly clearly so I want you to fix this also using the prompt Engineering or whatever you want to do so that I can get perfect answer give me more ways to perfect this",
+      "paste_success": true,
+      "text_length": 457
+    },
+    {
+      "timestamp": "2026-01-14T18:24:43.666374",
+      "mode": "vibe_coder",
+      "raw_text": "Vietnam I don't know what will you do or not because this is just the testing phase of this application I don't know which model you are using because that is this is the offline moral I am using the all am I don't know which is this",
+      "refined_text": "Vietnam I don't know what will you do or not because this is just the testing phase of this application I don't know which model you are using because that is this is the offline moral I am using the all am I don't know which is this",
+      "paste_success": false,
+      "text_length": 233
+    },
+    {
+      "timestamp": "2026-01-14T18:24:43.936166",
+      "mode": "vibe_coder",
+      "raw_text": "Vietnam I don't know what will you do or not because this is just the testing phase of this application I don't know which model you are using because that is this is the offline moral I am using the all am I don't know which is this",
+      "refined_text": "Vietnam I don't know what will you do or not because this is just the testing phase of this application I don't know which model you are using because that is this is the offline moral I am using the all am I don't know which is this",
+      "paste_success": true,
+      "text_length": 233
+    },
+    {
+      "timestamp": "2026-01-14T18:26:52.113354",
+      "mode": "vibe_coder",
+      "raw_text": "I don't know how much time will it take or more to because this is much more greater than last one because I am just testing my application if it is running perfectly or not I am currently 255 from my laptop and speaking because this is the speech to text application which I have just created and I am currently running the main dot point file which is the Python file I don't know if you understood perfect I have speak perfectly in English",
+      "refined_text": "I don't know how much time will it take or more to because this is much more greater than last one because I am just testing my application if it is running perfectly or not I am currently 255 from my laptop and speaking because this is the speech to text application which I have just created and I am currently running the main.point file which is the Python file I don't know if you understood perfect I have speak perfectly in English",
+      "paste_success": false,
+      "text_length": 438
+    },
+    {
+      "timestamp": "2026-01-14T18:26:52.379948",
+      "mode": "vibe_coder",
+      "raw_text": "I don't know how much time will it take or more to because this is much more greater than last one because I am just testing my application if it is running perfectly or not I am currently 255 from my laptop and speaking because this is the speech to text application which I have just created and I am currently running the main dot point file which is the Python file I don't know if you understood perfect I have speak perfectly in English",
+      "refined_text": "I don't know how much time will it take or more to because this is much more greater than last one because I am just testing my application if it is running perfectly or not I am currently 255 from my laptop and speaking because this is the speech to text application which I have just created and I am currently running the main.point file which is the Python file I don't know if you understood perfect I have speak perfectly in English",
+      "paste_success": true,
+      "text_length": 438
+    },
+    {
+      "timestamp": "2026-01-14T18:43:37.742633",
+      "mode": "vibe_coder",
+      "raw_text": "now every time this main.py is Ram and when I select ulama then it should start the molar mass service if it is not running already it should run it that's what I am saying",
+      "refined_text": "now every time this main.py is Ram and when I select ulama then it should start the molar mass service if it is not running already it should run it that's what I am saying",
+      "paste_success": false,
+      "text_length": 172
+    },
+    {
+      "timestamp": "2026-01-14T18:43:38.008004",
+      "mode": "vibe_coder",
+      "raw_text": "now every time this main.py is Ram and when I select ulama then it should start the molar mass service if it is not running already it should run it that's what I am saying",
+      "refined_text": "now every time this main.py is Ram and when I select ulama then it should start the molar mass service if it is not running already it should run it that's what I am saying",
+      "paste_success": true,
+      "text_length": 172
+    },
+    {
+      "timestamp": "2026-01-14T18:45:57.423287",
+      "mode": "vibe_coder",
+      "raw_text": "alright so I guess you are loved and clearly listening to me and I am on the testing mode of this application which is running the main.py and in this application it is the feature I have given to it that it converts the speech to text and it is working perfectly I just added the tips and it is offline to offline mode which is being run right now and it will be processed by the team which is also the offline model",
+      "refined_text": "alright so I guess you are loved and clearly listening to me and I am on the testing mode of this application which is running the main.py and in this application it is the feature I have given to it that it converts the speech to text and it is working perfectly I just added the tips and it is offline to offline mode which is being run right now and it will be processed by the team which is also the offline model",
+      "paste_success": false,
+      "text_length": 417
+    },
+    {
+      "timestamp": "2026-01-14T18:45:57.708322",
+      "mode": "vibe_coder",
+      "raw_text": "alright so I guess you are loved and clearly listening to me and I am on the testing mode of this application which is running the main.py and in this application it is the feature I have given to it that it converts the speech to text and it is working perfectly I just added the tips and it is offline to offline mode which is being run right now and it will be processed by the team which is also the offline model",
+      "refined_text": "alright so I guess you are loved and clearly listening to me and I am on the testing mode of this application which is running the main.py and in this application it is the feature I have given to it that it converts the speech to text and it is working perfectly I just added the tips and it is offline to offline mode which is being run right now and it will be processed by the team which is also the offline model",
+      "paste_success": true,
+      "text_length": 417
+    },
+    {
+      "timestamp": "2026-01-14T18:49:46.827064",
+      "mode": "vibe_coder",
+      "raw_text": "write so this is the testing mode of the application which converts the speech to text and which helps me to wipe code even more seamlessly perfectly so currently I am using the offline mode which is of I have download and in that I am using currently the deep seek order models to give me the response or not but I will still try it and yes that's it this is the main road 55 which is currently running",
+      "refined_text": "write this is the testing mode of the application which converts speech to text and helps me wipe code even more seamlessly perfectly. Currently I am using the offline mode which has been downloaded and in that I'm currently using deepseek order models for response or not but will still try it out. Yes, that's it this is the main road 55 which is currently running",
+      "paste_success": false,
+      "text_length": 366
+    },
+    {
+      "timestamp": "2026-01-14T18:49:47.089767",
+      "mode": "vibe_coder",
+      "raw_text": "write so this is the testing mode of the application which converts the speech to text and which helps me to wipe code even more seamlessly perfectly so currently I am using the offline mode which is of I have download and in that I am using currently the deep seek order models to give me the response or not but I will still try it and yes that's it this is the main road 55 which is currently running",
+      "refined_text": "write this is the testing mode of the application which converts speech to text and helps me wipe code even more seamlessly perfectly. Currently I am using the offline mode which has been downloaded and in that I'm currently using deepseek order models for response or not but will still try it out. Yes, that's it this is the main road 55 which is currently running",
+      "paste_success": true,
+      "text_length": 366
+    },
+    {
+      "timestamp": "2026-01-14T19:10:55.476165",
+      "mode": "vibe_coder",
+      "raw_text": "hello hello mic check so I am just testing this new feature which I just  added for the normalizing audio to make it that autonomous with the filter  silence web underscore filter handles technical vocabulary runs on CPU which  is in eight quantization quantization for speed and yes I guess it should work  now I am currently working with deep-sea coder model to refine my  transcriptions and let's see if to work or not because it is 100% offline now so no  because we are using the faster whisper library with the local model of deep-sea  coder",
+      "refined_text": "\"Hello hello mic check so I am just testing this new feature which I just added for the normalizing audio to make it autonomous with the filter silence web_filter handles technical vocabulary runs on CPU which is in eight quantization quantization for speed and yes I guess it should work now I am currently working with deepseek coder model to refine my transcriptions and let's see if to work or not because it is 100% offline now so no because we are using the faster whisper library with the local model of deepseek coder\"",
+      "paste_success": false,
+      "text_length": 526
+    },
+    {
+      "timestamp": "2026-01-14T19:10:55.743142",
+      "mode": "vibe_coder",
+      "raw_text": "hello hello mic check so I am just testing this new feature which I just  added for the normalizing audio to make it that autonomous with the filter  silence web underscore filter handles technical vocabulary runs on CPU which  is in eight quantization quantization for speed and yes I guess it should work  now I am currently working with deep-sea coder model to refine my  transcriptions and let's see if to work or not because it is 100% offline now so no  because we are using the faster whisper library with the local model of deep-sea  coder",
+      "refined_text": "\"Hello hello mic check so I am just testing this new feature which I just added for the normalizing audio to make it autonomous with the filter silence web_filter handles technical vocabulary runs on CPU which is in eight quantization quantization for speed and yes I guess it should work now I am currently working with deepseek coder model to refine my transcriptions and let's see if to work or not because it is 100% offline now so no because we are using the faster whisper library with the local model of deepseek coder\"",
+      "paste_success": true,
+      "text_length": 526
+    },
+    {
+      "timestamp": "2026-01-14T19:20:23.677331",
+      "mode": "vibe_coder",
+      "raw_text": "Hello, hello, my trustee, my trustee. So now, I think I am going to update the UI  because currently it is very simple and very, and very, very much simple. So I am thinking",
+      "refined_text": "Hello, my trustee. I'm going to update the UI because it's currently very simple.",
+      "paste_success": false,
+      "text_length": 81
+    },
+    {
+      "timestamp": "2026-01-14T19:20:23.937318",
+      "mode": "vibe_coder",
+      "raw_text": "Hello, hello, my trustee, my trustee. So now, I think I am going to update the UI  because currently it is very simple and very, and very, very much simple. So I am thinking",
+      "refined_text": "Hello, my trustee. I'm going to update the UI because it's currently very simple.",
+      "paste_success": true,
+      "text_length": 81
+    },
+    {
+      "timestamp": "2026-01-14T19:23:22.069004",
+      "mode": "vibe_coder",
+      "raw_text": "Hello, hello my testing. So  Currently the UI is very simple like black and white and red. So  in the background where the black color is being used, I am thinking to  convert the  UI from this simple to the glass morphism design like glass like UI and  And kind of a bit transparent and plus glass like acrylic kind of thing  So it will give more premium look to this and also on the other hand with in the other chat  I am thinking to make the  dashboard lighting to handle this kind of  System like changing the models updating the models selecting different type of models like currently I am using the group  with the Q group AI and it is good. It is fast very much fast",
+      "refined_text": "Hello, hello my testing. So  Currently the UI is very simple like black and white and red. So  in the background where the black color is being used, I am thinking to  convert the  UI from this simple to the glass morphism design like glass like UI and  And kind of a bit transparent and + glass like acrylic kind of thing  So it will give more premium look to this and also on the other hand with in the other chat  I am thinking to make the -board lighting to handle this kind of  System like changing the models updating the models selecting different type of models like currently I am using the group  with the Q group AI and it is good. It is fast very much fast",
+      "paste_success": false,
+      "text_length": 668
+    },
+    {
+      "timestamp": "2026-01-14T19:23:22.326896",
+      "mode": "vibe_coder",
+      "raw_text": "Hello, hello my testing. So  Currently the UI is very simple like black and white and red. So  in the background where the black color is being used, I am thinking to  convert the  UI from this simple to the glass morphism design like glass like UI and  And kind of a bit transparent and plus glass like acrylic kind of thing  So it will give more premium look to this and also on the other hand with in the other chat  I am thinking to make the  dashboard lighting to handle this kind of  System like changing the models updating the models selecting different type of models like currently I am using the group  with the Q group AI and it is good. It is fast very much fast",
+      "refined_text": "Hello, hello my testing. So  Currently the UI is very simple like black and white and red. So  in the background where the black color is being used, I am thinking to  convert the  UI from this simple to the glass morphism design like glass like UI and  And kind of a bit transparent and + glass like acrylic kind of thing  So it will give more premium look to this and also on the other hand with in the other chat  I am thinking to make the -board lighting to handle this kind of  System like changing the models updating the models selecting different type of models like currently I am using the group  with the Q group AI and it is good. It is fast very much fast",
+      "paste_success": true,
+      "text_length": 668
+    },
+    {
+      "timestamp": "2026-01-14T19:40:21.381328",
+      "mode": "vibe_coder",
+      "raw_text": "hello okay so I am testing this is the test file of my application which  converts the speech to text I have ran the main.py file and it has launched the  small capsule like visualizer which is vibrating as I am speaking so I guess  it is hearing me perfectly on the other hand I am about to make changes not  making changes but implementing new changes related to making the stunning  glass morphism dashboard to handle the modal handling and rest of the settings  related to this capsule like visualizer which converts the speech to the text and  rest of things so this is the ending of the testing",
+      "refined_text": "\"Hello, okay. So I'm testing the main.py file in my application. It converts speech to text. I have run the main.py file and it has launched a capsule-like visualizer that is vibrating as I speak. I guess it's hearing me perfectly on the other hand.\nI am about to make changes, but not making any changes yet. But I will implement new changes related to creating a stunning glass morphism dashboard for handling modal events and all other settings related to this capsule-like visualizer. This is the end of my testing.\"",
+      "paste_success": false,
+      "text_length": 520
+    },
+    {
+      "timestamp": "2026-01-14T19:40:21.627726",
+      "mode": "vibe_coder",
+      "raw_text": "hello okay so I am testing this is the test file of my application which  converts the speech to text I have ran the main.py file and it has launched the  small capsule like visualizer which is vibrating as I am speaking so I guess  it is hearing me perfectly on the other hand I am about to make changes not  making changes but implementing new changes related to making the stunning  glass morphism dashboard to handle the modal handling and rest of the settings  related to this capsule like visualizer which converts the speech to the text and  rest of things so this is the ending of the testing",
+      "refined_text": "\"Hello, okay. So I'm testing the main.py file in my application. It converts speech to text. I have run the main.py file and it has launched a capsule-like visualizer that is vibrating as I speak. I guess it's hearing me perfectly on the other hand.\nI am about to make changes, but not making any changes yet. But I will implement new changes related to creating a stunning glass morphism dashboard for handling modal events and all other settings related to this capsule-like visualizer. This is the end of my testing.\"",
+      "paste_success": true,
+      "text_length": 520
+    },
+    {
+      "timestamp": "2026-01-14T19:54:14.127707",
+      "mode": "vibe_coder",
+      "raw_text": "so i guess you are hearing me perfectly and now i have perfectly  added the new feature which is adding the olama model selection now after creating  on the olama and giving the options of which model to select which model to select  from the existing olama models which are which i have downloaded in my local pc so earlier it was  changed to hardcoder to deepsea coder 6.7 billion model and there were no choices but after the making  changes i have created new things that give me the selections for my access to model and after that  i have updated it and currently i am using the mistral 7 billion instruct the model and i guess it  should work perfectly",
+      "refined_text": "\"So I've added a new feature for Olama model selection. After initializing on Olama with local models downloaded to my PC—switching from Hardcoder to Deepseek Coder version 6.7 billion—I now offer the user choices among available Olama models, including Mistral at an impressive count of 7 billion units for instruction tasks. I've updated these features and am currently utilizing Mistral; it should work perfectly.\"",
+      "paste_success": false,
+      "text_length": 417
+    },
+    {
+      "timestamp": "2026-01-14T19:54:14.382628",
+      "mode": "vibe_coder",
+      "raw_text": "so i guess you are hearing me perfectly and now i have perfectly  added the new feature which is adding the olama model selection now after creating  on the olama and giving the options of which model to select which model to select  from the existing olama models which are which i have downloaded in my local pc so earlier it was  changed to hardcoder to deepsea coder 6.7 billion model and there were no choices but after the making  changes i have created new things that give me the selections for my access to model and after that  i have updated it and currently i am using the mistral 7 billion instruct the model and i guess it  should work perfectly",
+      "refined_text": "\"So I've added a new feature for Olama model selection. After initializing on Olama with local models downloaded to my PC—switching from Hardcoder to Deepseek Coder version 6.7 billion—I now offer the user choices among available Olama models, including Mistral at an impressive count of 7 billion units for instruction tasks. I've updated these features and am currently utilizing Mistral; it should work perfectly.\"",
+      "paste_success": true,
+      "text_length": 417
+    },
+    {
+      "timestamp": "2026-01-14T19:59:33.470285",
+      "mode": "vibe_coder",
+      "raw_text": "hello hello my Jack so this time this is the testing seven of this application  and I'm testing its ability to listening as it converts the speech to text and I  have just about my parallel world I have completely building the application on  the other folder for the front end I have created the dashboard UI which is not very  good I have made it using the very bad UI and I have told my agent to build it like  class morphism class like UI background etc but it is clearly not that and very bad  UI so this was kind of a very shameful event I don't know what I am saying random  things just to know that you are listening perfectly or not and currently I have  chose the game 3 latest model to refine the prompt which I will be speaking now it will refine using the game 3 latest model  so let's see how it refines",
+      "refined_text": "Hello, I’m testing the deepseek coder model to listen and convert speech to text. I’ve built the application’s front end, including a very bad UI and class morphism, but it’s not working as expected. I’m testing to see if you’re listening perfectly. Currently, I’m using the game 3 latest model to refine the prompt.",
+      "paste_success": false,
+      "text_length": 316
+    },
+    {
+      "timestamp": "2026-01-14T19:59:33.728797",
+      "mode": "vibe_coder",
+      "raw_text": "hello hello my Jack so this time this is the testing seven of this application  and I'm testing its ability to listening as it converts the speech to text and I  have just about my parallel world I have completely building the application on  the other folder for the front end I have created the dashboard UI which is not very  good I have made it using the very bad UI and I have told my agent to build it like  class morphism class like UI background etc but it is clearly not that and very bad  UI so this was kind of a very shameful event I don't know what I am saying random  things just to know that you are listening perfectly or not and currently I have  chose the game 3 latest model to refine the prompt which I will be speaking now it will refine using the game 3 latest model  so let's see how it refines",
+      "refined_text": "Hello, I’m testing the deepseek coder model to listen and convert speech to text. I’ve built the application’s front end, including a very bad UI and class morphism, but it’s not working as expected. I’m testing to see if you’re listening perfectly. Currently, I’m using the game 3 latest model to refine the prompt.",
+      "paste_success": true,
+      "text_length": 316
+    },
+    {
+      "timestamp": "2026-01-14T20:04:04.983079",
+      "mode": "vibe_coder",
+      "raw_text": "alright so now major issue found problem one too much refinement because I was  speaking I was using the speech to test and there I have put the temperature of  the AI to refine my prompt from 0.2 to 0.6 it was too much high so it refined  too much and then because original prompt was 103 words and refined the 43 words  there were four major problems first one was hallucination another one was  lost context after that over summarized because it cuts it cut the 60% of my words  after that to change the meaning because I said class morphism and it isn't class  morphism so that was that it was being too much creative so to solve that I  have only three options left the first one is to lower the temperature to 0.3 make  prompt less aggressive keep more original words and option 3 both so yes I will  surely select option 3 which is both so please go ahead and start updating",
+      "refined_text": "Let's clean up this raw transcription!\n\n**Step 1: Read the full transcription**\n\nI've read through the entire transcript. It appears to be a developer discussing issues with an AI model.\n\n**Step 2: Identify the context**\n\nThe context is that the developer is talking about testing and refining an AI model, specifically mentioning temperature settings and prompt refinement.\n\n**Step 3: Preserve all key information**\n\nI'll make sure to preserve the following key information:\n\n* Technical terms (AI, temperature, prompt)\n* Numbers and versions (0.2, 0.6, 103, 43)\n* File names and variables (not mentioned in this context)\n\n**Step 4: Clean aggressively**\n\nHere's the cleaned output:\n\n\"Alright, so now I've found a major issue with too much refinement because I was using speech to test and there I have put the temperature of the AI to refine my prompt from 0.2 to 0.6. It was too high, so it refined too much, and then because the original prompt was 103 words, and the refined version was only 43 words, there were four major problems: first, hallucination; second, lost context; third, over summarization; and fourth, changing the meaning because I said 'class morphism' and it isn't. So, that's it. I have three options left to solve this: lower the temperature to 0.3, make the prompt less aggressive, and keep more original words. Yes, I'll select option 3, which is both.\"\n\n**Step 5: Verify meaning is unchanged**\n\nThe cleaned output preserves the original meaning and intent of the developer's statement.\n\nLet me know if this meets your requirements!",
+      "paste_success": false,
+      "text_length": 1558
+    },
+    {
+      "timestamp": "2026-01-14T20:04:05.270991",
+      "mode": "vibe_coder",
+      "raw_text": "alright so now major issue found problem one too much refinement because I was  speaking I was using the speech to test and there I have put the temperature of  the AI to refine my prompt from 0.2 to 0.6 it was too much high so it refined  too much and then because original prompt was 103 words and refined the 43 words  there were four major problems first one was hallucination another one was  lost context after that over summarized because it cuts it cut the 60% of my words  after that to change the meaning because I said class morphism and it isn't class  morphism so that was that it was being too much creative so to solve that I  have only three options left the first one is to lower the temperature to 0.3 make  prompt less aggressive keep more original words and option 3 both so yes I will  surely select option 3 which is both so please go ahead and start updating",
+      "refined_text": "Let's clean up this raw transcription!\n\n**Step 1: Read the full transcription**\n\nI've read through the entire transcript. It appears to be a developer discussing issues with an AI model.\n\n**Step 2: Identify the context**\n\nThe context is that the developer is talking about testing and refining an AI model, specifically mentioning temperature settings and prompt refinement.\n\n**Step 3: Preserve all key information**\n\nI'll make sure to preserve the following key information:\n\n* Technical terms (AI, temperature, prompt)\n* Numbers and versions (0.2, 0.6, 103, 43)\n* File names and variables (not mentioned in this context)\n\n**Step 4: Clean aggressively**\n\nHere's the cleaned output:\n\n\"Alright, so now I've found a major issue with too much refinement because I was using speech to test and there I have put the temperature of the AI to refine my prompt from 0.2 to 0.6. It was too high, so it refined too much, and then because the original prompt was 103 words, and the refined version was only 43 words, there were four major problems: first, hallucination; second, lost context; third, over summarization; and fourth, changing the meaning because I said 'class morphism' and it isn't. So, that's it. I have three options left to solve this: lower the temperature to 0.3, make the prompt less aggressive, and keep more original words. Yes, I'll select option 3, which is both.\"\n\n**Step 5: Verify meaning is unchanged**\n\nThe cleaned output preserves the original meaning and intent of the developer's statement.\n\nLet me know if this meets your requirements!",
+      "paste_success": true,
+      "text_length": 1558
+    },
+    {
+      "timestamp": "2026-01-14T20:06:39.149270",
+      "mode": "vibe_coder",
+      "raw_text": "Tell me what are you using to make this frontend UI, have you made this dashboard as it is  not so perfect so I want to know what to build or what library or what feature you use to  build this particular dashboard.",
+      "refined_text": "⚠️ CRITICAL: UNDERSTAND CONTEXT FIRST ⚠️\n\nAfter analyzing the raw transcription, I have identified that it is a conversation about frontend UI development and building a dashboard. The context is a developer seeking advice on what tools or libraries to use for building a particular dashboard.\n\n**Preserving key information**\n\n* Technical terms: frontend UI, dashboard\n* Numbers/versions: not mentioned\n* File names: not mentioned\n\n**Aggressive cleanup tasks**\n\n1. Remove duplicates:\n\"so I want to know what to build or what library or what feature you use\"\n→ \"what library or feature do you use\"\n\n2. Remove filler words:\n\"not so perfect\"\n→ \"perfect\" (no need for the word)\n\n3. Fix grammar errors:\n\"If it is not perfect, then what should we build?\"\n→ \"If it's not perfect, then what should we build?\"\n\n4. Fix awkward phrasing:\n\"I want to know what library or feature you use to build this dashboard\"\n→ \"I'd like to know what library or feature you're using for this dashboard\"\n\n5. Remove repeated phrases:\n\"what do you use\"\n→ (removed repetition)\n\n6. Make sentences flow naturally:\n\"I'd like to know what library or feature you're using for this dashboard, and how it's working out.\"\n\n7. Fix contractions:\n\"It's not perfect, then what should we build?\"\n\n**Speech recognition mishearing corrections**\n\n* \"make\" at start = removed\n* \"build\" is correct as is\n\n**Symbol conversions**\n\n* No conversions needed in this context\n\n**Cleaned output**\n\"I'd like to know what library or feature you're using for this dashboard, and how it's working out.\"",
+      "paste_success": false,
+      "text_length": 1542
+    },
+    {
+      "timestamp": "2026-01-14T20:06:39.428563",
+      "mode": "vibe_coder",
+      "raw_text": "Tell me what are you using to make this frontend UI, have you made this dashboard as it is  not so perfect so I want to know what to build or what library or what feature you use to  build this particular dashboard.",
+      "refined_text": "⚠️ CRITICAL: UNDERSTAND CONTEXT FIRST ⚠️\n\nAfter analyzing the raw transcription, I have identified that it is a conversation about frontend UI development and building a dashboard. The context is a developer seeking advice on what tools or libraries to use for building a particular dashboard.\n\n**Preserving key information**\n\n* Technical terms: frontend UI, dashboard\n* Numbers/versions: not mentioned\n* File names: not mentioned\n\n**Aggressive cleanup tasks**\n\n1. Remove duplicates:\n\"so I want to know what to build or what library or what feature you use\"\n→ \"what library or feature do you use\"\n\n2. Remove filler words:\n\"not so perfect\"\n→ \"perfect\" (no need for the word)\n\n3. Fix grammar errors:\n\"If it is not perfect, then what should we build?\"\n→ \"If it's not perfect, then what should we build?\"\n\n4. Fix awkward phrasing:\n\"I want to know what library or feature you use to build this dashboard\"\n→ \"I'd like to know what library or feature you're using for this dashboard\"\n\n5. Remove repeated phrases:\n\"what do you use\"\n→ (removed repetition)\n\n6. Make sentences flow naturally:\n\"I'd like to know what library or feature you're using for this dashboard, and how it's working out.\"\n\n7. Fix contractions:\n\"It's not perfect, then what should we build?\"\n\n**Speech recognition mishearing corrections**\n\n* \"make\" at start = removed\n* \"build\" is correct as is\n\n**Symbol conversions**\n\n* No conversions needed in this context\n\n**Cleaned output**\n\"I'd like to know what library or feature you're using for this dashboard, and how it's working out.\"",
+      "paste_success": true,
+      "text_length": 1542
+    },
+    {
+      "timestamp": "2026-01-14T20:52:00.951553",
+      "mode": "vibe_coder",
+      "raw_text": "So, the background of the area where we are showing the history, like casual chat or white  color and the prompts, refined prompts are showing that behind that area is completely  transparent.  I don't know what you need, but I told you to put some blur backdrop, like design or transparent.  Not exactly transparent, but actually like design.  What did you completely made it transparent?  I don't know why I want you to fix that issue.  After that, another reason is that the corners are completely square.  I want them to be covered a little.",
+      "refined_text": "The background area where we're displaying history features a casual chat or white color scheme with refined prompts. The backdrop should have some blur effect, similar to design or transparent elements. However, it's not entirely transparent; rather, it has a subtle design overlay. Additionally, the corners are currently square and need to be rounded slightly for better visual appeal.",
+      "paste_success": false,
+      "text_length": 388
+    },
+    {
+      "timestamp": "2026-01-14T20:52:01.212414",
+      "mode": "vibe_coder",
+      "raw_text": "So, the background of the area where we are showing the history, like casual chat or white  color and the prompts, refined prompts are showing that behind that area is completely  transparent.  I don't know what you need, but I told you to put some blur backdrop, like design or transparent.  Not exactly transparent, but actually like design.  What did you completely made it transparent?  I don't know why I want you to fix that issue.  After that, another reason is that the corners are completely square.  I want them to be covered a little.",
+      "refined_text": "The background area where we're displaying history features a casual chat or white color scheme with refined prompts. The backdrop should have some blur effect, similar to design or transparent elements. However, it's not entirely transparent; rather, it has a subtle design overlay. Additionally, the corners are currently square and need to be rounded slightly for better visual appeal.",
+      "paste_success": true,
+      "text_length": 388
     }
   ]
 }

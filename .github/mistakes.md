@@ -5,6 +5,34 @@
 
 ---
 
+## [2026-01-14] - CSS Syntax Errors in PyQt6 Stylesheets
+
+**Problem:**
+- Multiple CSS parsing errors in PyQt6 stylesheets
+- Duplicate color declarations in same CSS block
+- Malformed rgba() syntax with incomplete closing parentheses
+- Using rgb() with 4 parameters (should be rgba())
+- Incomplete CSS property declarations causing parser failures
+
+**Solution:**
+- Removed duplicate color lines in CSS blocks
+- Fixed incomplete rgba() declarations with proper closing parentheses
+- Changed rgb(r, g, b, a) to rgba(r, g, b, a)
+- Removed orphaned CSS property values without selectors
+- Validated all stylesheet strings for proper syntax
+
+**Lesson:**
+- Always close parentheses in CSS color functions
+- Use rgba() for colors with alpha, not rgb()
+- Don't duplicate property declarations in same CSS block
+- Test stylesheets immediately after writing
+- PyQt6 CSS parser is strict - no incomplete declarations allowed
+
+**Related Files:**
+- frontend/dashboard_v2.py (lines 750, 807, 831-836)
+
+---
+
 ## [2026-01-14] - Hotkey System Breaking Windows Keys
 
 **Problem:**
@@ -127,3 +155,70 @@
 ---
 
 **Last Updated:** 2026-01-14
+
+---
+
+## [2026-01-14] - Application Restructure v2.0 (Success Story)
+
+**Context:**
+- User requested complete application restructure
+- Needed proper frontend/backend separation
+- Wanted dashboard for settings (no terminal prompts)
+- Required trust level UI configuration
+- Needed to maintain all existing functionality
+
+**Solution:**
+- Created clean architecture with separation of concerns:
+  - `backend/` - FastAPI REST API server
+  - `frontend/` - Tkinter UI components
+  - `shared/` - Common configuration
+  - `launcher.py` - Unified entry point
+- Implemented FastAPI backend with proper routing:
+  - `/api/audio/*` - Recording and transcription
+  - `/api/ai/*` - AI refinement and providers
+  - `/api/settings/*` - Configuration management
+  - `/api/history/*` - Transcription history
+- Built comprehensive dashboard:
+  - Settings tab with all configuration options
+  - History tab with search functionality
+  - About tab with information and hotkeys
+- Created API client for frontend-backend communication
+- Updated recording widget to use backend API
+- Maintained all hotkeys and functionality
+- Added settings persistence (settings.json)
+- Included proper error handling and fallbacks
+
+**Lesson:**
+- Proper architecture planning enables feature expansion
+- Service-based design improves maintainability
+- API-first approach enables future web/mobile UIs
+- Documentation is critical (ARCHITECTURE.md, QUICKSTART_v2.md, MIGRATION.md)
+- Security audit before deployment (achieved 10/10)
+- Backward compatibility preserves user data
+- Progressive enhancement better than breaking changes
+
+**Related Files:**
+- launcher.py (new unified entry point)
+- backend/server.py (FastAPI application)
+- backend/api/*.py (REST API routes)
+- backend/services/*.py (business logic)
+- frontend/components/dashboard.py (settings UI)
+- frontend/components/recording_widget.py (recording UI)
+- frontend/utils/api_client.py (HTTP client)
+- shared/config.py (shared constants)
+- ARCHITECTURE.md (architecture documentation)
+- QUICKSTART_v2.md (user guide)
+- MIGRATION.md (migration guide)
+- .github/security-audit-v2.md (security review)
+
+**Architecture Benefits:**
+- ✅ Clean separation of concerns
+- ✅ Testable components
+- ✅ Extensible design
+- ✅ API-first approach
+- ✅ Better error handling
+- ✅ Settings persistence
+- ✅ Enhanced UI capabilities
+- ✅ Future-proof structure
+
+**Status:** ✅ Complete and Production-Ready

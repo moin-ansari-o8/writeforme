@@ -7,119 +7,134 @@ Using Cohere API (command-r7b-12-2024 model) for AI text refinement
 # All modes use Cohere's command-r7b-12-2024 model
 
 WRITING_MODES = {
-    "default": {
-        "name": "Smart Dictation",
-        "prompt": """You are an intelligent writing assistant. Transform the spoken transcription into polished text.
+    "vibe_coder": {
+        "name": "Vibe Coder",
+        "prompt": """Clean and refine this developer dictation. Output ONLY the refined text, nothing else.
 
-Instructions:
-1. Remove filler words (um, uh, like, you know, etc.)
-2. Fix grammar and punctuation
-3. Keep the speaker's original intent and meaning
-4. Make it sound natural and clear
-
-Raw transcription:
-{transcription}
-
-Refined text (output ONLY the refined text):"""
-    },
-    
-    "email_professional": {
-        "name": "Professional Email",
-        "prompt": """You are a professional business writing assistant. Transform the spoken words into a polished, professional email.
-
-Instructions:
-1. Remove all filler words and informal language
-2. Use professional, courteous tone
-3. Add proper email structure if needed
-4. Ensure clarity and conciseness
-5. Maintain professional business etiquette
+Rules:
+- Remove duplicate words ("hello hello" → "hello")
+- Remove filler words (um, uh, like, you know, I guess, so, etc.)
+- Fix grammar and awkward phrasing
+- Convert spoken symbols: "underscore" → "_", "dot py" → ".py", "equals" → "="
+- Fix mishearings: "wipe code" → "vibe code", "deep seek order" → "deepseek coder"
+- Keep ALL key information (names, numbers, technical terms, context)
+- Make it natural and professional
+- DO NOT add information not in original
+- DO NOT over-summarize or remove important context
 
 Raw transcription:
 {transcription}
 
-Professional email text:"""
+Refined text:"""
     },
     
-    "email_casual": {
-        "name": "Casual Email",
-        "prompt": """You are a friendly writing assistant. Transform the spoken words into a casual, friendly email.
+    "casual_chatter": {
+        "name": "Casual Chatter",
+        "prompt": """You are a casual writing assistant. Keep it relaxed and natural.
 
-Instructions:
-1. Remove filler words but keep casual tone
-2. Use friendly, conversational language
-3. Keep it warm and approachable
-4. Fix grammar while maintaining friendly voice
+RULES:
+1. Remove filler words (um, uh, like, you know) ONLY
+2. DO NOT fix grammar heavily
+3. Keep the casual, conversational tone
+4. Keep slang and informal language
+5. DO NOT change the meaning at all
+6. Keep it exactly as the person speaks, just cleaner
 
 Raw transcription:
 {transcription}
 
-Casual email text:"""
-    },
-    
-    "prompt_writer": {
-        "name": "AI Prompt (Developer)",
-        "prompt": """You are an AI prompt engineering expert. Transform the spoken instructions into a clear, well-structured prompt for AI agents or developers.
-
-Instructions:
-1. Remove filler words and organize thoughts logically
-2. Use clear, technical language
-3. Structure the prompt with sections if needed
-4. Include relevant context and constraints
-5. Make it actionable and specific for AI/developers
-
-Raw transcription:
-{transcription}
-
-Well-structured AI prompt:"""
-    },
-    
-    "creative_writing": {
-        "name": "Creative Writing",
-        "prompt": """You are a creative writing assistant. Transform the spoken ideas into engaging, creative prose.
-
-Instructions:
-1. Remove filler words while preserving creativity
-2. Enhance descriptive language
-3. Improve narrative flow
-4. Keep the original creative vision
-5. Add literary polish
-
-Raw transcription:
-{transcription}
-
-Creative text:"""
-    },
-    
-    "grammar_only": {
-        "name": "Grammar Correction",
-        "prompt": """Fix ONLY grammar, spelling, and punctuation. Do not change the meaning or add any content.
-
-Raw text:
-{transcription}
-
-Corrected text:"""
-    },
-    
-    "technical_writing": {
-        "name": "Technical Documentation",
-        "prompt": """You are a technical writing assistant. Transform spoken technical content into clear documentation.
-
-Instructions:
-1. Remove filler words
-2. Use precise technical language
-3. Organize into clear sections if needed
-4. Ensure accuracy and clarity
-5. Maintain professional technical tone
-
-Raw transcription:
-{transcription}
-
-Technical documentation:"""
+Casual text:"""
     }
 }
 
 # Default mode (used if no mode is specified)
-DEFAULT_MODE = "default"
+DEFAULT_MODE = "vibe_coder"
+
+# ==================== POST-PROCESSING ====================
+def post_process_coding_text(text):
+    """Post-process text to fix speech recognition errors and convert symbols (backup layer)"""
+    
+    # LAYER 1: Fix common speech recognition mishearings (phonetic corrections)
+    phonetic_fixes = {
+        # Remove "write" at start (likely "alright")
+        'write so': 'so',
+        'write this': 'this',
+        'write the': 'the',
+        
+        # Technical terms
+        'wipe code': 'vibe code',
+        'wife code': 'vibe code',
+        'vibe coat': 'vibe code',
+        'deep seek order': 'deepseek coder',
+        'deep sick order': 'deepseek coder',
+        'deepseek order': 'deepseek coder',
+        
+        # File names with numbers (speech recognition confusion)
+        'main road 55': 'main.py',
+        'main road': 'main.py',
+        'main wrote': 'main.py',
+        'config Jason': 'config.json',
+        'config dot Jason': 'config.json',
+        
+        # Common programming terms
+        'pie charm': 'PyCharm',
+        'pie game': 'pygame',
+        'pie pie': 'PyPI',
+        'react jazz': 'react.js',
+        'no js': 'node.js',
+        'import order': 'import error',
+        'syntax order': 'syntax error',
+    }
+    
+    result = text
+    for misheard, correct in phonetic_fixes.items():
+        result = result.replace(misheard, correct)
+    
+    # LAYER 2: Symbol conversions (ONLY if code context detected)
+    # Detect if this is code-related text
+    code_indicators = [
+        'underscore', 'dot py', 'dot js', 'dot json', 'function', 'variable',
+        'import', 'class', 'def', 'const', 'let', 'var', 'equals equals',
+        'open paren', 'close paren', 'open bracket', 'close bracket'
+    ]
+    
+    is_code_context = any(indicator in result.lower() for indicator in code_indicators)
+    
+    if is_code_context:
+        # Only apply symbol conversions in code context
+        replacements = {
+            ' underscore ': '_',
+            'underscore ': '_',
+            ' underscore': '_',
+            ' dot ': '.',
+            ' double equals ': ' == ',
+            ' not equals ': ' != ',
+            ' colon ': ': ',
+            ' semicolon ': '; ',
+            ' open paren ': '(',
+            ' close paren ': ')',
+            ' left paren ': '(',
+            ' right paren ': ')',
+            ' open bracket ': '[',
+            ' close bracket ': ']',
+            ' left bracket ': '[',
+            ' right bracket ': ']',
+            ' open brace ': '{',
+            ' close brace ': '}',
+            ' left brace ': '{',
+            ' right brace ': '}',
+        }
+        
+        for spoken, symbol in replacements.items():
+            result = result.replace(spoken, symbol)
+    
+    # LAYER 3: File extensions (always apply)
+    import re
+    # Pattern: word + "dot" + extension
+    result = re.sub(r'(\w+) dot (py|js|json|html|css|txt|md|env)', r'\1.\2', result)
+    result = re.sub(r'dot (env|gitignore)', r'.\1', result)
+    
+    return result
 
 # ==================== STORAGE SETTINGS ====================
 # Maximum number of transcription entries to keep in history
@@ -134,8 +149,8 @@ AUDIO_CHANNELS = 1         # mono
 AUDIO_FORMAT = "int16"     # 16-bit audio
 
 # GUI Widget Settings
-WIDGET_WIDTH = 180  # Increased width for menu button
-WIDGET_HEIGHT = 40
+WIDGET_WIDTH = 140  # Reduced from 180 for compact design
+WIDGET_HEIGHT = 36  # Reduced from 40 for sleeker look
 WIDGET_POSITION = "bottom-center"
 WIDGET_ALPHA = 1.0  # Fully opaque for the pill, transparency handled via colorkey
 

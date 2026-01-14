@@ -165,7 +165,7 @@ class WisprFlowLocal:
         """Process audio in background thread"""
         try:
             # Get current mode
-            current_mode = "default"
+            current_mode = "vibe_coder"
             if self.gui:
                 current_mode = self.gui.get_current_mode()
             
@@ -186,8 +186,12 @@ class WisprFlowLocal:
             if self.use_ai_refinement:
                 print(f"{Fore.CYAN}[2/4] ✨ Refining with {self.ai_manager.get_provider_name()}...{Style.RESET_ALL}")
                 
-                prompt_template = config.WRITING_MODES.get(current_mode, config.WRITING_MODES["default"])["prompt"]
+                prompt_template = config.WRITING_MODES.get(current_mode, config.WRITING_MODES["vibe_coder"])["prompt"]
                 refined_text = self.ai_manager.refine_text(transcribed_text, prompt_template)
+                
+                # Apply post-processing for vibe_coder mode (backup layer)
+                if current_mode == "vibe_coder":
+                    refined_text = config.post_process_coding_text(refined_text)
                 
                 print(f"{Fore.GREEN}✓ Refined: {Fore.WHITE}{refined_text}{Style.RESET_ALL}")
             else:
