@@ -35,15 +35,34 @@ except Exception:
 
 class WisprFlowLocal:
     def __init__(self):
-        # Initialize AI Provider Manager with selection UI
-        self.ai_manager = AIProviderManager()
-        if not self.ai_manager.select_provider():
-            print(f"{Fore.RED}Failed to initialize AI provider!{Style.RESET_ALL}")
-            raise Exception("No AI provider available")
-        
-        print(f"{Fore.CYAN}{Style.BRIGHT}{'='*70}")
-        print(f"{Fore.GREEN}✓ Using: {self.ai_manager.get_provider_name()}{Style.RESET_ALL}")
+        # Ask if user wants AI refinement
+        print(f"\n{Fore.CYAN}{Style.BRIGHT}{'='*70}")
+        print(f"{Fore.CYAN}{Style.BRIGHT}{'🎤  WriteForMe - AI-Powered Dictation Assistant':^70}")
         print(f"{Fore.CYAN}{Style.BRIGHT}{'='*70}{Style.RESET_ALL}\n")
+        
+        print(f"{Fore.YELLOW}{Style.BRIGHT}🤖 AI Refinement:{Style.RESET_ALL}\n")
+        print(f"{Fore.CYAN}  Do you want to refine transcribed text with AI?{Style.RESET_ALL}")
+        print(f"{Fore.GREEN}  [Y] Yes - Improve grammar, clarity, and formatting{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}  [N] No  - Paste transcribed text exactly as spoken{Style.RESET_ALL}\n")
+        
+        ai_choice = input(f"{Fore.YELLOW}Enable AI refinement? (Y/n):{Style.RESET_ALL} ").strip().lower()
+        self.use_ai_refinement = ai_choice != 'n'
+        
+        # Initialize AI Provider Manager only if refinement is enabled
+        if self.use_ai_refinement:
+            self.ai_manager = AIProviderManager()
+            if not self.ai_manager.select_provider():
+                print(f"{Fore.RED}Failed to initialize AI provider!{Style.RESET_ALL}")
+                raise Exception("No AI provider available")
+            
+            print(f"{Fore.CYAN}{Style.BRIGHT}{'='*70}")
+            print(f"{Fore.GREEN}✓ Using: {self.ai_manager.get_provider_name()}{Style.RESET_ALL}")
+            print(f"{Fore.CYAN}{Style.BRIGHT}{'='*70}{Style.RESET_ALL}\n")
+        else:
+            self.ai_manager = None
+            print(f"\n{Fore.CYAN}{Style.BRIGHT}{'='*70}")
+            print(f"{Fore.YELLOW}✓ AI refinement disabled - Raw transcription mode{Style.RESET_ALL}")
+            print(f"{Fore.CYAN}{Style.BRIGHT}{'='*70}{Style.RESET_ALL}\n")
         
         # Initialize other components
         print(f"{Fore.YELLOW}⏳ Initializing components...{Style.RESET_ALL}")
@@ -163,13 +182,17 @@ class WisprFlowLocal:
             
             print(f"{Fore.GREEN}✓ Transcribed: {Fore.WHITE}{transcribed_text}{Style.RESET_ALL}")
             
-            # Step 2: AI Refinement
-            print(f"{Fore.CYAN}[2/4] ✨ Refining with {self.ai_manager.get_provider_name()}...{Style.RESET_ALL}")
-            
-            prompt_template = config.WRITING_MODES.get(current_mode, config.WRITING_MODES["default"])["prompt"]
-            refined_text = self.ai_manager.refine_text(transcribed_text, prompt_template)
-            
-            print(f"{Fore.GREEN}✓ Refined: {Fore.WHITE}{refined_text}{Style.RESET_ALL}")
+            # Step 2: AI Refinement (if enabled)
+            if self.use_ai_refinement:
+                print(f"{Fore.CYAN}[2/4] ✨ Refining with {self.ai_manager.get_provider_name()}...{Style.RESET_ALL}")
+                
+                prompt_template = config.WRITING_MODES.get(current_mode, config.WRITING_MODES["default"])["prompt"]
+                refined_text = self.ai_manager.refine_text(transcribed_text, prompt_template)
+                
+                print(f"{Fore.GREEN}✓ Refined: {Fore.WHITE}{refined_text}{Style.RESET_ALL}")
+            else:
+                print(f"{Fore.CYAN}[2/4] ⏭ Skipping AI refinement (raw mode){Style.RESET_ALL}")
+                refined_text = transcribed_text
             
             # Step 3: Save to storage
             print(f"{Fore.CYAN}[3/4] 💾 Saving to storage...{Style.RESET_ALL}")
@@ -339,7 +362,10 @@ class WisprFlowLocal:
         print(f"{Fore.GREEN}{Style.BRIGHT}{'='*70}{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  🎤 Press Win+Shift (hold) for quick dictation{Style.RESET_ALL}")
         print(f"{Fore.CYAN}  🔄 Press Win+Ctrl+Shift (toggle) for longer sessions{Style.RESET_ALL}")
-        print(f"{Fore.CYAN}  💻 Using: {self.ai_manager.get_provider_name()}{Style.RESET_ALL}")
+        if self.use_ai_refinement:
+            print(f"{Fore.CYAN}  💻 Using: {self.ai_manager.get_provider_name()}{Style.RESET_ALL}")
+        else:
+            print(f"{Fore.YELLOW}  ✏️  Mode: Raw transcription (no AI){Style.RESET_ALL}")
         print(f"{Fore.YELLOW}  ⚠ Close this window to exit{Style.RESET_ALL}")
         print(f"{Fore.GREEN}{Style.BRIGHT}{'='*70}{Style.RESET_ALL}\n")
         

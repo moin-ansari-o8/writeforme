@@ -225,6 +225,118 @@
       "refined_text": "Hello, I was just discussing how I successfully transcribed my speech in multiple segments. The program now listens continuously until I manually stop it with Control + C, making it perfect for ongoing speech-to-text transcription.",
       "paste_success": true,
       "text_length": 231
+    },
+    {
+      "timestamp": "2026-01-14T16:04:46.530961",
+      "mode": "default",
+      "raw_text": "hello there so what I was saying that program now and this very prompt is being written using that particular program which we just made and the mode I have selected is the Control + shift + Windows which is total mode and I hope it works perfectly and model I have selected is the group no no it is",
+      "refined_text": "Hello there. I was explaining that program, and this prompt is being written using that specific program we just created. The mode I've selected is Control + Shift + Windows, which is the total mode. I hope it works flawlessly. The model I've chosen is the group mode, no, it is...",
+      "paste_success": false,
+      "text_length": 281
+    },
+    {
+      "timestamp": "2026-01-14T16:04:46.775047",
+      "mode": "default",
+      "raw_text": "hello there so what I was saying that program now and this very prompt is being written using that particular program which we just made and the mode I have selected is the Control + shift + Windows which is total mode and I hope it works perfectly and model I have selected is the group no no it is",
+      "refined_text": "Hello there. I was explaining that program, and this prompt is being written using that specific program we just created. The mode I've selected is Control + Shift + Windows, which is the total mode. I hope it works flawlessly. The model I've chosen is the group mode, no, it is...",
+      "paste_success": true,
+      "text_length": 281
+    },
+    {
+      "timestamp": "2026-01-14T16:06:08.123500",
+      "mode": "default",
+      "raw_text": "alright so tell me what is it about and rest of things so what I was saying is that the program we just created using the voice faster Whisper something like that it is working perfectly now and yes",
+      "refined_text": "So, tell me what it's about and the rest of the things. The program we just created, using Voice or Whisper, is working perfectly now.",
+      "paste_success": false,
+      "text_length": 134
+    },
+    {
+      "timestamp": "2026-01-14T16:06:08.365598",
+      "mode": "default",
+      "raw_text": "alright so tell me what is it about and rest of things so what I was saying is that the program we just created using the voice faster Whisper something like that it is working perfectly now and yes",
+      "refined_text": "So, tell me what it's about and the rest of the things. The program we just created, using Voice or Whisper, is working perfectly now.",
+      "paste_success": true,
+      "text_length": 134
+    },
+    {
+      "timestamp": "2026-01-14T16:06:51.521035",
+      "mode": "default",
+      "raw_text": "hello I hope it is working perfectly and",
+      "refined_text": "Hello, I hope it is working perfectly.",
+      "paste_success": false,
+      "text_length": 38
+    },
+    {
+      "timestamp": "2026-01-14T16:06:51.785313",
+      "mode": "default",
+      "raw_text": "hello I hope it is working perfectly and",
+      "refined_text": "Hello, I hope it is working perfectly.",
+      "paste_success": true,
+      "text_length": 38
+    },
+    {
+      "timestamp": "2026-01-14T16:07:13.112209",
+      "mode": "default",
+      "raw_text": "also we I am not selecting I haven't selected the AI mode so it will be just paste as it is nothing change in",
+      "refined_text": "I have not selected the AI mode, so it will be pasted as is, with no changes made.",
+      "paste_success": false,
+      "text_length": 82
+    },
+    {
+      "timestamp": "2026-01-14T16:07:13.357334",
+      "mode": "default",
+      "raw_text": "also we I am not selecting I haven't selected the AI mode so it will be just paste as it is nothing change in",
+      "refined_text": "I have not selected the AI mode, so it will be pasted as is, with no changes made.",
+      "paste_success": true,
+      "text_length": 82
+    },
+    {
+      "timestamp": "2026-01-14T16:08:11.482020",
+      "mode": "default",
+      "raw_text": "I was just laughing out it is just",
+      "refined_text": "I was just laughing at it.",
+      "paste_success": false,
+      "text_length": 26
+    },
+    {
+      "timestamp": "2026-01-14T16:08:11.726356",
+      "mode": "default",
+      "raw_text": "I was just laughing out it is just",
+      "refined_text": "I was just laughing at it.",
+      "paste_success": true,
+      "text_length": 26
+    },
+    {
+      "timestamp": "2026-01-14T16:09:56.237984",
+      "mode": "default",
+      "raw_text": "actually I have a doubt about that if I continuously run this program which is listening and processing and then giving the refined from etc will it like make them very very nice you have this particular program I am talking about because I will be running I will this program will be running in background continuously and whenever I what is it will be listen to me as I know mostly work with and all so it has to be the optimised property",
+      "refined_text": "I have a doubt about this program. If I continuously run it in the background, where it listens, processes, and refines input, will it significantly improve its performance over time? The program I'm referring to will be constantly running and listening to me, as I mostly work with it, so it needs to have optimized properties.",
+      "paste_success": false,
+      "text_length": 328
+    },
+    {
+      "timestamp": "2026-01-14T16:09:56.488013",
+      "mode": "default",
+      "raw_text": "actually I have a doubt about that if I continuously run this program which is listening and processing and then giving the refined from etc will it like make them very very nice you have this particular program I am talking about because I will be running I will this program will be running in background continuously and whenever I what is it will be listen to me as I know mostly work with and all so it has to be the optimised property",
+      "refined_text": "I have a doubt about this program. If I continuously run it in the background, where it listens, processes, and refines input, will it significantly improve its performance over time? The program I'm referring to will be constantly running and listening to me, as I mostly work with it, so it needs to have optimized properties.",
+      "paste_success": true,
+      "text_length": 328
+    },
+    {
+      "timestamp": "2026-01-14T16:11:28.815397",
+      "mode": "default",
+      "raw_text": "I want you to update one more thing whenever a launch this program it is asking for the select the AI model it is perfect after that it should before that it should ask me related to if the prompt should be refined by AI or not like when I select not option then it should just paste as it is whatever I said",
+      "refined_text": "I would like you to update one more thing: when I launch this program, it asks me to select the AI model, which is perfect. However, before that, it should ask me if the prompt should be refined by AI or not. When I select the \"not\" option, it should simply paste the prompt as is, without any changes, exactly as I entered it.",
+      "paste_success": false,
+      "text_length": 327
+    },
+    {
+      "timestamp": "2026-01-14T16:11:29.077583",
+      "mode": "default",
+      "raw_text": "I want you to update one more thing whenever a launch this program it is asking for the select the AI model it is perfect after that it should before that it should ask me related to if the prompt should be refined by AI or not like when I select not option then it should just paste as it is whatever I said",
+      "refined_text": "I would like you to update one more thing: when I launch this program, it asks me to select the AI model, which is perfect. However, before that, it should ask me if the prompt should be refined by AI or not. When I select the \"not\" option, it should simply paste the prompt as is, without any changes, exactly as I entered it.",
+      "paste_success": true,
+      "text_length": 327
     }
   ]
 }
