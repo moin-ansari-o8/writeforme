@@ -3,13 +3,71 @@ WriteForMe Dashboard - Professional UI with Glassmorphism
 Icons: PNG rasterized (no SVG), Typography: Inter/Segoe UI
 """
 import sys
+import os
+from pathlib import Path
 from datetime import datetime, timedelta
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
 
+# Get the base directory (writeforme folder)
+BASE_DIR = Path(__file__).resolve().parent.parent
+ASSETS_DIR = BASE_DIR / "assets"
+LOGO_PATH = str(ASSETS_DIR / "wfm main logo1.png")
+ICO_PATH = str(ASSETS_DIR / "wfm_logo.ico")  # ICO format for Windows taskbar
+
 # Import PNG icon system
+sys.path.insert(0, str(BASE_DIR))
 from assets.icons import IconButton
+
+
+class SystemTrayIcon(QSystemTrayIcon):
+    """System tray icon for WriteForMe - shows in Windows taskbar notification area"""
+    
+    def __init__(self, icon, parent=None):
+        super().__init__(icon, parent)
+        self.parent_window = parent
+        
+        # Create context menu
+        menu = QMenu()
+        
+        # Show/Hide action
+        show_action = menu.addAction("Show Dashboard")
+        show_action.triggered.connect(self.show_window)
+        
+        hide_action = menu.addAction("Hide Dashboard")
+        hide_action.triggered.connect(self.hide_window)
+        
+        menu.addSeparator()
+        
+        # Quit action
+        quit_action = menu.addAction("Quit WriteForMe")
+        quit_action.triggered.connect(self.quit_app)
+        
+        self.setContextMenu(menu)
+        self.setToolTip("WriteForMe - Voice Transcription")
+        
+        # Double-click to show/hide
+        self.activated.connect(self.on_tray_activated)
+    
+    def on_tray_activated(self, reason):
+        if reason == QSystemTrayIcon.ActivationReason.DoubleClick:
+            if self.parent_window and self.parent_window.isVisible():
+                self.hide_window()
+            else:
+                self.show_window()
+    
+    def show_window(self):
+        if self.parent_window:
+            self.parent_window.show()
+            self.parent_window.activateWindow()
+    
+    def hide_window(self):
+        if self.parent_window:
+            self.parent_window.hide()
+    
+    def quit_app(self):
+        QApplication.quit()
 
 
 class GradientLabel(QLabel):
@@ -18,9 +76,9 @@ class GradientLabel(QLabel):
     def __init__(self, text, parent=None):
         super().__init__(text, parent)
         self.gradient_colors = [
-            QColor(99, 102, 241),   # Blue
-            QColor(139, 192, 241),  # Light blue
-            QColor(99, 102, 241)    # Blue
+            QColor(135, 206, 250),  # Sky blue
+            QColor(170, 220, 255),  # Lighter sky blue
+            QColor(135, 206, 250)   # Sky blue
         ]
     
     def paintEvent(self, event):
@@ -430,11 +488,23 @@ class GlassDashboard(QMainWindow):
         self.setup_window()
         self.setup_ui()
         self.load_mock_data()
+        
+        # Setup system tray icon (will appear in Windows notification area)
+        self.setup_tray_icon()
     
     def setup_window(self):
         """Configure frameless transparent window"""
         self.setWindowTitle("WriteForMe")
         self.setGeometry(100, 100, 1100, 750)
+        
+        # Set window icon (shows in taskbar) - use ICO format for Windows
+        if os.path.exists(ICO_PATH):
+            app_icon = QIcon(ICO_PATH)
+            print(f"✅ Window icon (ICO) loaded from: {ICO_PATH}")
+        else:
+            app_icon = QIcon(LOGO_PATH)
+            print(f"⚠️ ICO not found, using PNG: {LOGO_PATH}")
+        self.setWindowIcon(app_icon)
         
         # Frameless with transparency
         self.setWindowFlags(
@@ -450,6 +520,19 @@ class GlassDashboard(QMainWindow):
             (screen.height() - self.height()) // 2
         )
     
+    def setup_tray_icon(self):
+        """Setup system tray icon for Windows notification area"""
+        # Use ICO format for better Windows integration
+        icon_path = ICO_PATH if os.path.exists(ICO_PATH) else LOGO_PATH
+        tray_icon = QIcon(icon_path)
+        if not tray_icon.isNull():
+            self.tray = SystemTrayIcon(tray_icon, self)
+            self.tray.show()
+            print(f"✅ System tray icon loaded from: {icon_path}")
+        else:
+            print(f"⚠️ Failed to load tray icon from: {icon_path}")
+            self.tray = None
+    
     def setup_ui(self):
         """Build main UI layout"""
         # Central widget
@@ -459,7 +542,7 @@ class GlassDashboard(QMainWindow):
         
         main_layout = QHBoxLayout(central)
         main_layout.setContentsMargins(8, 8, 8, 8)
-        main_layout.setSpacing(16)
+        main_layout.setSpacing(9)
         
         # Right content area - CREATE FIRST before sidebar
         self.content_stack = QStackedWidget()
@@ -582,14 +665,34 @@ class GlassDashboard(QMainWindow):
         layout.setContentsMargins(20, 20, 20, 20)
         layout.setSpacing(12)
         
-        # App header with gradient
+        # App logo
+        logo_label = QLabel()
+        logo_pixmap = QPixmap(LOGO_PATH)
+        if not logo_pixmap.isNull():
+            # Scale logo to fit nicely in sidebar
+            scaled_logo = logo_pixmap.scaled(
+                140, 140, 
+                Qt.AspectRatioMode.KeepAspectRatio, 
+                Qt.TransformationMode.SmoothTransformation
+            )
+            logo_label.setPixmap(scaled_logo)
+            logo_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            logo_label.setStyleSheet("background: transparent; border: none;")
+            layout.addWidget(logo_label)
+            print(f"✅ Sidebar logo loaded from: {LOGO_PATH}")
+        else:
+            print(f"⚠️ Failed to load sidebar logo from: {LOGO_PATH}")
+        
+        layout.addSpacing(4)
+        
+        # App header with gradient (subtitle size)
         app_name = GradientLabel("WriteForMe")
         app_name.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        app_name.setFont(QFont("Inter", 26, QFont.Weight.DemiBold))
-        app_name.setStyleSheet("background: transparent; border: none; outline: none; letter-spacing: -0.5px;")
+        app_name.setFont(QFont("Inter", 16, QFont.Weight.Bold))
+        app_name.setStyleSheet("background: transparent; border: none; outline: none; letter-spacing: 3px;")
         layout.addWidget(app_name)
         
-        layout.addSpacing(20)
+        layout.addSpacing(16)
         
         # Navigation buttons with icons
         self.nav_buttons = {}
@@ -703,7 +806,7 @@ class GlassDashboard(QMainWindow):
         # Chat container
         self.chat_container = QWidget()
         self.chat_layout = QVBoxLayout(self.chat_container)
-        self.chat_layout.setContentsMargins(40, 40, 40, 20)
+        self.chat_layout.setContentsMargins(0, 20, 0, 20)
         self.chat_layout.setSpacing(12)
         self.chat_layout.addStretch()
         
@@ -758,16 +861,21 @@ class GlassDashboard(QMainWindow):
         control_bar = QHBoxLayout()
         control_bar.setSpacing(6)
         
-        # Model selector as pill-style dropdown (left side of control bar)
+        # AI Model selector (left side)
         self.model_selector = QComboBox()
         self.model_selector.addItems([
             "Cohere Command R7B",
-            "Vibe Coder",
-            "Casual Chat"
+            "Gemini 1.5 Flash",
+            "Gemini 1.5 Pro",
+            "Groq Llama 3.3 70B",
+            "Ollama Llama 3.2",
+            "Ollama Deepseek Coder 6.7B",
+            "Ollama Mistral"
         ])
+        self.model_selector.setCurrentIndex(0)
         self.model_selector.setFont(QFont("Inter", 13))
         self.model_selector.setFixedHeight(36)
-        self.model_selector.setMinimumWidth(160)
+        self.model_selector.setMinimumWidth(180)
         self.model_selector.setCursor(Qt.CursorShape.PointingHandCursor)
         self.model_selector.setStyleSheet("""
             QComboBox {
@@ -799,6 +907,7 @@ class GlassDashboard(QMainWindow):
                 border-radius: 12px;
                 padding: 6px;
                 outline: none;
+                position: absolute;
             }
             QComboBox QAbstractItemView::item {
                 padding: 10px 14px;
@@ -809,7 +918,69 @@ class GlassDashboard(QMainWindow):
                 background: rgba(60, 60, 65, 0.8);
             }
         """)
+        # Fix dropdown position to show upwards if near bottom
+        self.model_selector.view().window().setWindowFlags(Qt.WindowType.Popup | Qt.WindowType.FramelessWindowHint | Qt.WindowType.NoDropShadowWindowHint)
         control_bar.addWidget(self.model_selector)
+        
+        # Mode selector (next to model selector)
+        self.mode_selector = QComboBox()
+        self.mode_selector.addItems([
+            "Vibe Coder",
+            "Casual Chat",
+            "Email Professional",
+            "Email Casual",
+            "Technical Doc",
+            "Creative Writing"
+        ])
+        self.mode_selector.setCurrentIndex(0)
+        self.mode_selector.setFont(QFont("Inter", 13))
+        self.mode_selector.setFixedHeight(36)
+        self.mode_selector.setMinimumWidth(140)
+        self.mode_selector.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.mode_selector.setStyleSheet("""
+            QComboBox {
+                background: rgba(60, 60, 65, 0.8);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 18px;
+                color: rgba(255, 255, 255, 0.85);
+                padding: 6px 16px 6px 12px;
+                font-size: 13px;
+            }
+            QComboBox:hover {
+                background: rgba(70, 70, 75, 0.9);
+                border-color: rgba(99, 102, 241, 0.5);
+            }
+            QComboBox::drop-down {
+                border: none;
+                width: 24px;
+            }
+            QComboBox::down-arrow {
+                width: 0;
+                height: 0;
+            }
+            QComboBox QAbstractItemView {
+                background: rgba(40, 40, 45, 0.98);
+                color: rgb(220, 220, 220);
+                selection-background-color: rgba(99, 102, 241, 0.8);
+                selection-color: white;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                padding: 6px;
+                outline: none;
+                position: absolute;
+            }
+            QComboBox QAbstractItemView::item {
+                padding: 10px 14px;
+                border-radius: 8px;
+                margin: 2px;
+            }
+            QComboBox QAbstractItemView::item:hover {
+                background: rgba(60, 60, 65, 0.8);
+            }
+        """)
+        # Fix dropdown position
+        self.mode_selector.view().window().setWindowFlags(Qt.WindowType.Popup | Qt.WindowType.FramelessWindowHint | Qt.WindowType.NoDropShadowWindowHint)
+        control_bar.addWidget(self.mode_selector)
         
         control_bar.addStretch()
         
@@ -908,66 +1079,93 @@ class GlassDashboard(QMainWindow):
             self.welcome_widget.move(x, y)
     
     def add_message_bubble(self, text, is_user=False, is_thinking=False):
-        """Add a chat message bubble"""
+        """Add a WhatsApp-style chat message bubble"""
         # Hide welcome message on first message
         if hasattr(self, 'welcome_widget') and self.welcome_widget.isVisible():
             self.welcome_widget.setVisible(False)
         
-        # Create bubble
-        bubble = QFrame()
+        # ====================
+        # FULL-WIDTH ROW
+        # ====================
+        row = QWidget()
+        row.setStyleSheet("background: transparent;")
+        row_layout = QHBoxLayout(row)
+        row_layout.setContentsMargins(0, 0, 0, 0)
+        row_layout.setSpacing(0)
+        
+        # ====================
+        # BUBBLE CONTAINER
+        # ====================
+        bubble = QWidget()
         bubble.setStyleSheet(f"""
-            QFrame {{
-                background: {'rgba(99, 102, 241, 0.9)' if is_user else 'rgba(45, 45, 50, 0.95)'};
+            QWidget {{
+                background: {'rgba(99, 102, 241, 0.88)' if is_user else 'rgba(45, 45, 50, 0.92)'};
+                border-radius: {'18px' if is_user else '18px'};
                 border: none;
-                border-radius: 16px;
             }}
         """)
         
-        bubble_layout = QVBoxLayout(bubble)
-        bubble_layout.setContentsMargins(16, 12, 16, 12)
-        bubble_layout.setSpacing(6)
+        # Calculate max width: 88% of chat container for maximum space usage
+        chat_width = self.chat_scroll.viewport().width()
+        max_bubble_width = int(chat_width * 0.88)
         
-        # Label header
+        # Set BOTH maximum and minimum to encourage expansion
+        bubble.setMaximumWidth(max_bubble_width)
+        bubble.setMinimumWidth(int(chat_width * 0.20))  # At least 20% width
+        bubble.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
+        
+        # ====================
+        # BUBBLE CONTENT
+        # ====================
+        bubble_layout = QVBoxLayout(bubble)
+        bubble_layout.setContentsMargins(15, 10, 15, 10)
+        bubble_layout.setSpacing(4)
+        
+        # Assistant header (compact)
         if not is_user:
             header = QLabel("Assistant" if not is_thinking else "Thinking...")
-            header.setFont(QFont("Inter", 11, QFont.Weight.Medium))
-            header.setStyleSheet("color: rgba(255, 255, 255, 0.5); background: transparent; border: none; outline: none;")
+            header.setFont(QFont("Inter", 10, QFont.Weight.Medium))
+            header.setStyleSheet("""
+                color: rgba(255, 255, 255, 0.45);
+                background: transparent;
+                border: none;
+            """)
             bubble_layout.addWidget(header)
         
-        # Message text
+        # Message text with proper width constraints
         message_label = QLabel(text if not is_thinking else "Refining your text...")
         message_label.setFont(QFont("Inter", 14))
-        message_label.setStyleSheet("color: rgb(220, 220, 220); background: transparent; border: none; outline: none;")
+        message_label.setStyleSheet("""
+            color: rgb(225, 225, 225);
+            background: transparent;
+            border: none;
+            line-height: 1.5;
+        """)
         message_label.setWordWrap(True)
+        message_label.setMaximumWidth(max_bubble_width - 30)  # Account for padding
+        message_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
         message_label.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
         bubble_layout.addWidget(message_label)
         
-        # Alignment wrapper
-        wrapper = QWidget()
-        wrapper.setStyleSheet("background: transparent; border: none;")
-        wrapper_layout = QHBoxLayout(wrapper)
-        wrapper_layout.setContentsMargins(0, 0, 0, 0)
-        wrapper_layout.setSpacing(0)
-        
-        # Calculate responsive width (65-70% of chat area)
-        chat_width = self.chat_scroll.viewport().width() - 80
-        max_bubble_width = int(chat_width * 0.68)
-        
-        bubble.setMinimumWidth(200)
-        bubble.setMaximumWidth(max_bubble_width)
-        
+        # ====================
+        # ROW ALIGNMENT
+        # ====================
         if is_user:
-            wrapper_layout.addStretch()
-            wrapper_layout.addWidget(bubble)
+            # User: Right aligned with minimal margin
+            row_layout.addStretch()
+            row_layout.addWidget(bubble)
+            row_layout.addSpacing(8)
         else:
-            wrapper_layout.addWidget(bubble)
-            wrapper_layout.addStretch()
+            # Assistant: Left aligned with minimal margin
+            row_layout.addSpacing(8)
+            row_layout.addWidget(bubble)
+            row_layout.addStretch()
         
-        # Insert before stretch
-        self.chat_layout.insertWidget(self.chat_layout.count() - 1, wrapper)
+        # Add row to chat
+        self.chat_layout.insertWidget(self.chat_layout.count() - 1, row)
         
-        # Scroll to bottom
-        QTimer.singleShot(50, self.scroll_to_bottom)
+        # Scroll to bottom smoothly
+        QTimer.singleShot(30, self.scroll_to_bottom)
         
         return bubble
     
@@ -1336,27 +1534,58 @@ class GlassDashboard(QMainWindow):
         QApplication.processEvents()
         
         try:
-            # Get selected mode
-            mode_text = self.model_selector.currentText()
-            if "Vibe Coder" in mode_text:
-                mode = "vibe_coder"
-            elif "Casual Chat" in mode_text:
-                mode = "casual_chatter"
-            else:
-                mode = "vibe_coder"
+            # Get selected model and mode
+            model_text = self.model_selector.currentText()
+            mode_text = self.mode_selector.currentText()
             
-            # Import AI refiner
+            # Map mode to config key
+            mode_map = {
+                "Vibe Coder": "vibe_coder",
+                "Casual Chat": "casual_chatter",
+                "Email Professional": "email_professional",
+                "Email Casual": "email_casual",
+                "Technical Doc": "technical_documentation",
+                "Creative Writing": "creative_writing"
+            }
+            mode = mode_map.get(mode_text, "vibe_coder")
+            
+            # Map model to provider
+            provider_map = {
+                "Cohere Command R7B": ("cohere", "command-r7b-12-2024"),
+                "Gemini 1.5 Flash": ("gemini", "gemini-1.5-flash"),
+                "Gemini 1.5 Pro": ("gemini", "gemini-1.5-pro"),
+                "Groq Llama 3.3 70B": ("groq", "llama-3.3-70b-versatile"),
+                "Ollama Llama 3.2": ("ollama", "llama3.2"),
+                "Ollama Deepseek Coder 6.7B": ("ollama", "deepseek-coder:6.7b"),
+                "Ollama Mistral": ("ollama", "mistral")
+            }
+            provider_type, model_name = provider_map.get(model_text, ("cohere", "command-r7b-12-2024"))
+            
+            # Import AI provider manager
             import sys
             import os
             sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-            from ai_refiner import AIRefiner
+            from ai_provider_manager import AIProviderManager, CohereProvider, GeminiProvider, GroqProvider, OllamaProvider
+            import config
             
-            if not hasattr(self, 'refiner'):
-                self.refiner = AIRefiner(mode)
+            # Get prompt template for mode
+            prompt_template = config.WRITING_MODES.get(mode, config.WRITING_MODES["vibe_coder"])["prompt"]
+            
+            # Initialize correct provider
+            if provider_type == "cohere":
+                provider = CohereProvider()
+            elif provider_type == "gemini":
+                provider = GeminiProvider()
+            elif provider_type == "groq":
+                provider = GroqProvider()
+            elif provider_type == "ollama":
+                # For Ollama, set model directly
+                provider = OllamaProvider()
+                provider.model = model_name
             else:
-                self.refiner.set_mode(mode)
+                provider = CohereProvider()
             
-            refined_text = self.refiner.refine_text(text)
+            refined_text = provider.refine_text(text, prompt_template)
             
             # Remove thinking bubble
             thinking_bubble.deleteLater()
@@ -1548,6 +1777,18 @@ class GlassDashboard(QMainWindow):
     def mouseReleaseEvent(self, event):
         self.dragging = False
     
+    def closeEvent(self, event):
+        """Override close event to hide window instead of closing"""
+        event.ignore()  # Don't close the application
+        self.hide()  # Just hide the window
+        if self.tray:
+            self.tray.showMessage(
+                "WriteForMe",
+                "Application minimized to tray. Right-click tray icon to quit.",
+                QSystemTrayIcon.MessageIcon.Information,
+                2000
+            )
+    
     def paintEvent(self, event):
         """Paint professional dark background with rounded corners"""
         painter = QPainter(self)
@@ -1567,14 +1808,45 @@ class GlassDashboard(QMainWindow):
 
 
 def main():
+    # CRITICAL: Set Windows App User Model ID BEFORE creating QApplication
+    # This tells Windows to use our custom icon instead of Python's icon
+    try:
+        import ctypes
+        myappid = 'writeforme.dashboard.app.1.0'
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+        print("✅ Windows App ID set for custom taskbar icon")
+    except Exception as e:
+        print(f"⚠️ Failed to set App ID: {e}")
+    
+    # Create application AFTER setting App ID
     app = QApplication(sys.argv)
     app.setFont(QFont("Segoe UI", 10))
     
+    # Set application icon aggressively (for taskbar) - use ICO for Windows
+    if os.path.exists(ICO_PATH):
+        app_icon = QIcon(ICO_PATH)
+        print(f"📌 Using ICO format for taskbar: {ICO_PATH}")
+    else:
+        app_icon = QIcon(LOGO_PATH)
+        print(f"📌 Using PNG format: {LOGO_PATH}")
+    
+    # Set icon on QApplication (global)
+    app.setWindowIcon(app_icon)
+    
+    # Also set as default application icon
+    QApplication.setWindowIcon(app_icon)
+    
     print("🚀 Launching TRUE Glassmorphism Dashboard")
     print("✨ PyQt6 with real blur effects")
-    print("🎨 Frameless window with smooth animations\n")
+    print("🎨 Frameless window with smooth animations")
+    print(f"📁 Logo path: {LOGO_PATH}")
+    print(f"📂 Base directory: {BASE_DIR}\n")
     
     window = GlassDashboard()
+    
+    # Set icon on window instance explicitly
+    window.setWindowIcon(app_icon)
+    
     window.show()
     
     sys.exit(app.exec())

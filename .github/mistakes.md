@@ -5,6 +5,37 @@
 
 ---
 
+## [2026-01-15] - Taskbar Icon Missing + Resource Paths Broken in Frozen EXE
+
+**Problem:**
+- Taskbar showed Python icon instead of WriteForMe icon in frozen EXE
+- Alt+Tab showed wrong icon
+- System tray icon failed to load in frozen EXE
+- Window flags `WindowStaysOnTopHint | FramelessWindowHint` prevented taskbar registration
+- Asset paths used `__file__` and `Path()` which don't work with PyInstaller's `sys._MEIPASS`
+- No validation if icons loaded successfully
+
+**Solution:**
+- Added `resource_path()` helper function using `sys._MEIPASS` for frozen EXE support
+- Fixed window flags: Apply ONLY `FramelessWindowHint | Window` at creation
+- Apply `WindowStaysOnTopHint` AFTER `window.show()` to preserve taskbar icon
+- Added `QIcon.isNull()` validation checks for all icon loads
+- System tray: Check `QSystemTrayIcon.isSystemTrayAvailable()` before creating
+- Applied resource_path() to ALL asset paths (LOGO_PATH, ICO_PATH)
+
+**Lesson:**
+- NEVER combine `WindowStaysOnTopHint` with window creation flags - apply after show()
+- ALWAYS use `sys._MEIPASS` helper for PyInstaller frozen apps
+- ALWAYS validate QIcon loads with `.isNull()` check
+- Check system tray availability before creating tray icon
+- Windows taskbar icon registration requires proper window flags at creation time
+
+**Related Files:**
+- frontend/dashboard_v2.py (lines 12-28, 493-520, 1840-1848)
+- WriteForMe.spec (assets bundling configuration)
+
+---
+
 ## [2026-01-14] - CSS Syntax Errors in PyQt6 Stylesheets
 
 **Problem:**

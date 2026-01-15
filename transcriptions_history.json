@@ -401,6 +401,470 @@
       "refined_text": "The background area where we're displaying history features a casual chat or white color scheme with refined prompts. The backdrop should have some blur effect, similar to design or transparent elements. However, it's not entirely transparent; rather, it has a subtle design overlay. Additionally, the corners are currently square and need to be rounded slightly for better visual appeal.",
       "paste_success": true,
       "text_length": 388
+    },
+    {
+      "timestamp": "2026-01-15T10:48:05.734213",
+      "mode": "vibe_coder",
+      "raw_text": "Now in this application in the invoice create page  Where the in the front end?  items table is put  There we have used multiple drop downs  like for the product name  Category plan etc  Not etc. These they are  only  So I want to put I want to use the  arrow key functionality like when I click when I  Write something down and there are suggestions showing the drop down and when I click arrow button down arrow key up arrow key  then they should be  Move or like that and when I click enter on the  Particular drop-down item then it should be selected",
+      "refined_text": "Now in this application in the invoice create page  Where the in the front end?  items table is put  There we have used multiple drop downs  like for the product name  Category plan etc  Not etc. These they are  only  So I want to put I want to use the  arrow key functionality like when I click when I  Write something down and there are suggestions showing the drop down and when I click arrow button down arrow key up arrow key  then they should be  Move or like that and when I click enter on the  Particular drop-down item then it should be selected",
+      "paste_success": false,
+      "text_length": 554
+    },
+    {
+      "timestamp": "2026-01-15T10:48:06.072186",
+      "mode": "vibe_coder",
+      "raw_text": "Now in this application in the invoice create page  Where the in the front end?  items table is put  There we have used multiple drop downs  like for the product name  Category plan etc  Not etc. These they are  only  So I want to put I want to use the  arrow key functionality like when I click when I  Write something down and there are suggestions showing the drop down and when I click arrow button down arrow key up arrow key  then they should be  Move or like that and when I click enter on the  Particular drop-down item then it should be selected",
+      "refined_text": "Now in this application in the invoice create page  Where the in the front end?  items table is put  There we have used multiple drop downs  like for the product name  Category plan etc  Not etc. These they are  only  So I want to put I want to use the  arrow key functionality like when I click when I  Write something down and there are suggestions showing the drop down and when I click arrow button down arrow key up arrow key  then they should be  Move or like that and when I click enter on the  Particular drop-down item then it should be selected",
+      "paste_success": true,
+      "text_length": 554
+    },
+    {
+      "timestamp": "2026-01-15T10:48:48.218608",
+      "mode": "vibe_coder",
+      "raw_text": "Tell me what you understood from this prompt after I confirm we will go ahead and make changes",
+      "refined_text": "Tell me what you understood from this prompt after I confirm we will go ahead and make changes",
+      "paste_success": false,
+      "text_length": 94
+    },
+    {
+      "timestamp": "2026-01-15T10:48:48.530233",
+      "mode": "vibe_coder",
+      "raw_text": "Tell me what you understood from this prompt after I confirm we will go ahead and make changes",
+      "refined_text": "Tell me what you understood from this prompt after I confirm we will go ahead and make changes",
+      "paste_success": true,
+      "text_length": 94
+    },
+    {
+      "timestamp": "2026-01-15T10:50:10.667648",
+      "mode": "vibe_coder",
+      "raw_text": "yes perfect and the third one is not plan but it is the brand",
+      "refined_text": "yes perfect and the third one is not plan but it is the brand",
+      "paste_success": false,
+      "text_length": 61
+    },
+    {
+      "timestamp": "2026-01-15T10:50:11.001113",
+      "mode": "vibe_coder",
+      "raw_text": "yes perfect and the third one is not plan but it is the brand",
+      "refined_text": "yes perfect and the third one is not plan but it is the brand",
+      "paste_success": true,
+      "text_length": 61
+    },
+    {
+      "timestamp": "2026-01-15T10:52:45.440606",
+      "mode": "vibe_coder",
+      "raw_text": "In the invoice create page where we are showing the billing settings on the bottom left corner  there is a billing settings section. So that section I want to make that particular section  to the settings. So in that settings section one will be billing  which is already implemented and another put a second tab beside the billing  that is said to be item stable and in that item stable put two options  two checkboxes which for when checked one checkbox to show the category field  in the items table in the front end and another checkbox is for brand category  brand section brand field if to show it or hide it from the front end  of that the items table input alright input table",
+      "refined_text": "In the invoice create page where we are showing the billing settings on the bottom left corner  there is a billing settings section. So that section I want to make that particular section  to the settings. So in that settings section one will be billing  which is already implemented and another put a second tab beside the billing  that is said to be item stable and in that item stable put two options  two checkboxes which for when checked one checkbox to show the category field  in the items table in the front end and another checkbox is for brand category  brand section brand field if to show it or hide it from the front end  of that the items table input alright input table",
+      "paste_success": false,
+      "text_length": 684
+    },
+    {
+      "timestamp": "2026-01-15T10:52:45.750443",
+      "mode": "vibe_coder",
+      "raw_text": "In the invoice create page where we are showing the billing settings on the bottom left corner  there is a billing settings section. So that section I want to make that particular section  to the settings. So in that settings section one will be billing  which is already implemented and another put a second tab beside the billing  that is said to be item stable and in that item stable put two options  two checkboxes which for when checked one checkbox to show the category field  in the items table in the front end and another checkbox is for brand category  brand section brand field if to show it or hide it from the front end  of that the items table input alright input table",
+      "refined_text": "In the invoice create page where we are showing the billing settings on the bottom left corner  there is a billing settings section. So that section I want to make that particular section  to the settings. So in that settings section one will be billing  which is already implemented and another put a second tab beside the billing  that is said to be item stable and in that item stable put two options  two checkboxes which for when checked one checkbox to show the category field  in the items table in the front end and another checkbox is for brand category  brand section brand field if to show it or hide it from the front end  of that the items table input alright input table",
+      "paste_success": true,
+      "text_length": 684
+    },
+    {
+      "timestamp": "2026-01-15T14:09:03.357919",
+      "mode": "vibe_coder",
+      "raw_text": "Now remove the emoji from the save button and below the save button that there is a  Unnecessary line related to click to save something remove that unnecessary line also",
+      "refined_text": "Now remove the emoji from the save button and below the save button that there is a  Unnecessary line related to click to save something remove that unnecessary line also",
+      "paste_success": false,
+      "text_length": 170
+    },
+    {
+      "timestamp": "2026-01-15T14:09:03.597557",
+      "mode": "vibe_coder",
+      "raw_text": "Now remove the emoji from the save button and below the save button that there is a  Unnecessary line related to click to save something remove that unnecessary line also",
+      "refined_text": "Now remove the emoji from the save button and below the save button that there is a  Unnecessary line related to click to save something remove that unnecessary line also",
+      "paste_success": true,
+      "text_length": 170
+    },
+    {
+      "timestamp": "2026-01-15T14:09:29.134727",
+      "mode": "vibe_coder",
+      "raw_text": "Now do the commit and push in my style of course and don't ask me for the confirmation",
+      "refined_text": "Now do the commit and push in my style of course and don't ask me for the confirmation",
+      "paste_success": false,
+      "text_length": 86
+    },
+    {
+      "timestamp": "2026-01-15T14:09:29.390073",
+      "mode": "vibe_coder",
+      "raw_text": "Now do the commit and push in my style of course and don't ask me for the confirmation",
+      "refined_text": "Now do the commit and push in my style of course and don't ask me for the confirmation",
+      "paste_success": true,
+      "text_length": 86
+    },
+    {
+      "timestamp": "2026-01-15T14:11:25.726181",
+      "mode": "vibe_coder",
+      "raw_text": "It should launch the application so I want a small icon that defines my application right  for me and yes.",
+      "refined_text": "It should launch the application so I want a small icon that defines my application right  for me and yes.",
+      "paste_success": false,
+      "text_length": 106
+    },
+    {
+      "timestamp": "2026-01-15T14:11:25.968525",
+      "mode": "vibe_coder",
+      "raw_text": "It should launch the application so I want a small icon that defines my application right  for me and yes.",
+      "refined_text": "It should launch the application so I want a small icon that defines my application right  for me and yes.",
+      "paste_success": true,
+      "text_length": 106
+    },
+    {
+      "timestamp": "2026-01-15T14:13:01.002802",
+      "mode": "vibe_coder",
+      "raw_text": "I want to create a logo and I have made a little prompt and I want your guidance to enhance the prompt and make a proper perfect logo for it.",
+      "refined_text": "I want to create a logo and I have made a little prompt and I want your guidance to enhance the prompt and make a proper perfect logo for it.",
+      "paste_success": false,
+      "text_length": 141
+    },
+    {
+      "timestamp": "2026-01-15T14:13:01.236390",
+      "mode": "vibe_coder",
+      "raw_text": "I want to create a logo and I have made a little prompt and I want your guidance to enhance the prompt and make a proper perfect logo for it.",
+      "refined_text": "I want to create a logo and I have made a little prompt and I want your guidance to enhance the prompt and make a proper perfect logo for it.",
+      "paste_success": true,
+      "text_length": 141
+    },
+    {
+      "timestamp": "2026-01-15T15:05:39.345005",
+      "mode": "vibe_coder",
+      "raw_text": "now create the prompt for this particular problem which I am facing and give me that  prompt in this chat only so that I can do further investigation what is the  issue and rest of things with another AI and also give me full detail in that  prompt related to how you have which approach you have chose to the  implementation of this icon logo for particularly taskbar and also all the  library and etc things to which you have used to build this application and that  particular feature related to icons showing in the taskbar instead of the  Python logo",
+      "refined_text": "now create the prompt for this particular problem which I am facing and give me that  prompt in this chat only so that I can do further investigation what is the  issue and rest of things with another AI and also give me full detail in that  prompt related to how you have which approach you have chose to the  implementation of this icon logo for particularly taskbar and also all the  library and etc things to which you have used to build this application and that  particular feature related to icons showing in the taskbar instead of the  Python logo",
+      "paste_success": false,
+      "text_length": 555
+    },
+    {
+      "timestamp": "2026-01-15T15:05:39.613283",
+      "mode": "vibe_coder",
+      "raw_text": "now create the prompt for this particular problem which I am facing and give me that  prompt in this chat only so that I can do further investigation what is the  issue and rest of things with another AI and also give me full detail in that  prompt related to how you have which approach you have chose to the  implementation of this icon logo for particularly taskbar and also all the  library and etc things to which you have used to build this application and that  particular feature related to icons showing in the taskbar instead of the  Python logo",
+      "refined_text": "now create the prompt for this particular problem which I am facing and give me that  prompt in this chat only so that I can do further investigation what is the  issue and rest of things with another AI and also give me full detail in that  prompt related to how you have which approach you have chose to the  implementation of this icon logo for particularly taskbar and also all the  library and etc things to which you have used to build this application and that  particular feature related to icons showing in the taskbar instead of the  Python logo",
+      "paste_success": true,
+      "text_length": 555
+    },
+    {
+      "timestamp": "2026-01-15T15:07:56.874443",
+      "mode": "vibe_coder",
+      "raw_text": "I want you to research and investigate the current scenario of the backup page and how the backup files are being created  which tables, databases are being added in the backup page  for both json and csa there are currently both have same scenario I guess because I have just sometimes updated those things and were perfectly working  but after that I have added the new database table and new settings, new table related to inventory, things, new products etc  and another thing is that regarding to the settings I have added the setting in the creating voice page where I am choosing, selecting the checkboxes to show the category or brand field column in the items table  so related to those new database or settings related changes I want you to investigate research what is not implemented in the backup page, backup system of this application",
+      "refined_text": "I want you to research and investigate the current scenario of the backup page and how the backup files are being created  which tables, databases are being added in the backup page  for both json and csa there are currently both have same scenario I guess because I have just sometimes updated those things and were perfectly working  but after that I have added the new database table and new settings, new table related to inventory, things, new products etc  and another thing is that regarding to the settings I have added the setting in the creating voice page where I am choosing, selecting the checkboxes to show the category or brand field column in the items table  so related to those new database or settings related changes I want you to investigate research what is not implemented in the backup page, backup system of this application",
+      "paste_success": false,
+      "text_length": 849
+    },
+    {
+      "timestamp": "2026-01-15T15:07:57.120672",
+      "mode": "vibe_coder",
+      "raw_text": "I want you to research and investigate the current scenario of the backup page and how the backup files are being created  which tables, databases are being added in the backup page  for both json and csa there are currently both have same scenario I guess because I have just sometimes updated those things and were perfectly working  but after that I have added the new database table and new settings, new table related to inventory, things, new products etc  and another thing is that regarding to the settings I have added the setting in the creating voice page where I am choosing, selecting the checkboxes to show the category or brand field column in the items table  so related to those new database or settings related changes I want you to investigate research what is not implemented in the backup page, backup system of this application",
+      "refined_text": "I want you to research and investigate the current scenario of the backup page and how the backup files are being created  which tables, databases are being added in the backup page  for both json and csa there are currently both have same scenario I guess because I have just sometimes updated those things and were perfectly working  but after that I have added the new database table and new settings, new table related to inventory, things, new products etc  and another thing is that regarding to the settings I have added the setting in the creating voice page where I am choosing, selecting the checkboxes to show the category or brand field column in the items table  so related to those new database or settings related changes I want you to investigate research what is not implemented in the backup page, backup system of this application",
+      "paste_success": true,
+      "text_length": 849
+    },
+    {
+      "timestamp": "2026-01-15T15:08:46.028841",
+      "mode": "vibe_coder",
+      "raw_text": "give me one click to copy paste prompt so that I can give it directly to the chat  another chat another AI you have not given me one click prompt copy option",
+      "refined_text": "give me one click to copy paste prompt so that I can give it directly to the chat  another chat another AI you have not given me one click prompt copy option",
+      "paste_success": false,
+      "text_length": 157
+    },
+    {
+      "timestamp": "2026-01-15T15:08:46.271941",
+      "mode": "vibe_coder",
+      "raw_text": "give me one click to copy paste prompt so that I can give it directly to the chat  another chat another AI you have not given me one click prompt copy option",
+      "refined_text": "give me one click to copy paste prompt so that I can give it directly to the chat  another chat another AI you have not given me one click prompt copy option",
+      "paste_success": true,
+      "text_length": 157
+    },
+    {
+      "timestamp": "2026-01-15T16:24:25.355143",
+      "mode": "vibe_coder",
+      "raw_text": "last instance of yours have reached the context window so that's why I told it  to create the handoff file and which is I am now handing off to you so continue  the rest of the work",
+      "refined_text": "last instance of yours have reached the context window so that's why I told it  to create the handoff file and which is I am now handing off to you so continue  the rest of the work",
+      "paste_success": false,
+      "text_length": 181
+    },
+    {
+      "timestamp": "2026-01-15T16:24:25.598556",
+      "mode": "vibe_coder",
+      "raw_text": "last instance of yours have reached the context window so that's why I told it  to create the handoff file and which is I am now handing off to you so continue  the rest of the work",
+      "refined_text": "last instance of yours have reached the context window so that's why I told it  to create the handoff file and which is I am now handing off to you so continue  the rest of the work",
+      "paste_success": true,
+      "text_length": 181
+    },
+    {
+      "timestamp": "2026-01-15T16:48:57.629389",
+      "mode": "vibe_coder",
+      "raw_text": "after the solutions you suggested if we make those changes in the file are you  sure hundred percent sure and are you confident and be honest that it will  solve that issue",
+      "refined_text": "after the solutions you suggested if we make those changes in the file are you  sure hundred percent sure and are you confident and be honest that it will  solve that issue",
+      "paste_success": false,
+      "text_length": 172
+    },
+    {
+      "timestamp": "2026-01-15T16:48:57.874935",
+      "mode": "vibe_coder",
+      "raw_text": "after the solutions you suggested if we make those changes in the file are you  sure hundred percent sure and are you confident and be honest that it will  solve that issue",
+      "refined_text": "after the solutions you suggested if we make those changes in the file are you  sure hundred percent sure and are you confident and be honest that it will  solve that issue",
+      "paste_success": true,
+      "text_length": 172
+    },
+    {
+      "timestamp": "2026-01-15T16:49:09.116397",
+      "mode": "vibe_coder",
+      "raw_text": "If yes then proceed with the fix",
+      "refined_text": "If yes then proceed with the fix",
+      "paste_success": false,
+      "text_length": 32
+    },
+    {
+      "timestamp": "2026-01-15T16:49:09.357779",
+      "mode": "vibe_coder",
+      "raw_text": "If yes then proceed with the fix",
+      "refined_text": "If yes then proceed with the fix",
+      "paste_success": true,
+      "text_length": 32
+    },
+    {
+      "timestamp": "2026-01-15T16:49:47.710402",
+      "mode": "vibe_coder",
+      "raw_text": "Let's see",
+      "refined_text": "Let's see",
+      "paste_success": false,
+      "text_length": 9
+    },
+    {
+      "timestamp": "2026-01-15T16:49:47.949224",
+      "mode": "vibe_coder",
+      "raw_text": "Let's see",
+      "refined_text": "Let's see",
+      "paste_success": true,
+      "text_length": 9
+    },
+    {
+      "timestamp": "2026-01-15T16:49:54.540079",
+      "mode": "vibe_coder",
+      "raw_text": "Proceed",
+      "refined_text": "Proceed",
+      "paste_success": false,
+      "text_length": 7
+    },
+    {
+      "timestamp": "2026-01-15T16:49:54.784181",
+      "mode": "vibe_coder",
+      "raw_text": "Proceed",
+      "refined_text": "Proceed",
+      "paste_success": true,
+      "text_length": 7
+    },
+    {
+      "timestamp": "2026-01-15T16:55:50.461005",
+      "mode": "vibe_coder",
+      "raw_text": "second test category it is",
+      "refined_text": "second test category it is",
+      "paste_success": false,
+      "text_length": 26
+    },
+    {
+      "timestamp": "2026-01-15T16:55:50.699729",
+      "mode": "vibe_coder",
+      "raw_text": "second test category it is",
+      "refined_text": "second test category it is",
+      "paste_success": true,
+      "text_length": 26
+    },
+    {
+      "timestamp": "2026-01-15T16:56:19.011148",
+      "mode": "vibe_coder",
+      "raw_text": "It is first taste brand",
+      "refined_text": "It is first taste brand",
+      "paste_success": false,
+      "text_length": 23
+    },
+    {
+      "timestamp": "2026-01-15T16:56:19.256745",
+      "mode": "vibe_coder",
+      "raw_text": "It is first taste brand",
+      "refined_text": "It is first taste brand",
+      "paste_success": true,
+      "text_length": 23
+    },
+    {
+      "timestamp": "2026-01-15T16:56:38.859360",
+      "mode": "vibe_coder",
+      "raw_text": "It is second taste brand",
+      "refined_text": "It is second taste brand",
+      "paste_success": false,
+      "text_length": 24
+    },
+    {
+      "timestamp": "2026-01-15T16:56:39.112501",
+      "mode": "vibe_coder",
+      "raw_text": "It is second taste brand",
+      "refined_text": "It is second taste brand",
+      "paste_success": true,
+      "text_length": 24
+    },
+    {
+      "timestamp": "2026-01-15T16:57:12.657416",
+      "mode": "vibe_coder",
+      "raw_text": "It is first test product",
+      "refined_text": "It is first test product",
+      "paste_success": false,
+      "text_length": 24
+    },
+    {
+      "timestamp": "2026-01-15T16:57:12.894697",
+      "mode": "vibe_coder",
+      "raw_text": "It is first test product",
+      "refined_text": "It is first test product",
+      "paste_success": true,
+      "text_length": 24
+    },
+    {
+      "timestamp": "2026-01-15T16:59:42.737798",
+      "mode": "vibe_coder",
+      "raw_text": "This is the first paste enum.",
+      "refined_text": "This is the first paste enum.",
+      "paste_success": false,
+      "text_length": 29
+    },
+    {
+      "timestamp": "2026-01-15T16:59:42.976459",
+      "mode": "vibe_coder",
+      "raw_text": "This is the first paste enum.",
+      "refined_text": "This is the first paste enum.",
+      "paste_success": true,
+      "text_length": 29
+    },
+    {
+      "timestamp": "2026-01-15T17:06:48.848023",
+      "mode": "vibe_coder",
+      "raw_text": "In the manage dealers page there is a card on the top left side for the total dealers  and the card color is green color which should be blue color as our theme color.  So I want you to fix that first and yes.",
+      "refined_text": "In the manage dealers page there is a card on the top left side for the total dealers  and the card color is green color which should be blue color as our theme color.  So I want you to fix that first and yes.",
+      "paste_success": false,
+      "text_length": 209
+    },
+    {
+      "timestamp": "2026-01-15T17:06:49.088071",
+      "mode": "vibe_coder",
+      "raw_text": "In the manage dealers page there is a card on the top left side for the total dealers  and the card color is green color which should be blue color as our theme color.  So I want you to fix that first and yes.",
+      "refined_text": "In the manage dealers page there is a card on the top left side for the total dealers  and the card color is green color which should be blue color as our theme color.  So I want you to fix that first and yes.",
+      "paste_success": true,
+      "text_length": 209
+    },
+    {
+      "timestamp": "2026-01-15T17:08:27.623105",
+      "mode": "vibe_coder",
+      "raw_text": "In the inventory page and in that which we have introduced the add product feature  that add product feature in that add product feature  we are showing the unit as  Asking for the  unit to be entered like in input box  But it should show the drop-down box which should have already existing units listed  in proper manner which we have already stored and  which we are already using in the create in voice page in the unit field. So you can  copy that  logic from there and put it into the add product  dialog box feature. So yes, do this first",
+      "refined_text": "In the inventory page and in that which we have introduced the add product feature  that add product feature in that add product feature  we are showing the unit as  Asking for the  unit to be entered like in input box  But it should show the drop-down box which should have already existing units listed  in proper manner which we have already stored and  which we are already using in the create in voice page in the unit field. So you can  copy that  logic from there and put it into the add product  dialog box feature. So yes, do this first",
+      "paste_success": false,
+      "text_length": 545
+    },
+    {
+      "timestamp": "2026-01-15T17:08:27.861287",
+      "mode": "vibe_coder",
+      "raw_text": "In the inventory page and in that which we have introduced the add product feature  that add product feature in that add product feature  we are showing the unit as  Asking for the  unit to be entered like in input box  But it should show the drop-down box which should have already existing units listed  in proper manner which we have already stored and  which we are already using in the create in voice page in the unit field. So you can  copy that  logic from there and put it into the add product  dialog box feature. So yes, do this first",
+      "refined_text": "In the inventory page and in that which we have introduced the add product feature  that add product feature in that add product feature  we are showing the unit as  Asking for the  unit to be entered like in input box  But it should show the drop-down box which should have already existing units listed  in proper manner which we have already stored and  which we are already using in the create in voice page in the unit field. So you can  copy that  logic from there and put it into the add product  dialog box feature. So yes, do this first",
+      "paste_success": true,
+      "text_length": 545
+    },
+    {
+      "timestamp": "2026-01-15T17:10:06.699760",
+      "mode": "vibe_coder",
+      "raw_text": "In the same ad-products dialog box where we are showing the digits for the units, existing units, and  Current stock, minimum stock level, purchase price, selling price, they are already zero, so when I am trying to enter something  it is always showing the preceding number as zero. When I try to write something there, it should be cleared.  The zero should be cleared but it is not being cleared, so I want you to handle that too.",
+      "refined_text": "In the same ad-products dialog box where we are showing the digits for the units, existing units, and  Current stock, minimum stock level, purchase price, selling price, they are already zero, so when I am trying to enter something  it is always showing the preceding number as zero. When I try to write something there, it should be cleared.  The zero should be cleared but it is not being cleared, so I want you to handle that too.",
+      "paste_success": false,
+      "text_length": 433
+    },
+    {
+      "timestamp": "2026-01-15T17:10:06.939716",
+      "mode": "vibe_coder",
+      "raw_text": "In the same ad-products dialog box where we are showing the digits for the units, existing units, and  Current stock, minimum stock level, purchase price, selling price, they are already zero, so when I am trying to enter something  it is always showing the preceding number as zero. When I try to write something there, it should be cleared.  The zero should be cleared but it is not being cleared, so I want you to handle that too.",
+      "refined_text": "In the same ad-products dialog box where we are showing the digits for the units, existing units, and  Current stock, minimum stock level, purchase price, selling price, they are already zero, so when I am trying to enter something  it is always showing the preceding number as zero. When I try to write something there, it should be cleared.  The zero should be cleared but it is not being cleared, so I want you to handle that too.",
+      "paste_success": true,
+      "text_length": 433
+    },
+    {
+      "timestamp": "2026-01-15T17:14:22.757606",
+      "mode": "vibe_coder",
+      "raw_text": "On the add product page there should be a global settings icon for the products where it should  be placed on the right side I guess on the products page in the inventory page.  So when I click on that settings icon it should ask me to set the different type of  things like what I want to keep the minimum stock level by default what I want to keep the  purchase price selling price no it is not the purchase price and selling price it  should all just show the minimum stock level which for the by default it should  have the authority to whenever I click on add product then it should show the  minimum stock level of that number not the zero so it can handle that one second thing  it can handle is that product ID counter it should show the where is the product  ID currently and rest of things like brands ID categories ID etc. I am not sure what  I have said but I guess you are smart enough to understand my intent what I'm  trying to say I have just told you to include some small features in settings  but you have all of your internet knowledge and I guess you can think  better than me what to include in that settings.",
+      "refined_text": "On the add product page there should be a global settings icon for the products where it should  be placed on the right side I guess on the products page in the inventory page.  So when I click on that settings icon it should ask me to set the different type of  things like what I want to keep the minimum stock level by default what I want to keep the  purchase price selling price no it is not the purchase price and selling price it  should all just show the minimum stock level which for the by default it should  have the authority to whenever I click on add product then it should show the  minimum stock level of that number not the zero so it can handle that one second thing  it can handle is that product ID counter it should show the where is the product  ID currently and rest of things like brands ID categories ID etc. I am not sure what  I have said but I guess you are smart enough to understand my intent what I'm  trying to say I have just told you to include some small features in settings  but you have all of your internet knowledge and I guess you can think  better than me what to include in that settings.",
+      "paste_success": false,
+      "text_length": 1131
+    },
+    {
+      "timestamp": "2026-01-15T17:14:22.999242",
+      "mode": "vibe_coder",
+      "raw_text": "On the add product page there should be a global settings icon for the products where it should  be placed on the right side I guess on the products page in the inventory page.  So when I click on that settings icon it should ask me to set the different type of  things like what I want to keep the minimum stock level by default what I want to keep the  purchase price selling price no it is not the purchase price and selling price it  should all just show the minimum stock level which for the by default it should  have the authority to whenever I click on add product then it should show the  minimum stock level of that number not the zero so it can handle that one second thing  it can handle is that product ID counter it should show the where is the product  ID currently and rest of things like brands ID categories ID etc. I am not sure what  I have said but I guess you are smart enough to understand my intent what I'm  trying to say I have just told you to include some small features in settings  but you have all of your internet knowledge and I guess you can think  better than me what to include in that settings.",
+      "refined_text": "On the add product page there should be a global settings icon for the products where it should  be placed on the right side I guess on the products page in the inventory page.  So when I click on that settings icon it should ask me to set the different type of  things like what I want to keep the minimum stock level by default what I want to keep the  purchase price selling price no it is not the purchase price and selling price it  should all just show the minimum stock level which for the by default it should  have the authority to whenever I click on add product then it should show the  minimum stock level of that number not the zero so it can handle that one second thing  it can handle is that product ID counter it should show the where is the product  ID currently and rest of things like brands ID categories ID etc. I am not sure what  I have said but I guess you are smart enough to understand my intent what I'm  trying to say I have just told you to include some small features in settings  but you have all of your internet knowledge and I guess you can think  better than me what to include in that settings.",
+      "paste_success": true,
+      "text_length": 1131
+    },
+    {
+      "timestamp": "2026-01-15T17:25:27.899336",
+      "mode": "vibe_coder",
+      "raw_text": "Not only the drop down but whenever I it should also have the input box but  beside the input box on the right side there should be a smaller drop down which  actually it should show the existing units. So if in the input box it should  I write something it should give the suggestions of existing units. If I  write different from anything existing unit then it should create new unit and it  should add in those APIs. I don't know in the settings of units it should  store that new unit. Alright so about this feature you can also copy this  feature from the invoice create page in there. I have put same type of logic in  category and brand input boxes so you can look into that too.",
+      "refined_text": "Not only the drop down but whenever I it should also have the input box but  beside the input box on the right side there should be a smaller drop down which  actually it should show the existing units. So if in the input box it should  I write something it should give the suggestions of existing units. If I  write different from anything existing unit then it should create new unit and it  should add in those APIs. I don't know in the settings of units it should  store that new unit. Alright so about this feature you can also copy this  feature from the invoice create page in there. I have put same type of logic in  category and brand input boxes so you can look into that too.",
+      "paste_success": false,
+      "text_length": 686
+    },
+    {
+      "timestamp": "2026-01-15T17:25:28.145997",
+      "mode": "vibe_coder",
+      "raw_text": "Not only the drop down but whenever I it should also have the input box but  beside the input box on the right side there should be a smaller drop down which  actually it should show the existing units. So if in the input box it should  I write something it should give the suggestions of existing units. If I  write different from anything existing unit then it should create new unit and it  should add in those APIs. I don't know in the settings of units it should  store that new unit. Alright so about this feature you can also copy this  feature from the invoice create page in there. I have put same type of logic in  category and brand input boxes so you can look into that too.",
+      "refined_text": "Not only the drop down but whenever I it should also have the input box but  beside the input box on the right side there should be a smaller drop down which  actually it should show the existing units. So if in the input box it should  I write something it should give the suggestions of existing units. If I  write different from anything existing unit then it should create new unit and it  should add in those APIs. I don't know in the settings of units it should  store that new unit. Alright so about this feature you can also copy this  feature from the invoice create page in there. I have put same type of logic in  category and brand input boxes so you can look into that too.",
+      "paste_success": true,
+      "text_length": 686
+    },
+    {
+      "timestamp": "2026-01-15T17:26:37.397154",
+      "mode": "vibe_coder",
+      "raw_text": "And relative to fix number 4, it should have the icon on the top right side of the inventory page.  And not only in the product page or ad product page, we don't need that setting icon there.  But it is global kind of thing. So it should be there on the top right side.  And yes, of course, I want the data to be stored in the database related to this new changes, of course.  So whenever I update anything in the settings of the inventory, it should be stored in the database and yes.",
+      "refined_text": "And relative to fix number 4, it should have the icon on the top right side of the inventory page.  And not only in the product page or ad product page, we don't need that setting icon there.  But it is global kind of thing. So it should be there on the top right side.  And yes, of course, I want the data to be stored in the database related to this new changes, of course.  So whenever I update anything in the settings of the inventory, it should be stored in the database and yes.",
+      "paste_success": false,
+      "text_length": 485
+    },
+    {
+      "timestamp": "2026-01-15T17:26:37.642089",
+      "mode": "vibe_coder",
+      "raw_text": "And relative to fix number 4, it should have the icon on the top right side of the inventory page.  And not only in the product page or ad product page, we don't need that setting icon there.  But it is global kind of thing. So it should be there on the top right side.  And yes, of course, I want the data to be stored in the database related to this new changes, of course.  So whenever I update anything in the settings of the inventory, it should be stored in the database and yes.",
+      "refined_text": "And relative to fix number 4, it should have the icon on the top right side of the inventory page.  And not only in the product page or ad product page, we don't need that setting icon there.  But it is global kind of thing. So it should be there on the top right side.  And yes, of course, I want the data to be stored in the database related to this new changes, of course.  So whenever I update anything in the settings of the inventory, it should be stored in the database and yes.",
+      "paste_success": true,
+      "text_length": 485
+    },
+    {
+      "timestamp": "2026-01-15T17:28:29.867627",
+      "mode": "vibe_coder",
+      "raw_text": "Give me the one clip copy paste code block from where I can copy this prompt and  give to my agent who can update these new changes so that I can finally get what I want.",
+      "refined_text": "Give me the one clip copy paste code block from where I can copy this prompt and  give to my agent who can update these new changes so that I can finally get what I want.",
+      "paste_success": false,
+      "text_length": 170
+    },
+    {
+      "timestamp": "2026-01-15T17:28:30.134309",
+      "mode": "vibe_coder",
+      "raw_text": "Give me the one clip copy paste code block from where I can copy this prompt and  give to my agent who can update these new changes so that I can finally get what I want.",
+      "refined_text": "Give me the one clip copy paste code block from where I can copy this prompt and  give to my agent who can update these new changes so that I can finally get what I want.",
+      "paste_success": true,
+      "text_length": 170
+    },
+    {
+      "timestamp": "2026-01-15T17:40:03.809559",
+      "mode": "vibe_coder",
+      "raw_text": "forget the current thing which we just added that is  Creating the exe and etc. We are not focusing on creating the exe for now. So I  am saying this because  currently  Everything is messed up  Everything was good at least it was showing the icon logo in the application in the sidebar  Now it is gone  Earlier it was showing the pre icon the pre icon options  of  Show dashboard hide dashboard quit the application  It was showing those things, but now everything is gone  It is not even loading. So I want you to  revert to those things and  fix it, please",
+      "refined_text": "forget the current thing which we just added that is  Creating the exe and etc. We are not focusing on creating the exe for now. So I  am saying this because  currently  Everything is messed up  Everything was good at least it was showing the icon logo in the application in the sidebar  Now it is gone  Earlier it was showing the pre icon the pre icon options  of  Show dashboard hide dashboard quit the application  It was showing those things, but now everything is gone  It is not even loading. So I want you to  revert to those things and  fix it, please",
+      "paste_success": false,
+      "text_length": 559
+    },
+    {
+      "timestamp": "2026-01-15T17:40:04.053293",
+      "mode": "vibe_coder",
+      "raw_text": "forget the current thing which we just added that is  Creating the exe and etc. We are not focusing on creating the exe for now. So I  am saying this because  currently  Everything is messed up  Everything was good at least it was showing the icon logo in the application in the sidebar  Now it is gone  Earlier it was showing the pre icon the pre icon options  of  Show dashboard hide dashboard quit the application  It was showing those things, but now everything is gone  It is not even loading. So I want you to  revert to those things and  fix it, please",
+      "refined_text": "forget the current thing which we just added that is  Creating the exe and etc. We are not focusing on creating the exe for now. So I  am saying this because  currently  Everything is messed up  Everything was good at least it was showing the icon logo in the application in the sidebar  Now it is gone  Earlier it was showing the pre icon the pre icon options  of  Show dashboard hide dashboard quit the application  It was showing those things, but now everything is gone  It is not even loading. So I want you to  revert to those things and  fix it, please",
+      "paste_success": true,
+      "text_length": 559
     }
   ]
 }
