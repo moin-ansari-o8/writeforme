@@ -1,7 +1,13 @@
 """
 Wispr Flow Local - Main Application
 A local Python clone of Wispr Flow using speech recognition and AI
-Now with global hotkey support and multiple AI providers
+Now with global hotkey support, multiple AI providers, and streaming chunk processing
+
+Features:
+    - Streaming transcription: Processes audio in 15-second chunks during recording
+    - Handles long speeches with pauses without breaking context
+    - Combines all chunks when you stop for complete, refined output
+    - Background processing: Keep speaking while previous chunks transcribe
 
 Usage:
     python main.py
@@ -70,6 +76,13 @@ class WisprFlowLocal:
         self.speech_to_text = SpeechToText()
         self.paste_manager = PasteManager()
         self.data_storage = DataStorage(max_entries=config.MAX_HISTORY_ENTRIES)
+        
+        # Set up chunk callback for streaming transcription
+        self.audio_recorder.set_chunk_callback(self._on_audio_chunk)
+        self.transcribed_chunks = []  # Store chunks during recording
+        self.chunk_lock = threading.Lock()  # Thread safety for chunk list
+        self.recording_start_time = None  # Track total time
+        
         print(f"{Fore.GREEN}✓ All components ready!{Style.RESET_ALL}\n")
         
         # GUI will be initialized in main thread
@@ -108,8 +121,15 @@ class WisprFlowLocal:
             print(f"{Fore.YELLOW}⦿ Already recording...{Style.RESET_ALL}")
             return
         
-        print(f"\n{Fore.GREEN}{Style.BRIGHT}▶ Starting recording...{Style.RESET_ALL}")
+        from datetime import datetime
+        start_timestamp = datetime.now().strftime("%H:%M:%S")
+        print(f"\n{Fore.GREEN}{Style.BRIGHT}▶ [{start_timestamp}] Started listening...{Style.RESET_ALL}")
         self.is_recording = True
+        self.recording_start_time = time.time()  # Track start time
+        
+        # Clear previous chunks
+        with self.chunk_lock:
+            self.transcribed_chunks = []
         
         # Start audio recording
         self.audio_recorder.start_recording()
@@ -137,31 +157,97 @@ class WisprFlowLocal:
         self.is_recording = False
         self.is_processing = True
         
-        print(f"\n{Fore.YELLOW}⏹ Stopping recording - Processing...{Style.RESET_ALL}")
+        from datetime import datetime
+        stop_timestamp = datetime.now().strftime("%H:%M:%S")
+        print(f"\n{Fore.YELLOW}⏹ [{stop_timestamp}] Stopped recording - Processing...{Style.RESET_ALL}")
         print(f"{Fore.CYAN}{'─'*70}{Style.RESET_ALL}")
         
         # Switch UI to processing mode immediately
         if self.gui:
             self.gui.show_processing()
         
-        # Stop recording and get audio data
+        # Stop recording and get remaining audio (only what hasn't been chunked yet)
         audio_data = self.audio_recorder.stop_recording()
         
-        if audio_data is None or len(audio_data) == 0:
-            print(f"{Fore.RED}✗ No audio recorded{Style.RESET_ALL}")
-            self.is_processing = False
-            if self.gui:
-                self.gui.hide()
-            return
-        
         # Process in separate thread to avoid blocking
-        threading.Thread(target=self._process_audio, args=(audio_data,), daemon=True).start()
+        processing_start = time.time()
+        threading.Thread(target=self._process_audio, args=(audio_data, processing_start), daemon=True).start()
+    
+    def _remove_duplicate_sentences(self, chunks):
+        """Remove duplicate sentences from combined chunks"""
+        if not chunks:
+            return ""
+        
+        # Combine all chunks
+        full_text = " ".join(chunks)
+        
+        # Split into phrases (using both punctuation and commas)
+        import re
+        # Split on: . ! ? , ; and multiple spaces
+        phrases = re.split(r'[.,;!?]+\s*', full_text)
+        
+        # Clean and filter phrases
+        cleaned_phrases = []
+        for phrase in phrases:
+            phrase = phrase.strip()
+            if phrase:  # Skip empty
+                cleaned_phrases.append(phrase)
+        
+        # Remove consecutive duplicates (case-insensitive)
+        unique_phrases = []
+        previous_normalized = None
+        
+        for phrase in cleaned_phrases:
+            normalized = phrase.lower().strip()
+            
+            # Skip if same as previous phrase
+            if normalized != previous_normalized:
+                unique_phrases.append(phrase)
+                previous_normalized = normalized
+        
+        # Count removed duplicates
+        removed = len(cleaned_phrases) - len(unique_phrases)
+        if removed > 0:
+            print(f"{Fore.YELLOW}🔧 Removed {removed} duplicate phrase(s){Style.RESET_ALL}")
+        
+        # Join back with proper spacing
+        result = ", ".join(unique_phrases) + "."
+        
+        return result
+    
+    def _on_audio_chunk(self, chunk_audio, chunk_start_time):
+        """Callback for processing audio chunks in background"""
+        try:
+            # Don't process chunks if recording already stopped
+            if not self.is_recording:
+                return
+            
+            from datetime import datetime
+            chunk_num = len(self.transcribed_chunks) + 1
+            start_timestamp = datetime.now().strftime("%H:%M:%S")
+            print(f"{Fore.MAGENTA}📦 [{start_timestamp}] Chunk #{chunk_num} - Starting transcription...{Style.RESET_ALL}")
+            
+            # Transcribe chunk
+            transcribe_start = time.time()
+            chunk_text = self.speech_to_text.transcribe_audio(chunk_audio)
+            transcribe_duration = time.time() - transcribe_start
+            
+            if chunk_text and chunk_text.strip():
+                with self.chunk_lock:
+                    # Avoid duplicates - check if this chunk is already processed
+                    if not self.transcribed_chunks or chunk_text.strip() != self.transcribed_chunks[-1]:
+                        self.transcribed_chunks.append(chunk_text.strip())
+                        end_timestamp = datetime.now().strftime("%H:%M:%S")
+                        print(f"{Fore.GREEN}✓ [{end_timestamp}] Chunk #{chunk_num} completed in {transcribe_duration:.1f}s: {chunk_text[:50]}...{Style.RESET_ALL}")
+            
+        except Exception as e:
+            print(f"{Fore.RED}✗ Chunk transcription error: {e}{Style.RESET_ALL}")
     
     def on_stop(self, mode="ai"):
         """Handle stop button press from GUI"""
         self.stop_recording_and_process()
     
-    def _process_audio(self, audio_data):
+    def _process_audio(self, audio_data, processing_start):
         """Process audio in background thread"""
         try:
             # Get current mode
@@ -169,9 +255,41 @@ class WisprFlowLocal:
             if self.gui:
                 current_mode = self.gui.get_current_mode()
             
-            # Step 1: Speech to Text
-            print(f"{Fore.CYAN}[1/4] 🎯 Transcribing speech...{Style.RESET_ALL}")
-            transcribed_text = self.speech_to_text.transcribe_audio(audio_data)
+            # Wait a moment for any in-flight chunks to finish
+            time.sleep(0.5)
+            
+            # Step 1: Transcribe only remaining audio (after last chunk)
+            final_transcription = ""
+            
+            if audio_data is not None and len(audio_data) > 0:
+                # Only transcribe if there's significant remaining audio (> 0.5 second)
+                remaining_duration = len(audio_data) / config.AUDIO_SAMPLE_RATE
+                
+                if remaining_duration > 0.5:
+                    print(f"{Fore.CYAN}[1/4] 🎯 Transcribing final {remaining_duration:.1f}s...{Style.RESET_ALL}")
+                    final_transcription = self.speech_to_text.transcribe_audio(audio_data)
+                else:
+                    print(f"{Fore.CYAN}[1/4] ⏭ Skipping final transcription (only {remaining_duration:.1f}s remaining){Style.RESET_ALL}")
+            else:
+                print(f"{Fore.CYAN}[1/4] ⏭ No remaining audio to transcribe{Style.RESET_ALL}")
+            
+            # Step 2: Combine all chunks with final transcription
+            with self.chunk_lock:
+                all_chunks = self.transcribed_chunks.copy()
+            
+            # Add final transcription if it has new content
+            if final_transcription and final_transcription.strip():
+                # Check for duplicates before adding
+                if not all_chunks or final_transcription.strip() != all_chunks[-1]:
+                    all_chunks.append(final_transcription.strip())
+            
+            # Step 2.5: Remove duplicate sentences
+            transcribed_text = self._remove_duplicate_sentences(all_chunks)
+            
+            if transcribed_text:
+                print(f"{Fore.GREEN}✓ Combined {len(all_chunks)} segments (duplicates removed){Style.RESET_ALL}")
+            else:
+                transcribed_text = ""
             
             if not transcribed_text or transcribed_text.strip() == "":
                 print(f"{Fore.RED}✗ No speech detected{Style.RESET_ALL}")
@@ -180,9 +298,9 @@ class WisprFlowLocal:
                     self.gui.hide()
                 return
             
-            print(f"{Fore.GREEN}✓ Transcribed: {Fore.WHITE}{transcribed_text}{Style.RESET_ALL}")
+            print(f"{Fore.GREEN}✓ Complete transcription: {Fore.WHITE}{transcribed_text[:100]}...{Style.RESET_ALL}")
             
-            # Step 2: AI Refinement (if enabled)
+            # Step 3: AI Refinement (if enabled)
             if self.use_ai_refinement:
                 print(f"{Fore.CYAN}[2/4] ✨ Refining with {self.ai_manager.get_provider_name()}...{Style.RESET_ALL}")
                 
@@ -193,7 +311,7 @@ class WisprFlowLocal:
                 if current_mode == "vibe_coder":
                     refined_text = config.post_process_coding_text(refined_text)
                 
-                print(f"{Fore.GREEN}✓ Refined: {Fore.WHITE}{refined_text}{Style.RESET_ALL}")
+                print(f"{Fore.GREEN}✓ Refined: {Fore.WHITE}{refined_text[:100]}...{Style.RESET_ALL}")
             else:
                 print(f"{Fore.CYAN}[2/4] ⏭ Skipping AI refinement (raw mode){Style.RESET_ALL}")
                 refined_text = transcribed_text
@@ -222,7 +340,16 @@ class WisprFlowLocal:
             else:
                 print(f"{Fore.YELLOW}⚠ Paste failed, copied to clipboard{Style.RESET_ALL}")
             
+            # Calculate and display total time
+            from datetime import datetime
+            end_timestamp = datetime.now().strftime("%H:%M:%S")
+            total_time = time.time() - self.recording_start_time
+            processing_time = time.time() - processing_start
+            
             print(f"{Fore.CYAN}{'─'*70}{Style.RESET_ALL}")
+            print(f"{Fore.YELLOW}⏱️  [{end_timestamp}] Processing completed{Style.RESET_ALL}")
+            print(f"{Fore.YELLOW}⏱️  Total: {total_time:.1f}s (Recording: {total_time - processing_time:.1f}s | Processing: {processing_time:.1f}s){Style.RESET_ALL}")
+            print(f"{Fore.GREEN}✓ Ready for next dictation{Style.RESET_ALL}")
             print(f"{Fore.GREEN}{Style.BRIGHT}✓ Ready for next dictation{Style.RESET_ALL}\n")
             
         except Exception as e:

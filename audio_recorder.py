@@ -1,5 +1,5 @@
 """
-Audio recording module for continuous microphone input
+Audio recording module for continuous microphone input with streaming chunks
 """
 import pyaudio
 import numpy as np
@@ -7,6 +7,7 @@ import threading
 import queue
 import config
 import webrtcvad
+import time
 
 
 class AudioRecorder:
@@ -23,9 +24,24 @@ class AudioRecorder:
         self.vad = webrtcvad.Vad()
         self.vad.set_mode(3)  # Most aggressive (human voice only)
         
-        # Start processing thread
+        # Chunking for streaming transcription
+        self.chunk_callback = None  # Callback function for chunks
+        self.chunk_duration = 15.0  # Process every 15 seconds
+        self.chunk_overlap = 1.0    # 1 second overlap for continuity
+        self.recording_start_time = None
+        self.last_chunk_time = None
+        self.chunk_buffer_start = 0  # Track where next chunk starts
+        
+        # Start processing threads
         self.processing_thread = threading.Thread(target=self._process_visualizer_data, daemon=True)
         self.processing_thread.start()
+        
+        self.chunk_monitor_thread = threading.Thread(target=self._monitor_chunks, daemon=True)
+        self.chunk_monitor_thread.start()
+        
+    def set_chunk_callback(self, callback):
+        """Set callback function for chunk processing"""
+        self.chunk_callback = callback
         
     def start_recording(self):
         """Start recording audio from microphone"""
@@ -34,6 +50,9 @@ class AudioRecorder:
             
         self.is_recording = True
         self.audio_buffer = []
+        self.recording_start_time = time.time()
+        self.last_chunk_time = time.time()
+        self.chunk_buffer_start = 0
         
         # Open audio stream
         self.stream = self.audio.open(
@@ -116,8 +135,64 @@ class AudioRecorder:
                 # print(f"Error in visualizer processing: {e}")
                 pass
     
+    def _monitor_chunks(self):
+        """Monitor recording and trigger chunk processing"""
+        while True:
+            try:
+                if self.is_recording and self.chunk_callback:
+                    current_time = time.time()
+                    elapsed = current_time - self.last_chunk_time
+                    
+                    # Check if it's time to process a chunk
+                    if elapsed >= self.chunk_duration and len(self.audio_buffer) > 0:
+                        self._process_chunk()
+                        
+                time.sleep(0.5)  # Check every 0.5 seconds
+            except Exception as e:
+                pass
+    
+    def _process_chunk(self):
+        """Process current audio chunk in background"""
+        try:
+            # Get current total buffer length
+            current_buffer_length = len(self.audio_buffer)
+            
+            # Only process if we have new data
+            if current_buffer_length <= self.chunk_buffer_start:
+                return
+            
+            # Extract ONLY the NEW audio chunks since last processing
+            new_chunks = self.audio_buffer[self.chunk_buffer_start:current_buffer_length]
+            
+            if not new_chunks:
+                return
+            
+            # Combine new chunks into audio array
+            chunk_audio = np.concatenate(new_chunks)
+            
+            # Call the callback with chunk data
+            if self.chunk_callback and len(chunk_audio) > 0:
+                duration = len(chunk_audio) / config.AUDIO_SAMPLE_RATE
+                from datetime import datetime
+                timestamp = datetime.now().strftime("%H:%M:%S")
+                print(f"[{timestamp}] [AudioRecorder] Processing chunk: {duration:.1f}s")
+                
+                # Trigger background transcription
+                threading.Thread(
+                    target=self.chunk_callback,
+                    args=(chunk_audio.copy(), time.time()),
+                    daemon=True
+                ).start()
+            
+            # Update tracking - move start position to current end
+            self.chunk_buffer_start = current_buffer_length
+            self.last_chunk_time = time.time()
+            
+        except Exception as e:
+            print(f"[AudioRecorder] Chunk processing error: {e}")
+    
     def stop_recording(self):
-        """Stop recording and return complete audio data"""
+        """Stop recording and return only remaining audio (after last chunk)"""
         if not self.is_recording:
             return None
             
@@ -129,11 +204,13 @@ class AudioRecorder:
             
         print("[AudioRecorder] Recording stopped")
         
-        # Combine all audio chunks
-        if self.audio_buffer:
-            complete_audio = np.concatenate(self.audio_buffer)
+        # Get only remaining audio after last chunk position
+        if self.audio_buffer and len(self.audio_buffer) > self.chunk_buffer_start:
+            remaining_audio = np.concatenate(self.audio_buffer[self.chunk_buffer_start:])
             self.audio_buffer = []  # Clear buffer to free memory
-            return complete_audio
+            return remaining_audio
+        
+        self.audio_buffer = []  # Clear buffer even if no remaining audio
         return None
     
     def cancel_recording(self):
