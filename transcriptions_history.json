@@ -2273,6 +2273,22 @@
       "refined_text": "Testing right for me chunking system, This is section 1, My name is Mohin Ansari and today is January 27th of 2026, I am testing the audio transcription with multiple chunks to identify animicing  words or repetition issues, The system processes audio in 15 seconds in the holes, Each chunk should contain unique content without preparation from previous segments, The application uses faster whisper model running on CPU with int A, quantization for optimal performance.",
       "paste_success": true,
       "text_length": 471
+    },
+    {
+      "timestamp": "2026-01-27T05:41:53.749154",
+      "mode": "vibe_coder",
+      "raw_text": "The dialog box is not loading still it is showing the error message in the dialog box again.",
+      "refined_text": "The dialog box is not loading still it is showing the error message in the dialog box again.",
+      "paste_success": false,
+      "text_length": 92
+    },
+    {
+      "timestamp": "2026-01-27T05:41:53.995630",
+      "mode": "vibe_coder",
+      "raw_text": "The dialog box is not loading still it is showing the error message in the dialog box again.",
+      "refined_text": "The dialog box is not loading still it is showing the error message in the dialog box again.",
+      "paste_success": true,
+      "text_length": 92
     }
   ]
 }
