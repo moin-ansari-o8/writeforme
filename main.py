@@ -81,6 +81,8 @@ class WisprFlowLocal:
         self.audio_recorder.set_chunk_callback(self._on_audio_chunk)
         self.transcribed_chunks = []  # Store chunks during recording
         self.chunk_lock = threading.Lock()  # Thread safety for chunk list
+        self.active_chunk_threads = []  # Track in-flight chunk processing threads
+        self.thread_lock = threading.Lock()  # Thread safety for thread list
         self.recording_start_time = None  # Track total time
         
         print(f"{Fore.GREEN}✓ All components ready!{Style.RESET_ALL}\n")
@@ -217,6 +219,11 @@ class WisprFlowLocal:
     
     def _on_audio_chunk(self, chunk_audio, chunk_start_time):
         """Callback for processing audio chunks in background"""
+        # Track this thread
+        current_thread = threading.current_thread()
+        with self.thread_lock:
+            self.active_chunk_threads.append(current_thread)
+        
         try:
             # Don't process chunks if recording already stopped
             if not self.is_recording:
@@ -242,6 +249,11 @@ class WisprFlowLocal:
             
         except Exception as e:
             print(f"{Fore.RED}✗ Chunk transcription error: {e}{Style.RESET_ALL}")
+        finally:
+            # Always remove thread from tracking when done
+            with self.thread_lock:
+                if current_thread in self.active_chunk_threads:
+                    self.active_chunk_threads.remove(current_thread)
     
     def on_stop(self, mode="ai"):
         """Handle stop button press from GUI"""
@@ -255,8 +267,32 @@ class WisprFlowLocal:
             if self.gui:
                 current_mode = self.gui.get_current_mode()
             
-            # Wait a moment for any in-flight chunks to finish
-            time.sleep(0.5)
+            # Wait for all in-flight chunk transcriptions to complete
+            max_wait = 30  # Maximum 30 seconds wait
+            wait_start = time.time()
+            last_count = -1
+            
+            while True:
+                with self.thread_lock:
+                    active_count = len(self.active_chunk_threads)
+                
+                # All chunks completed
+                if active_count == 0:
+                    break
+                
+                # Show progress when count changes
+                if active_count != last_count:
+                    print(f"{Fore.YELLOW}⏳ Waiting for {active_count} chunk(s) to complete...{Style.RESET_ALL}")
+                    last_count = active_count
+                
+                # Timeout protection
+                elapsed = time.time() - wait_start
+                if elapsed > max_wait:
+                    print(f"{Fore.RED}⚠️  Timeout: {active_count} chunk(s) still processing after {max_wait}s{Style.RESET_ALL}")
+                    break
+                
+                # Poll every 100ms
+                time.sleep(0.1)
             
             # Step 1: Transcribe only remaining audio (after last chunk)
             final_transcription = ""

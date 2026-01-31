@@ -2289,6 +2289,38 @@
       "refined_text": "The dialog box is not loading still it is showing the error message in the dialog box again.",
       "paste_success": true,
       "text_length": 92
+    },
+    {
+      "timestamp": "2026-01-29T21:35:17.527452",
+      "mode": "vibe_coder",
+      "raw_text": "hello hello so I clicked on the edit icon in the notification but it didn't  launch the modern dialog box of that particular product, added product, This showed in the console.",
+      "refined_text": "hello hello so I clicked on the edit icon in the notification but it didn't  launch the modern dialog box of that particular product, added product, This showed in the console.",
+      "paste_success": false,
+      "text_length": 176
+    },
+    {
+      "timestamp": "2026-01-29T21:35:17.800044",
+      "mode": "vibe_coder",
+      "raw_text": "hello hello so I clicked on the edit icon in the notification but it didn't  launch the modern dialog box of that particular product, added product, This showed in the console.",
+      "refined_text": "hello hello so I clicked on the edit icon in the notification but it didn't  launch the modern dialog box of that particular product, added product, This showed in the console.",
+      "paste_success": true,
+      "text_length": 176
+    },
+    {
+      "timestamp": "2026-01-31T11:32:29.829191",
+      "mode": "vibe_coder",
+      "raw_text": "Now it is showing the dialog box, The problem I am getting currently is that in the dialog box  earlier if I have entered  the stock like quantity for particular product for 500 and  Unit price 50 still when I click on the model edit product.",
+      "refined_text": "Now it is showing the dialog box, The problem I am getting currently is that in the dialog box  earlier if I have entered  the stock like quantity for particular product for 500 and  Unit price 50 still when I click on the model edit product.",
+      "paste_success": false,
+      "text_length": 242
+    },
+    {
+      "timestamp": "2026-01-31T11:32:30.103663",
+      "mode": "vibe_coder",
+      "raw_text": "Now it is showing the dialog box, The problem I am getting currently is that in the dialog box  earlier if I have entered  the stock like quantity for particular product for 500 and  Unit price 50 still when I click on the model edit product.",
+      "refined_text": "Now it is showing the dialog box, The problem I am getting currently is that in the dialog box  earlier if I have entered  the stock like quantity for particular product for 500 and  Unit price 50 still when I click on the model edit product.",
+      "paste_success": true,
+      "text_length": 242
     }
   ]
 }

@@ -5,6 +5,35 @@
 
 ---
 
+## [2026-01-31] - Insufficient Wait Time for In-Flight Chunk Threads
+
+**Problem:**
+- Hard-coded 0.5-second wait for background chunk transcription threads
+- Chunk transcriptions take 3-6 seconds to complete but system only waited 0.5s
+- When user toggled stop while chunk was processing, system pasted incomplete results
+- Last chunk's transcription finished AFTER paste operation, missing from final output
+- Example: Chunk #3 started at 11:32:28, user stopped at 11:32:29, pasted at 11:32:30, chunk finished at 11:32:31
+
+**Solution:**
+- Added `self.active_chunk_threads = []` and `self.thread_lock = threading.Lock()` for proper thread tracking
+- Modified `_on_audio_chunk()` to track current thread in `active_chunk_threads` list with try/finally cleanup
+- Replaced `time.sleep(0.5)` with intelligent wait loop checking `len(active_chunk_threads)`
+- Added 30-second timeout protection to prevent infinite hangs
+- Added progress feedback: `"⏳ Waiting for X chunk(s) to complete..."` shown when count changes
+- Poll every 100ms for responsive waiting without busy-waiting CPU
+
+**Lesson:**
+- NEVER use hard-coded wait times for asynchronous operations with variable completion times
+- ALWAYS track background threads properly using thread lists or synchronization primitives
+- ALWAYS implement timeout protection when waiting for threads (prevent infinite hangs)
+- ALWAYS clean up thread tracking in finally blocks to prevent memory leaks
+- Use polling with reasonable intervals (100ms) instead of arbitrary sleep durations
+
+**Related Files:**
+- main.py (lines 94-96: thread tracking init, 218-256: chunk callback with tracking, 263-294: wait loop with timeout)
+
+---
+
 ## [2026-01-15] - Taskbar Icon Missing + Resource Paths Broken in Frozen EXE
 
 **Problem:**
