@@ -282,3 +282,108 @@
 - ✅ Future-proof structure
 
 **Status:** ✅ Complete and Production-Ready
+---
+
+## [2026-02-03] - PyInstaller Hook Error with Missing Package Metadata
+
+**Problem:**
+- PyInstaller build failed with `PackageNotFoundError: No package metadata was found for webrtcvad`
+- webrtcvad was listed in `hiddenimports` but package was not fully installed in venv
+- File lock prevented installation: `[WinError 5] Access is denied: _webrtcvad.cp311-win_amd64.pyd`
+- PyInstaller hook system requires package metadata for bundling, not just Python imports
+- Build process halted completely due to missing metadata for optional dependency
+
+**Solution:**
+- Excluded `webrtcvad` from build by adding to `excludes=[]` list in WriteForMe.spec
+- Removed from `hiddenimports` to prevent PyInstaller from attempting to bundle it
+- webrtcvad is optional audio processing library, not critical for core functionality
+- Build completed successfully with exclusion, app runs without it
+- File size: 105 MB (includes faster-whisper, pynput, pystray, PIL, numpy)
+
+**Lesson:**
+- PyInstaller requires full package installation with metadata, not just import capability
+- ALWAYS check if dependencies are optional before including in hiddenimports
+- When facing package lock errors during dependency install, exclude from build if optional
+- Use `excludes=[]` list in .spec file for problematic optional dependencies
+- Test which dependencies are truly required vs. nice-to-have enhancements
+- File locks indicate process is running - check for background instances before installation
+
+**Related Files:**
+- WriteForMe.spec (PyInstaller configuration)
+- launcher.py (system tray entry point)
+- main.py (core application logic)
+
+---
+
+## [2026-02-03] - Interactive Prompts Break Background Service Mode
+
+**Problem:**
+- main.py had interactive `input()` prompt asking "Enable AI refinement? (Y/n):"
+- When built with `console=False` in PyInstaller, no console exists for input
+- Application would hang waiting for user input that could never be provided
+- Background service with system tray needs silent startup, no user interaction
+- Colorama terminal output wastes resources when no console window exists
+
+**Solution:**
+- Added `silent_mode=False` parameter to `WisprFlowLocal.__init__()`
+- Default `self.use_ai_refinement = False` (direct speech-to-text, no AI)
+- Wrapped all print statements in `if not silent_mode:` conditionals
+- Updated `main()` entry point to accept `silent_mode` parameter
+- launcher.py calls `WisprFlowLocal(silent_mode=True)` to suppress all terminal output
+- Removed AI provider selection prompt entirely for background mode
+
+**Lesson:**
+- NEVER use interactive input() prompts in applications intended for background/service mode
+- ALWAYS provide sensible defaults for all user choices when running headless
+- Wrap verbose terminal output in conditional checks to save resources
+- Use configuration files or GUI settings instead of console prompts for services
+- Test with `console=False` in PyInstaller before finalizing background service design
+- Background services should be 100% non-interactive - no blocking for user input
+
+**Related Files:**
+- main.py (removed interactive prompt, added silent_mode)
+- launcher.py (calls with silent_mode=True)
+- WriteForMe.spec (console=False for windowless execution)
+
+---
+
+## [2026-02-03] - Background Service Requires System Tray and Auto-Start Support
+
+**Problem:**
+- Original main.py only worked as foreground console application
+- No way to control app without console (start, stop, exit)
+- No system tray icon for background service visibility
+- No auto-start capability for Windows login
+- No single-instance lock - multiple instances could run simultaneously
+- Users had no indication app was running without console window
+
+**Solution:**
+- Created launcher.py as system tray wrapper using pystray library
+- Implemented `SystemTrayIcon` with context menu: Start/Stop Listening, Auto-start, Quit
+- Added single-instance lock using PID file: `%LOCALAPPDATA%\WriteForMe\writeforme.lock`
+- Implemented Windows registry auto-start: `HKEY_CURRENT_USER\...\Run` key management
+- Used `psutil.pid_exists()` for stale lock detection and cleanup
+- Runs main.py logic in background daemon thread
+- Icon loads from `assets/wfm_logo.ico` with fallback to generated icon
+
+**Lesson:**
+- Background services MUST have system tray presence for user visibility and control
+- ALWAYS implement single-instance lock to prevent duplicate processes
+- Use PID validation when checking lock files (handle stale locks from crashes)
+- Windows auto-start requires registry key management, not just file copying
+- System tray icon provides essential UX for headless applications
+- Daemon threads ensure clean shutdown when main thread exits
+- Always provide fallback for missing assets (icon generation)
+
+**Related Files:**
+- launcher.py (new system tray wrapper)
+- main.py (refactored for background execution)
+- WriteForMe.spec (targets launcher.py as entry point)
+- requirements.txt (added pystray, psutil)
+- BACKGROUND_SERVICE_README.md (usage documentation)
+
+**Dependencies Added:**
+- pystray>=0.19.4 (system tray icon)
+- psutil>=5.9.0 (process management)
+
+**Status:** ✅ Complete and Production-Ready

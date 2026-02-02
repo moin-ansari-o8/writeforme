@@ -2321,6 +2321,342 @@
       "refined_text": "Now it is showing the dialog box, The problem I am getting currently is that in the dialog box  earlier if I have entered  the stock like quantity for particular product for 500 and  Unit price 50 still when I click on the model edit product.",
       "paste_success": true,
       "text_length": 242
+    },
+    {
+      "timestamp": "2026-01-31T23:31:09.648305",
+      "mode": "vibe_coder",
+      "raw_text": "Now, I want some UI changes in this application, The first change I want is in the create slash failinwise page in that There are multiple input boxes and radio buttons and the rest of things, checkbox I mean input box the radio button box and other input boxes are  clicked then the border color is blue right most of the border color is blue but some of the input boxes and  radio button outline border color is not blue they are like green color and red color so I want you to look into  that and make the blue color border a little bit a less bold make it to gentle blue border color not exact not too much thick it is currently too much thick as you can see this screenshot I have shared.",
+      "refined_text": "Now, I want some UI changes in this application, The first change I want is in the create slash failinwise page in that There are multiple input boxes and radio buttons and the rest of things, checkbox I mean input box the radio button box and other input boxes are  clicked then the border color is blue right most of the border color is blue but some of the input boxes and  radio button outline border color is not blue they are like green color and red color so I want you to look into  that and make the blue color border a little bit a less bold make it to gentle blue border color not exact not too much thick it is currently too much thick as you can see this screenshot I have shared.",
+      "paste_success": false,
+      "text_length": 693
+    },
+    {
+      "timestamp": "2026-01-31T23:31:09.898923",
+      "mode": "vibe_coder",
+      "raw_text": "Now, I want some UI changes in this application, The first change I want is in the create slash failinwise page in that There are multiple input boxes and radio buttons and the rest of things, checkbox I mean input box the radio button box and other input boxes are  clicked then the border color is blue right most of the border color is blue but some of the input boxes and  radio button outline border color is not blue they are like green color and red color so I want you to look into  that and make the blue color border a little bit a less bold make it to gentle blue border color not exact not too much thick it is currently too much thick as you can see this screenshot I have shared.",
+      "refined_text": "Now, I want some UI changes in this application, The first change I want is in the create slash failinwise page in that There are multiple input boxes and radio buttons and the rest of things, checkbox I mean input box the radio button box and other input boxes are  clicked then the border color is blue right most of the border color is blue but some of the input boxes and  radio button outline border color is not blue they are like green color and red color so I want you to look into  that and make the blue color border a little bit a less bold make it to gentle blue border color not exact not too much thick it is currently too much thick as you can see this screenshot I have shared.",
+      "paste_success": true,
+      "text_length": 693
+    },
+    {
+      "timestamp": "2026-02-01T00:57:15.230633",
+      "mode": "vibe_coder",
+      "raw_text": "so key mapping complete so for invoice I want I not an character I want I to be  underlined for the invoice and A for analytics, E for employees, B for backup, S for settings, AEBS are not all for settings they are separate i told you for others i thought you would understand but you clearly  didn't i have to clarify this that a is for analytics e for employees b for backup item and as for settings icon shortcuts should work from all pages global shortcut cuts keep them, but when input field is being used, it should exclude that particular shortcuts, Which are global we are making them global it should be excluded whenever we use input boxes  I also want the multi-language support so  update accordingly and it is gas insensitive also For the model and dialogue inference, shortcut should be disabled for that, Same goes for the input boxes triggered, The shortcut should be disabled.",
+      "refined_text": "so key mapping complete so for invoice I want I not an character I want I to be  underlined for the invoice and A for analytics, E for employees, B for backup, S for settings, AEBS are not all for settings they are separate i told you for others i thought you would understand but you clearly  didn't i have to clarify this that a is for analytics e for employees b for backup item and as for settings icon shortcuts should work from all pages global shortcut cuts keep them, but when input field is being used, it should exclude that particular shortcuts, Which are global we are making them global it should be excluded whenever we use input boxes  I also want the multi-language support so  update accordingly and it is gas insensitive also For the model and dialogue inference, shortcut should be disabled for that, Same goes for the input boxes triggered, The shortcut should be disabled.",
+      "paste_success": false,
+      "text_length": 893
+    },
+    {
+      "timestamp": "2026-02-01T00:57:15.470925",
+      "mode": "vibe_coder",
+      "raw_text": "so key mapping complete so for invoice I want I not an character I want I to be  underlined for the invoice and A for analytics, E for employees, B for backup, S for settings, AEBS are not all for settings they are separate i told you for others i thought you would understand but you clearly  didn't i have to clarify this that a is for analytics e for employees b for backup item and as for settings icon shortcuts should work from all pages global shortcut cuts keep them, but when input field is being used, it should exclude that particular shortcuts, Which are global we are making them global it should be excluded whenever we use input boxes  I also want the multi-language support so  update accordingly and it is gas insensitive also For the model and dialogue inference, shortcut should be disabled for that, Same goes for the input boxes triggered, The shortcut should be disabled.",
+      "refined_text": "so key mapping complete so for invoice I want I not an character I want I to be  underlined for the invoice and A for analytics, E for employees, B for backup, S for settings, AEBS are not all for settings they are separate i told you for others i thought you would understand but you clearly  didn't i have to clarify this that a is for analytics e for employees b for backup item and as for settings icon shortcuts should work from all pages global shortcut cuts keep them, but when input field is being used, it should exclude that particular shortcuts, Which are global we are making them global it should be excluded whenever we use input boxes  I also want the multi-language support so  update accordingly and it is gas insensitive also For the model and dialogue inference, shortcut should be disabled for that, Same goes for the input boxes triggered, The shortcut should be disabled.",
+      "paste_success": true,
+      "text_length": 893
+    },
+    {
+      "timestamp": "2026-02-01T01:02:46.786674",
+      "mode": "vibe_coder",
+      "raw_text": "while I am on the invoice page create invoice page I am clicking on the  escape button but it is not directly moving to the dashboard I have to  first click on the voice page or double click on the voice page after that when I'm clicking on the  escape button only when only then the dashboard page is opening So, it is not working like other pages, like whenever I click on the escape button, it  should directly open the dashboard from invoice page 2, there is no need to double click  on it or, Focus on it or something it should just have idea that in which pages open and as can button is clicked  So it should just open the dashboard.",
+      "refined_text": "while I am on the invoice page create invoice page I am clicking on the  escape button but it is not directly moving to the dashboard I have to  first click on the voice page or double click on the voice page after that when I'm clicking on the  escape button only when only then the dashboard page is opening So, it is not working like other pages, like whenever I click on the escape button, it  should directly open the dashboard from invoice page 2, there is no need to double click  on it or, Focus on it or something it should just have idea that in which pages open and as can button is clicked  So it should just open the dashboard.",
+      "paste_success": false,
+      "text_length": 640
+    },
+    {
+      "timestamp": "2026-02-01T01:02:47.029244",
+      "mode": "vibe_coder",
+      "raw_text": "while I am on the invoice page create invoice page I am clicking on the  escape button but it is not directly moving to the dashboard I have to  first click on the voice page or double click on the voice page after that when I'm clicking on the  escape button only when only then the dashboard page is opening So, it is not working like other pages, like whenever I click on the escape button, it  should directly open the dashboard from invoice page 2, there is no need to double click  on it or, Focus on it or something it should just have idea that in which pages open and as can button is clicked  So it should just open the dashboard.",
+      "refined_text": "while I am on the invoice page create invoice page I am clicking on the  escape button but it is not directly moving to the dashboard I have to  first click on the voice page or double click on the voice page after that when I'm clicking on the  escape button only when only then the dashboard page is opening So, it is not working like other pages, like whenever I click on the escape button, it  should directly open the dashboard from invoice page 2, there is no need to double click  on it or, Focus on it or something it should just have idea that in which pages open and as can button is clicked  So it should just open the dashboard.",
+      "paste_success": true,
+      "text_length": 640
+    },
+    {
+      "timestamp": "2026-02-02T14:26:10.478764",
+      "mode": "vibe_coder",
+      "raw_text": "do the flutter analysis first after each changes and fix this issue first.",
+      "refined_text": "do the flutter analysis first after each changes and fix this issue first.",
+      "paste_success": false,
+      "text_length": 74
+    },
+    {
+      "timestamp": "2026-02-02T14:26:10.727074",
+      "mode": "vibe_coder",
+      "raw_text": "do the flutter analysis first after each changes and fix this issue first.",
+      "refined_text": "do the flutter analysis first after each changes and fix this issue first.",
+      "paste_success": true,
+      "text_length": 74
+    },
+    {
+      "timestamp": "2026-02-02T14:47:40.543748",
+      "mode": "vibe_coder",
+      "raw_text": "Revert the spacebar to original structure as it was before, Make another changes like currently this just revert the changes of the spacebar that divide into two parts and all the earlier it  was working perfectly make it like earlier and about the placeholder into the input box look for the properly existing text how it is showing I have already implemented  the logic for it I was just Getting the issue is whenever I first launched the application, the connect to server that  type of text was not showing, I was stopping the server, it was showing but on first time, it was not showing, when the application is launched, The red dot was perfect but in the input box it wasn't  showing the connect to server text, That is the only issue, I have already implemented connect to server logic for later stop server things.",
+      "refined_text": "Revert the spacebar to original structure as it was before, Make another changes like currently this just revert the changes of the spacebar that divide into two parts and all the earlier it  was working perfectly make it like earlier and about the placeholder into the input box look for the properly existing text how it is showing I have already implemented  the logic for it I was just Getting the issue is whenever I first launched the application, the connect to server that  type of text was not showing, I was stopping the server, it was showing but on first time, it was not showing, when the application is launched, The red dot was perfect but in the input box it wasn't  showing the connect to server text, That is the only issue, I have already implemented connect to server logic for later stop server things.",
+      "paste_success": false,
+      "text_length": 823
+    },
+    {
+      "timestamp": "2026-02-02T14:47:40.789340",
+      "mode": "vibe_coder",
+      "raw_text": "Revert the spacebar to original structure as it was before, Make another changes like currently this just revert the changes of the spacebar that divide into two parts and all the earlier it  was working perfectly make it like earlier and about the placeholder into the input box look for the properly existing text how it is showing I have already implemented  the logic for it I was just Getting the issue is whenever I first launched the application, the connect to server that  type of text was not showing, I was stopping the server, it was showing but on first time, it was not showing, when the application is launched, The red dot was perfect but in the input box it wasn't  showing the connect to server text, That is the only issue, I have already implemented connect to server logic for later stop server things.",
+      "refined_text": "Revert the spacebar to original structure as it was before, Make another changes like currently this just revert the changes of the spacebar that divide into two parts and all the earlier it  was working perfectly make it like earlier and about the placeholder into the input box look for the properly existing text how it is showing I have already implemented  the logic for it I was just Getting the issue is whenever I first launched the application, the connect to server that  type of text was not showing, I was stopping the server, it was showing but on first time, it was not showing, when the application is launched, The red dot was perfect but in the input box it wasn't  showing the connect to server text, That is the only issue, I have already implemented connect to server logic for later stop server things.",
+      "paste_success": true,
+      "text_length": 823
+    },
+    {
+      "timestamp": "2026-02-02T14:53:33.618841",
+      "mode": "vibe_coder",
+      "raw_text": "selector on the top right side of the page while the analytics page has a  different row this is totally not what I wanted I told you specifically that I  want the currency selector on the top right side same as the customer's management page.",
+      "refined_text": "selector on the top right side of the page while the analytics page has a  different row this is totally not what I wanted I told you specifically that I  want the currency selector on the top right side same as the customer's management page.",
+      "paste_success": false,
+      "text_length": 243
+    },
+    {
+      "timestamp": "2026-02-02T14:53:33.873356",
+      "mode": "vibe_coder",
+      "raw_text": "selector on the top right side of the page while the analytics page has a  different row this is totally not what I wanted I told you specifically that I  want the currency selector on the top right side same as the customer's management page.",
+      "refined_text": "selector on the top right side of the page while the analytics page has a  different row this is totally not what I wanted I told you specifically that I  want the currency selector on the top right side same as the customer's management page.",
+      "paste_success": true,
+      "text_length": 243
+    },
+    {
+      "timestamp": "2026-02-02T15:00:51.679359",
+      "mode": "vibe_coder",
+      "raw_text": "solve these issues and also after solving the issue always run the flutter  analyze command to fetch the errors and solve Thank you very much.",
+      "refined_text": "solve these issues and also after solving the issue always run the flutter  analyze command to fetch the errors and solve Thank you very much.",
+      "paste_success": false,
+      "text_length": 142
+    },
+    {
+      "timestamp": "2026-02-02T15:00:51.926472",
+      "mode": "vibe_coder",
+      "raw_text": "solve these issues and also after solving the issue always run the flutter  analyze command to fetch the errors and solve Thank you very much.",
+      "refined_text": "solve these issues and also after solving the issue always run the flutter  analyze command to fetch the errors and solve Thank you very much.",
+      "paste_success": true,
+      "text_length": 142
+    },
+    {
+      "timestamp": "2026-02-02T15:09:14.675352",
+      "mode": "vibe_coder",
+      "raw_text": "program but it is whenever I'm clicking on the start server button it is losing the application  I don't know why so make the Error config file too so that we can know what is happening in the error of runtime  So yes do it because still when leaking all the stuff server it is closing the app and still not starting the server also i can't find the  tray icon so it must be closing the application so i want you to look into this issue.",
+      "refined_text": "program but it is whenever I'm clicking on the start server button it is losing the application  I don't know why so make the Error config file too so that we can know what is happening in the error of runtime  So yes do it because still when leaking all the stuff server it is closing the app and still not starting the server also i can't find the  tray icon so it must be closing the application so i want you to look into this issue.",
+      "paste_success": false,
+      "text_length": 437
+    },
+    {
+      "timestamp": "2026-02-02T15:09:14.930340",
+      "mode": "vibe_coder",
+      "raw_text": "program but it is whenever I'm clicking on the start server button it is losing the application  I don't know why so make the Error config file too so that we can know what is happening in the error of runtime  So yes do it because still when leaking all the stuff server it is closing the app and still not starting the server also i can't find the  tray icon so it must be closing the application so i want you to look into this issue.",
+      "refined_text": "program but it is whenever I'm clicking on the start server button it is losing the application  I don't know why so make the Error config file too so that we can know what is happening in the error of runtime  So yes do it because still when leaking all the stuff server it is closing the app and still not starting the server also i can't find the  tray icon so it must be closing the application so i want you to look into this issue.",
+      "paste_success": true,
+      "text_length": 437
+    },
+    {
+      "timestamp": "2026-02-02T16:05:18.909789",
+      "mode": "vibe_coder",
+      "raw_text": "currently only when I am clicking the first key it is making the sound and for  rest of the keys click there is no key press sound is coming so that is the  issue.",
+      "refined_text": "currently only when I am clicking the first key it is making the sound and for  rest of the keys click there is no key press sound is coming so that is the  issue.",
+      "paste_success": false,
+      "text_length": 163
+    },
+    {
+      "timestamp": "2026-02-02T16:05:19.165053",
+      "mode": "vibe_coder",
+      "raw_text": "currently only when I am clicking the first key it is making the sound and for  rest of the keys click there is no key press sound is coming so that is the  issue.",
+      "refined_text": "currently only when I am clicking the first key it is making the sound and for  rest of the keys click there is no key press sound is coming so that is the  issue.",
+      "paste_success": true,
+      "text_length": 163
+    },
+    {
+      "timestamp": "2026-02-02T16:06:14.199388",
+      "mode": "vibe_coder",
+      "raw_text": "Also, I want you to optimize the code in such a way that whenever I click multiple keys, it should overwrite the key press sound, The last key press sound should be Override by new key press sound optimize in search way that the delay doesn't make the issue and everything works perfectly, Tell me what you understood.",
+      "refined_text": "Also, I want you to optimize the code in such a way that whenever I click multiple keys, it should overwrite the key press sound, The last key press sound should be Override by new key press sound optimize in search way that the delay doesn't make the issue and everything works perfectly, Tell me what you understood.",
+      "paste_success": false,
+      "text_length": 318
+    },
+    {
+      "timestamp": "2026-02-02T16:06:14.458104",
+      "mode": "vibe_coder",
+      "raw_text": "Also, I want you to optimize the code in such a way that whenever I click multiple keys, it should overwrite the key press sound, The last key press sound should be Override by new key press sound optimize in search way that the delay doesn't make the issue and everything works perfectly, Tell me what you understood.",
+      "refined_text": "Also, I want you to optimize the code in such a way that whenever I click multiple keys, it should overwrite the key press sound, The last key press sound should be Override by new key press sound optimize in search way that the delay doesn't make the issue and everything works perfectly, Tell me what you understood.",
+      "paste_success": true,
+      "text_length": 318
+    },
+    {
+      "timestamp": "2026-02-02T16:10:54.770796",
+      "mode": "vibe_coder",
+      "raw_text": "Just make the label as click mechanical one mechanical two make the mechanical one as default sound Here's the preview should be heard by the users when setting the key press button in the settings, Yes, the drop-down should be visible like visual feedback should be there and I am ready to proceed with the paste  optimization of this plan implementation.",
+      "refined_text": "Just make the label as click mechanical one mechanical two make the mechanical one as default sound Here's the preview should be heard by the users when setting the key press button in the settings, Yes, the drop-down should be visible like visual feedback should be there and I am ready to proceed with the paste  optimization of this plan implementation.",
+      "paste_success": false,
+      "text_length": 356
+    },
+    {
+      "timestamp": "2026-02-02T16:10:55.032945",
+      "mode": "vibe_coder",
+      "raw_text": "Just make the label as click mechanical one mechanical two make the mechanical one as default sound Here's the preview should be heard by the users when setting the key press button in the settings, Yes, the drop-down should be visible like visual feedback should be there and I am ready to proceed with the paste  optimization of this plan implementation.",
+      "refined_text": "Just make the label as click mechanical one mechanical two make the mechanical one as default sound Here's the preview should be heard by the users when setting the key press button in the settings, Yes, the drop-down should be visible like visual feedback should be there and I am ready to proceed with the paste  optimization of this plan implementation.",
+      "paste_success": true,
+      "text_length": 356
+    },
+    {
+      "timestamp": "2026-02-02T16:15:39.170219",
+      "mode": "vibe_coder",
+      "raw_text": "there is no need to write anything related to up arrow key and down arrow key simply  it should show the  up and down arrow  key name in the same as are we showing for the Poilter plus tab related keys home and end keys also they  should be showing same as the curly in the curly braces control plus left right key  should reflect the word jump in the input box, There is no need to show the multi-line support, Single line is fine.",
+      "refined_text": "there is no need to write anything related to up arrow key and down arrow key simply  it should show the  up and down arrow  key name in the same as are we showing for the Poilter plus tab related keys home and end keys also they  should be showing same as the curly in the curly braces control plus left right key  should reflect the word jump in the input box, There is no need to show the multi-line support, Single line is fine.",
+      "paste_success": false,
+      "text_length": 432
+    },
+    {
+      "timestamp": "2026-02-02T16:15:39.490562",
+      "mode": "vibe_coder",
+      "raw_text": "there is no need to write anything related to up arrow key and down arrow key simply  it should show the  up and down arrow  key name in the same as are we showing for the Poilter plus tab related keys home and end keys also they  should be showing same as the curly in the curly braces control plus left right key  should reflect the word jump in the input box, There is no need to show the multi-line support, Single line is fine.",
+      "refined_text": "there is no need to write anything related to up arrow key and down arrow key simply  it should show the  up and down arrow  key name in the same as are we showing for the Poilter plus tab related keys home and end keys also they  should be showing same as the curly in the curly braces control plus left right key  should reflect the word jump in the input box, There is no need to show the multi-line support, Single line is fine.",
+      "paste_success": true,
+      "text_length": 432
+    },
+    {
+      "timestamp": "2026-02-02T22:00:52.974123",
+      "mode": "vibe_coder",
+      "raw_text": "shift the vice hello there are you listening to me I don't know what are  you doing nonsense you fool go to sleep.",
+      "refined_text": "shift the vice hello there are you listening to me I don't know what are  you doing nonsense you fool go to sleep.",
+      "paste_success": false,
+      "text_length": 114
+    },
+    {
+      "timestamp": "2026-02-02T22:00:53.259777",
+      "mode": "vibe_coder",
+      "raw_text": "shift the vice hello there are you listening to me I don't know what are  you doing nonsense you fool go to sleep.",
+      "refined_text": "shift the vice hello there are you listening to me I don't know what are  you doing nonsense you fool go to sleep.",
+      "paste_success": true,
+      "text_length": 114
+    },
+    {
+      "timestamp": "2026-02-02T23:59:30.954223",
+      "mode": "vibe_coder",
+      "raw_text": "so I have already made my portfolio website it is good now I want to make  some updates related to sub domain of that my portfolio website what I want is that I want it very you  know different unique idea I have for my portfolio for you some domain dashboard I want so I want some ideas from you For starter, what I want is that normally I can say my projects then There will be first home page of my dashboard after that I will be another page will be  there related to my projects, Third page will be there related to new project ideas and yes currently I am thinking about  and yes, Yes currently these three pages on the home page, I want to put to I want to put Two main feature sections first one will be there related to to those  like Trello you know horizontally placed to lose least same as Trello website uses kind of that and  another section on the home page will be related to my Github Rappos direct link for my Github Rappos, Thank you.",
+      "refined_text": "so I have already made my portfolio website it is good now I want to make  some updates related to sub domain of that my portfolio website what I want is that I want it very you  know different unique idea I have for my portfolio for you some domain dashboard I want so I want some ideas from you For starter, what I want is that normally I can say my projects then There will be first home page of my dashboard after that I will be another page will be  there related to my projects, Third page will be there related to new project ideas and yes currently I am thinking about  and yes, Yes currently these three pages on the home page, I want to put to I want to put Two main feature sections first one will be there related to to those  like Trello you know horizontally placed to lose least same as Trello website uses kind of that and  another section on the home page will be related to my Github Rappos direct link for my Github Rappos, Thank you.",
+      "paste_success": false,
+      "text_length": 953
+    },
+    {
+      "timestamp": "2026-02-02T23:59:31.201183",
+      "mode": "vibe_coder",
+      "raw_text": "so I have already made my portfolio website it is good now I want to make  some updates related to sub domain of that my portfolio website what I want is that I want it very you  know different unique idea I have for my portfolio for you some domain dashboard I want so I want some ideas from you For starter, what I want is that normally I can say my projects then There will be first home page of my dashboard after that I will be another page will be  there related to my projects, Third page will be there related to new project ideas and yes currently I am thinking about  and yes, Yes currently these three pages on the home page, I want to put to I want to put Two main feature sections first one will be there related to to those  like Trello you know horizontally placed to lose least same as Trello website uses kind of that and  another section on the home page will be related to my Github Rappos direct link for my Github Rappos, Thank you.",
+      "refined_text": "so I have already made my portfolio website it is good now I want to make  some updates related to sub domain of that my portfolio website what I want is that I want it very you  know different unique idea I have for my portfolio for you some domain dashboard I want so I want some ideas from you For starter, what I want is that normally I can say my projects then There will be first home page of my dashboard after that I will be another page will be  there related to my projects, Third page will be there related to new project ideas and yes currently I am thinking about  and yes, Yes currently these three pages on the home page, I want to put to I want to put Two main feature sections first one will be there related to to those  like Trello you know horizontally placed to lose least same as Trello website uses kind of that and  another section on the home page will be related to my Github Rappos direct link for my Github Rappos, Thank you.",
+      "paste_success": true,
+      "text_length": 953
+    },
+    {
+      "timestamp": "2026-02-03T00:04:51.415840",
+      "mode": "vibe_coder",
+      "raw_text": "all right so I am making dashboard for my port for your website I want to make  very unique very cool dashboard domain sub domain for my port which will be only accessed by me, I want some page ideas that are unique and  I have thought about some sections or you can say pages I'm not sure how to put my words but I will be giving you the  features I want the information about the features I want to get so first of  all I want to do this section like Trello in which I will be putting the to-dos simply then I want a  section or page related to my journey in which I will be fetching the github my github  information about repositories and its commits I will be refining those commits with the AI and it will show the journey on the page like  from start to end day to day what I did in a very beautiful full UI I want that feature like you know sneak like feature in that I will be  there will be showing my journey I created this repo on this day and then  when I click on that I can see the AI refined journey like I first made these then  they did this updation in that wrap over etc, using the commit messages from that particular repositories, It is just an idea now, I am  not sure if it is possible to build it like that way or not, I am just giving you the  idea, there will be this type of section or page related to my journey, Another page or section  I want is related to you know my gdhub repository is very click on that I will be gone to my data propose etc another thing I want is  that new idea related to projects like very frequently I get new ideas to make application new websites new ideas you  know so on that page I will be adding those ideas idea name and the plot related to that idea prompts related to that idea so that idea will be a card and  there will be sub cards for that card and in a proper beautiful UI so This will be another section another feature for my domain, I want is that this is it for now so I want you to give me this is very scattered idea I want  you to think about it and give me proper format of the pages how many pages  and all I don't want much pages you can combine the multiple sections in one page related to one thing so you can  do that, I don't want much pages so you can help me with this, This is it, This is just an idea of scattered pages idea, I want you to refine it properly, It is just that I don't want the UI idea from you, I just want the pages sections how I should be showing them on which page, how many pages and which page show what etc.",
+      "refined_text": "all right so I am making dashboard for my port for your website I want to make  very unique very cool dashboard domain sub domain for my port which will be only accessed by me, I want some page ideas that are unique and  I have thought about some sections or you can say pages I'm not sure how to put my words but I will be giving you the  features I want the information about the features I want to get so first of  all I want to do this section like Trello in which I will be putting the to-dos simply then I want a  section or page related to my journey in which I will be fetching the github my github  information about repositories and its commits I will be refining those commits with the AI and it will show the journey on the page like  from start to end day to day what I did in a very beautiful full UI I want that feature like you know sneak like feature in that I will be  there will be showing my journey I created this repo on this day and then  when I click on that I can see the AI refined journey like I first made these then  they did this updation in that wrap over etc, using the commit messages from that particular repositories, It is just an idea now, I am  not sure if it is possible to build it like that way or not, I am just giving you the  idea, there will be this type of section or page related to my journey, Another page or section  I want is related to you know my gdhub repository is very click on that I will be gone to my data propose etc another thing I want is  that new idea related to projects like very frequently I get new ideas to make application new websites new ideas you  know so on that page I will be adding those ideas idea name and the plot related to that idea prompts related to that idea so that idea will be a card and  there will be sub cards for that card and in a proper beautiful UI so This will be another section another feature for my domain, I want is that this is it for now so I want you to give me this is very scattered idea I want  you to think about it and give me proper format of the pages how many pages  and all I don't want much pages you can combine the multiple sections in one page related to one thing so you can  do that, I don't want much pages so you can help me with this, This is it, This is just an idea of scattered pages idea, I want you to refine it properly, It is just that I don't want the UI idea from you, I just want the pages sections how I should be showing them on which page, how many pages and which page show what etc.",
+      "paste_success": false,
+      "text_length": 2519
+    },
+    {
+      "timestamp": "2026-02-03T00:04:51.695729",
+      "mode": "vibe_coder",
+      "raw_text": "all right so I am making dashboard for my port for your website I want to make  very unique very cool dashboard domain sub domain for my port which will be only accessed by me, I want some page ideas that are unique and  I have thought about some sections or you can say pages I'm not sure how to put my words but I will be giving you the  features I want the information about the features I want to get so first of  all I want to do this section like Trello in which I will be putting the to-dos simply then I want a  section or page related to my journey in which I will be fetching the github my github  information about repositories and its commits I will be refining those commits with the AI and it will show the journey on the page like  from start to end day to day what I did in a very beautiful full UI I want that feature like you know sneak like feature in that I will be  there will be showing my journey I created this repo on this day and then  when I click on that I can see the AI refined journey like I first made these then  they did this updation in that wrap over etc, using the commit messages from that particular repositories, It is just an idea now, I am  not sure if it is possible to build it like that way or not, I am just giving you the  idea, there will be this type of section or page related to my journey, Another page or section  I want is related to you know my gdhub repository is very click on that I will be gone to my data propose etc another thing I want is  that new idea related to projects like very frequently I get new ideas to make application new websites new ideas you  know so on that page I will be adding those ideas idea name and the plot related to that idea prompts related to that idea so that idea will be a card and  there will be sub cards for that card and in a proper beautiful UI so This will be another section another feature for my domain, I want is that this is it for now so I want you to give me this is very scattered idea I want  you to think about it and give me proper format of the pages how many pages  and all I don't want much pages you can combine the multiple sections in one page related to one thing so you can  do that, I don't want much pages so you can help me with this, This is it, This is just an idea of scattered pages idea, I want you to refine it properly, It is just that I don't want the UI idea from you, I just want the pages sections how I should be showing them on which page, how many pages and which page show what etc.",
+      "refined_text": "all right so I am making dashboard for my port for your website I want to make  very unique very cool dashboard domain sub domain for my port which will be only accessed by me, I want some page ideas that are unique and  I have thought about some sections or you can say pages I'm not sure how to put my words but I will be giving you the  features I want the information about the features I want to get so first of  all I want to do this section like Trello in which I will be putting the to-dos simply then I want a  section or page related to my journey in which I will be fetching the github my github  information about repositories and its commits I will be refining those commits with the AI and it will show the journey on the page like  from start to end day to day what I did in a very beautiful full UI I want that feature like you know sneak like feature in that I will be  there will be showing my journey I created this repo on this day and then  when I click on that I can see the AI refined journey like I first made these then  they did this updation in that wrap over etc, using the commit messages from that particular repositories, It is just an idea now, I am  not sure if it is possible to build it like that way or not, I am just giving you the  idea, there will be this type of section or page related to my journey, Another page or section  I want is related to you know my gdhub repository is very click on that I will be gone to my data propose etc another thing I want is  that new idea related to projects like very frequently I get new ideas to make application new websites new ideas you  know so on that page I will be adding those ideas idea name and the plot related to that idea prompts related to that idea so that idea will be a card and  there will be sub cards for that card and in a proper beautiful UI so This will be another section another feature for my domain, I want is that this is it for now so I want you to give me this is very scattered idea I want  you to think about it and give me proper format of the pages how many pages  and all I don't want much pages you can combine the multiple sections in one page related to one thing so you can  do that, I don't want much pages so you can help me with this, This is it, This is just an idea of scattered pages idea, I want you to refine it properly, It is just that I don't want the UI idea from you, I just want the pages sections how I should be showing them on which page, how many pages and which page show what etc.",
+      "paste_success": true,
+      "text_length": 2519
+    },
+    {
+      "timestamp": "2026-02-03T00:12:35.313210",
+      "mode": "vibe_coder",
+      "raw_text": "I am going to make only 3 pages so in the navigation bar which is docked on the right  side there are 5 icons I want you to reduce them to there are there will be only three pages so I just want three icons and the first page  will be control center second page will be my journey and third page will be ideal app so just make just show these three icons remove other icons keep the theme toggle button as  it is I'm just talking about the other icons on the top five okay no there are there are six I guess top six so keep  only three and update the icon related to names also.",
+      "refined_text": "I am going to make only 3 pages so in the navigation bar which is docked on the right  side there are 5 icons I want you to reduce them to there are there will be only three pages so I just want three icons and the first page  will be control center second page will be my journey and third page will be ideal app so just make just show these three icons remove other icons keep the theme toggle button as  it is I'm just talking about the other icons on the top five okay no there are there are six I guess top six so keep  only three and update the icon related to names also.",
+      "paste_success": false,
+      "text_length": 578
+    },
+    {
+      "timestamp": "2026-02-03T00:12:35.564187",
+      "mode": "vibe_coder",
+      "raw_text": "I am going to make only 3 pages so in the navigation bar which is docked on the right  side there are 5 icons I want you to reduce them to there are there will be only three pages so I just want three icons and the first page  will be control center second page will be my journey and third page will be ideal app so just make just show these three icons remove other icons keep the theme toggle button as  it is I'm just talking about the other icons on the top five okay no there are there are six I guess top six so keep  only three and update the icon related to names also.",
+      "refined_text": "I am going to make only 3 pages so in the navigation bar which is docked on the right  side there are 5 icons I want you to reduce them to there are there will be only three pages so I just want three icons and the first page  will be control center second page will be my journey and third page will be ideal app so just make just show these three icons remove other icons keep the theme toggle button as  it is I'm just talking about the other icons on the top five okay no there are there are six I guess top six so keep  only three and update the icon related to names also.",
+      "paste_success": true,
+      "text_length": 578
+    },
+    {
+      "timestamp": "2026-02-03T00:16:02.591674",
+      "mode": "vibe_coder",
+      "raw_text": "So, make a prompt for this, including the thing just I told you, volume that it should must use the CSS and theme color from the used truly Moin folder  and ok, the UI design and theme colors like that existing website also do not use any emojis, use the theme color, font color and everything related from that  existing folder, take inspiration or we can I will take your reference from that folder and give me proper prompt related to these  three pages, Don't give me the design id, Thank you, Yeah.",
+      "refined_text": "So, make a prompt for this, including the thing just I told you, volume that it should must use the CSS and theme color from the used truly Moin folder  and ok, the UI design and theme colors like that existing website also do not use any emojis, use the theme color, font color and everything related from that  existing folder, take inspiration or we can I will take your reference from that folder and give me proper prompt related to these  three pages, Don't give me the design id, Thank you, Yeah.",
+      "paste_success": false,
+      "text_length": 503
+    },
+    {
+      "timestamp": "2026-02-03T00:16:02.835425",
+      "mode": "vibe_coder",
+      "raw_text": "So, make a prompt for this, including the thing just I told you, volume that it should must use the CSS and theme color from the used truly Moin folder  and ok, the UI design and theme colors like that existing website also do not use any emojis, use the theme color, font color and everything related from that  existing folder, take inspiration or we can I will take your reference from that folder and give me proper prompt related to these  three pages, Don't give me the design id, Thank you, Yeah.",
+      "refined_text": "So, make a prompt for this, including the thing just I told you, volume that it should must use the CSS and theme color from the used truly Moin folder  and ok, the UI design and theme colors like that existing website also do not use any emojis, use the theme color, font color and everything related from that  existing folder, take inspiration or we can I will take your reference from that folder and give me proper prompt related to these  three pages, Don't give me the design id, Thank you, Yeah.",
+      "paste_success": true,
+      "text_length": 503
+    },
+    {
+      "timestamp": "2026-02-03T00:16:56.659812",
+      "mode": "vibe_coder",
+      "raw_text": "So, you can tell me the design idea in this prompt, but you should just mention that tag  font color and font face and font style and, CSS and theme colors from that existing folder just I told you about so give me the idea in the prompt one click copy paste code below about these three pages that I can give to my AI agent  in my BS code which can handle from that from.",
+      "refined_text": "So, you can tell me the design idea in this prompt, but you should just mention that tag  font color and font face and font style and, CSS and theme colors from that existing folder just I told you about so give me the idea in the prompt one click copy paste code below about these three pages that I can give to my AI agent  in my BS code which can handle from that from.",
+      "paste_success": false,
+      "text_length": 372
+    },
+    {
+      "timestamp": "2026-02-03T00:16:56.902718",
+      "mode": "vibe_coder",
+      "raw_text": "So, you can tell me the design idea in this prompt, but you should just mention that tag  font color and font face and font style and, CSS and theme colors from that existing folder just I told you about so give me the idea in the prompt one click copy paste code below about these three pages that I can give to my AI agent  in my BS code which can handle from that from.",
+      "refined_text": "So, you can tell me the design idea in this prompt, but you should just mention that tag  font color and font face and font style and, CSS and theme colors from that existing folder just I told you about so give me the idea in the prompt one click copy paste code below about these three pages that I can give to my AI agent  in my BS code which can handle from that from.",
+      "paste_success": true,
+      "text_length": 372
+    },
+    {
+      "timestamp": "2026-02-03T00:18:54.064289",
+      "mode": "vibe_coder",
+      "raw_text": "Update the second icon with the scroll light icon which is used in the main  Neovar from the main website Take it from there.",
+      "refined_text": "Update the second icon with the scroll light icon which is used in the main  Neovar from the main website Take it from there.",
+      "paste_success": false,
+      "text_length": 125
+    },
+    {
+      "timestamp": "2026-02-03T00:18:54.320790",
+      "mode": "vibe_coder",
+      "raw_text": "Update the second icon with the scroll light icon which is used in the main  Neovar from the main website Take it from there.",
+      "refined_text": "Update the second icon with the scroll light icon which is used in the main  Neovar from the main website Take it from there.",
+      "paste_success": true,
+      "text_length": 125
+    },
+    {
+      "timestamp": "2026-02-03T00:31:12.848605",
+      "mode": "vibe_coder",
+      "raw_text": "It is working perfectly, now I just want to wrap it into the Byte installer so that this  application runs in the background whenever I launched the Byte that, the, exe file of this particular program write for me so whenever I return that program  it should be in the background for me so that whenever I go, exe file or pressed keys, it pops up and listens perfectly, same as currently made by, but with only the  working in the background.",
+      "refined_text": "It is working perfectly, now I just want to wrap it into the Byte installer so that this  application runs in the background whenever I launched the Byte that, the, exe file of this particular program write for me so whenever I return that program  it should be in the background for me so that whenever I go, exe file or pressed keys, it pops up and listens perfectly, same as currently made by, but with only the  working in the background.",
+      "paste_success": false,
+      "text_length": 442
+    },
+    {
+      "timestamp": "2026-02-03T00:31:13.107384",
+      "mode": "vibe_coder",
+      "raw_text": "It is working perfectly, now I just want to wrap it into the Byte installer so that this  application runs in the background whenever I launched the Byte that, the, exe file of this particular program write for me so whenever I return that program  it should be in the background for me so that whenever I go, exe file or pressed keys, it pops up and listens perfectly, same as currently made by, but with only the  working in the background.",
+      "refined_text": "It is working perfectly, now I just want to wrap it into the Byte installer so that this  application runs in the background whenever I launched the Byte that, the, exe file of this particular program write for me so whenever I return that program  it should be in the background for me so that whenever I go, exe file or pressed keys, it pops up and listens perfectly, same as currently made by, but with only the  working in the background.",
+      "paste_success": true,
+      "text_length": 442
+    },
+    {
+      "timestamp": "2026-02-03T00:34:55.170757",
+      "mode": "vibe_coder",
+      "raw_text": "I would like to move related to github token management, I would like to add a github personal access token after login fall for full Rebo access now related to AI features I would like to use the Gemini MEI Because it is free and related to drag and drop library, I want you to choose the better one related to routing strategy keep the root level let you deploy and I will deploy it you don't need to worry about that about the data migration  slash seed I don't know what you mean about that, what do you mean from that, I am not getting it related to data migration seed.",
+      "refined_text": "I would like to move related to github token management, I would like to add a github personal access token after login fall for full Rebo access now related to AI features I would like to use the Gemini MEI Because it is free and related to drag and drop library, I want you to choose the better one related to routing strategy keep the root level let you deploy and I will deploy it you don't need to worry about that about the data migration  slash seed I don't know what you mean about that, what do you mean from that, I am not getting it related to data migration seed.",
+      "paste_success": false,
+      "text_length": 575
+    },
+    {
+      "timestamp": "2026-02-03T00:34:55.427477",
+      "mode": "vibe_coder",
+      "raw_text": "I would like to move related to github token management, I would like to add a github personal access token after login fall for full Rebo access now related to AI features I would like to use the Gemini MEI Because it is free and related to drag and drop library, I want you to choose the better one related to routing strategy keep the root level let you deploy and I will deploy it you don't need to worry about that about the data migration  slash seed I don't know what you mean about that, what do you mean from that, I am not getting it related to data migration seed.",
+      "refined_text": "I would like to move related to github token management, I would like to add a github personal access token after login fall for full Rebo access now related to AI features I would like to use the Gemini MEI Because it is free and related to drag and drop library, I want you to choose the better one related to routing strategy keep the root level let you deploy and I will deploy it you don't need to worry about that about the data migration  slash seed I don't know what you mean about that, what do you mean from that, I am not getting it related to data migration seed.",
+      "paste_success": true,
+      "text_length": 575
     }
   ]
 }
